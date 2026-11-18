@@ -42,7 +42,7 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
   onOpenQuickView,
 }) => {
   const [mechanismTab, setMechanismTab] = useState<'manual' | 'motorized'>('motorized');
-  const [reclineAngle, setReclineAngle] = useState<0 | 1 | 2>(1);
+  const [reclineAngle, setReclineAngle] = useState<0 | 1 | 2>(0);
   const [sofaBedStage, setSofaBedStage] = useState<0 | 1 | 2>(0);
   const [stories, setStories] = useState<CustomerStory[]>(CUSTOMER_STORIES);
   const [isReviewFormOpen, setIsReviewFormOpen] = useState(false);
@@ -155,8 +155,8 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
     });
   };
 
-  const reclineLabels = ['95° Upright', '130° Lounge', '160° Full Recline'];
-  const reclineShortLabels = ['95° Upright', '130° Lounge', '160° Full'];
+  const reclineLabels = ['90° Upright', '130° Lounge', '160° Full Recline'];
+  const reclineShortLabels = ['90° Upright', '130° Lounge', '160° Full'];
   const reclineImages = [IMG_RECLINE_95, IMG_RECLINE_130, IMG_RECLINE_160];
   const sofaBedLabels = [
     'Sofa Mode (92 cm)',
@@ -214,230 +214,183 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
               Tap any angle or glide step below to see real hardware in action.
             </p>
           </div>
-          {/* Split 1: Interactive Manual Lever vs Motorized Push-Button Visualizer */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
-          >
-            <div className="lg:col-span-6 space-y-4">
-              <div className="aspect-[16/10] rounded-2xl overflow-hidden bg-[#FAF4ED] shadow-sm relative border border-[#ECE2D5]">
-                <img
-                  src={reclineImages[reclineAngle]}
-                  alt={`Zain Recliner shown at ${reclineLabels[reclineAngle]} position`}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover transition-opacity duration-300"
-                />
-                <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-[#131F2D]/85 backdrop-blur-xs text-white text-[11px] font-semibold tabular-nums flex items-center gap-1.5 shadow-sm">
+          {/* Split 1: Unified Recliner Visualizer + Attached Control Dock */}
+          <div className="max-w-3xl mx-auto">
+            <div className="rounded-2xl overflow-hidden bg-white border border-[#E2D8CD] shadow-sm">
+              {/* Stacked Crossfade-Blended Recliner Degree Photos */}
+              <div className="aspect-[16/9] bg-[#FAF4ED] relative overflow-hidden">
+                {reclineImages.map((src, idx) => {
+                  const isActive = reclineAngle === idx;
+                  return (
+                    <img
+                      key={src}
+                      src={src}
+                      alt={`Zain Recliner shown at ${reclineLabels[idx]} position`}
+                      referrerPolicy="no-referrer"
+                      decoding="async"
+                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-out ${
+                        isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                      }`}
+                    />
+                  );
+                })}
+                <div className="absolute bottom-3 left-3 z-20 px-2.5 py-1 rounded-md bg-[#131F2D]/85 backdrop-blur-xs text-white text-[11px] font-semibold tabular-nums flex items-center gap-1.5 shadow-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#E27A34]" />
-                  <span>{reclineLabels[reclineAngle]}</span>
+                  <span>
+                    {mechanismTab === 'motorized' ? 'Motorized' : 'Manual Lever'} ·{' '}
+                    {reclineLabels[reclineAngle]}
+                  </span>
                 </div>
               </div>
 
-              {/* Live Animated Motion Preview Diagram */}
-              <div className="p-4 rounded-xl bg-white border border-[#ECE6DF] flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="flex items-center gap-4">
-                  {/* Minimal Animated Side-Profile Chair SVG */}
-                  <div className="w-24 h-20 rounded-lg bg-[#FAF4ED] flex items-center justify-center relative overflow-hidden shrink-0">
-                    <svg viewBox="0 0 120 90" className="w-22 h-16" fill="none">
-                      {/* Base frame */}
-                      <line
-                        x1="28"
-                        y1="74"
-                        x2="86"
-                        y2="74"
-                        stroke="#131F2D"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                      />
-                      {/* Seat base */}
-                      <rect
-                        x="38"
-                        y="52"
-                        width="38"
-                        height="12"
-                        rx="4"
-                        fill="#E27A34"
-                      />
-                      {/* Animated Backrest */}
-                      <motion.g
-                        animate={{ rotate: backTiltDegrees[reclineAngle] }}
-                        transition={{ type: 'spring', stiffness: 160, damping: 20 }}
-                        style={{ originX: '40px', originY: '58px' }}
-                      >
-                        <rect
-                          x="30"
-                          y="18"
-                          width="12"
-                          height="40"
-                          rx="5"
-                          fill="#131F2D"
+              {/* Flush Attached Recliner Control Dock */}
+              <div className="p-3.5 sm:p-4 bg-[#FAF4ED]/65 border-t border-[#EAE0D4] space-y-3">
+                <div className="flex flex-wrap items-center justify-between gap-2 pb-2.5 border-b border-[#EAE0D4]">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#131F2D]">
+                    Recliner Control Bar
+                  </span>
+                  <div className="flex items-center gap-1 p-0.5 rounded-lg bg-[#EFE6DB] border border-[#E3D7C8]">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMechanismTab('motorized');
+                        setReclineAngle(0);
+                      }}
+                      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-semibold transition-all cursor-pointer ${
+                        mechanismTab === 'motorized'
+                          ? 'bg-[#131F2D] text-white shadow-2xs'
+                          : 'text-[#515151] hover:text-[#131F2D]'
+                      }`}
+                    >
+                      <Zap className="w-3 h-3 text-[#E27A34]" />
+                      Motorized
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMechanismTab('manual');
+                        setReclineAngle(0);
+                      }}
+                      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-semibold transition-all cursor-pointer ${
+                        mechanismTab === 'manual'
+                          ? 'bg-[#131F2D] text-white shadow-2xs'
+                          : 'text-[#515151] hover:text-[#131F2D]'
+                      }`}
+                    >
+                      <Wrench className="w-3 h-3 text-[#E27A34]" />
+                      Manual Lever
+                    </button>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <div className="flex items-center gap-3 w-full sm:w-auto">
+                    <div className="w-20 h-16 rounded-lg bg-white border border-[#EAE0D4] flex items-center justify-center relative overflow-hidden shrink-0">
+                      <svg viewBox="0 0 120 90" className="w-18 h-14" fill="none">
+                        <line
+                          x1="28"
+                          y1="74"
+                          x2="86"
+                          y2="74"
+                          stroke="#131F2D"
+                          strokeWidth="3"
+                          strokeLinecap="round"
                         />
-                      </motion.g>
-                      {/* Animated Footrest */}
-                      <motion.g
-                        animate={{ rotate: footrestAngles[reclineAngle] }}
-                        transition={{ type: 'spring', stiffness: 160, damping: 20 }}
-                        style={{ originX: '76px', originY: '58px' }}
-                      >
                         <rect
-                          x="76"
+                          x="38"
                           y="52"
-                          width="26"
-                          height="9"
-                          rx="3"
-                          fill="#9C582B"
+                          width="38"
+                          height="12"
+                          rx="4"
+                          fill="#E27A34"
                         />
-                      </motion.g>
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-wider text-[#E27A34]">
-                      Interactive Motion Demo
-                    </p>
-                    <p className="text-xs sm:text-sm font-semibold text-[#333333]">
-                      {mechanismTab === 'motorized'
-                        ? 'Electric Push-Button Glide'
-                        : 'Side-Lever Mechanical Action'}
-                    </p>
-                    <p className="text-xs text-[#515151] tabular-nums">
-                      Position: {reclineLabels[reclineAngle]}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-1.5 w-full sm:w-auto justify-center sm:justify-end">
-                  {([0, 1, 2] as const).map((step) => {
-                    const isActive = reclineAngle === step;
-                    return (
+                        <motion.g
+                          animate={{ rotate: backTiltDegrees[reclineAngle] }}
+                          transition={{ type: 'spring', stiffness: 180, damping: 22 }}
+                          style={{ originX: '40px', originY: '58px' }}
+                        >
+                          <rect
+                            x="30"
+                            y="18"
+                            width="12"
+                            height="40"
+                            rx="5"
+                            fill="#131F2D"
+                          />
+                        </motion.g>
+                        <motion.g
+                          animate={{ rotate: footrestAngles[reclineAngle] }}
+                          transition={{ type: 'spring', stiffness: 180, damping: 22 }}
+                          style={{ originX: '76px', originY: '58px' }}
+                        >
+                          <rect
+                            x="76"
+                            y="52"
+                            width="26"
+                            height="9"
+                            rx="3"
+                            fill="#9C582B"
+                          />
+                        </motion.g>
+                      </svg>
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[10.5px] font-semibold uppercase tracking-wider text-[#E27A34]">
+                        {mechanismTab === 'motorized'
+                          ? 'Push-Button Electric Glide'
+                          : 'Side-Lever Mechanical Action'}
+                      </p>
+                      <p className="text-xs sm:text-sm font-semibold text-[#131F2D] tabular-nums">
+                        {reclineLabels[reclineAngle]}
+                      </p>
                       <button
-                        key={step}
                         type="button"
-                        onClick={() => setReclineAngle(step)}
-                        aria-pressed={isActive}
-                        className={`px-2.5 py-1.5 rounded-md text-[11px] font-semibold transition-all cursor-pointer tabular-nums ${
-                          isActive
-                            ? 'bg-[#E27A34] text-white shadow-xs'
-                            : 'bg-[#FAF4ED] text-[#515151] hover:bg-[#F2E6D8] hover:text-[#131F2D] border border-[#EAE0D4]'
-                        }`}
+                        onClick={() =>
+                          onSelectCategory(
+                            mechanismTab === 'motorized'
+                              ? 'Motorized Recliners'
+                              : 'Manual Recliners'
+                          )
+                        }
+                        className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#333333] hover:text-[#E27A34] transition-colors cursor-pointer mt-0.5"
                       >
-                        {reclineShortLabels[step]}
+                        <span>
+                          {mechanismTab === 'motorized'
+                            ? 'Shop Motorized Recliners'
+                            : 'Shop Manual Lever Recliners'}
+                        </span>
+                        <ArrowRight className="w-3 h-3" />
                       </button>
-                    );
-                  })}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-1.5 w-full sm:w-auto justify-center sm:justify-end">
+                    {([0, 1, 2] as const).map((step) => {
+                      const isActive = reclineAngle === step;
+                      return (
+                        <button
+                          key={step}
+                          type="button"
+                          onClick={() => setReclineAngle(step)}
+                          aria-pressed={isActive}
+                          className={`px-2.5 py-1.5 rounded-md text-[11px] font-semibold transition-all cursor-pointer tabular-nums ${
+                            isActive
+                              ? 'bg-[#E27A34] text-white shadow-xs'
+                              : 'bg-white text-[#515151] hover:bg-[#F2E6D8] hover:text-[#131F2D] border border-[#E2D8CD]'
+                          }`}
+                        >
+                          {reclineShortLabels[step]}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>
-
-            <div className="lg:col-span-6 flex flex-col justify-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#E27A34] mb-2">
-                TWO RECLINER MECHANISMS
-              </p>
-              <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#333333] leading-tight">
-                Manual Side-Lever or Electric Push-Button Recline
-              </h2>
-
-              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-5 p-1 bg-[#EFE8DF] rounded-lg w-full sm:w-fit">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMechanismTab('motorized');
-                    setReclineAngle(2);
-                  }}
-                  className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2.5 sm:py-2 rounded-md text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
-                    mechanismTab === 'motorized'
-                      ? 'bg-white text-[#131F2D] shadow-xs'
-                      : 'text-[#515151] hover:text-[#333333]'
-                  }`}
-                >
-                  <Zap className="w-3.5 h-3.5 text-[#E27A34]" />
-                  Motorized Button
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMechanismTab('manual');
-                    setReclineAngle(1);
-                  }}
-                  className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2.5 sm:py-2 rounded-md text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
-                    mechanismTab === 'manual'
-                      ? 'bg-white text-[#131F2D] shadow-xs'
-                      : 'text-[#515151] hover:text-[#333333]'
-                  }`}
-                >
-                  <Wrench className="w-3.5 h-3.5 text-[#E27A34]" />
-                  Manual Lever
-                </button>
-              </div>
-
-              {mechanismTab === 'motorized' ? (
-                <div className="mt-4 space-y-2.5 text-sm text-[#515151] leading-relaxed">
-                  <p>
-                    <strong className="text-[#333333]">Button-Operated Electric Glide:</strong>{' '}
-                    Press the sleek side control buttons to smoothly glide to any angle between 95° upright viewing and 160° zero-gravity lounging.
-                  </p>
-                  <ul className="space-y-1.5 text-xs sm:text-sm">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#4CAF4F] shrink-0" />
-                      Whisper-quiet 24V Okin actuator motor with integrated USB charging port
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#4CAF4F] shrink-0" />
-                      Available in 1-Seater Lounge, 2-Seater Love Seat, or Cinema Rows
-                    </li>
-                  </ul>
-                  <div className="pt-2">
-                    <button
-                      type="button"
-                      onClick={() => onSelectCategory('Motorized Recliners')}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-[#333333] border-b-2 border-[#E27A34] pb-1 hover:text-[#E27A34] transition-colors cursor-pointer"
-                    >
-                      Explore Motorized Recliners
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div className="mt-4 space-y-2.5 text-sm text-[#515151] leading-relaxed">
-                  <p>
-                    <strong className="text-[#333333]">Precision Side-Lever Operation:</strong>{' '}
-                    Pull the discreet side lever to instantly release the footrest and lean back smoothly using balanced bodyweight mechanics—zero wall plug needed.
-                  </p>
-                  <ul className="space-y-1.5 text-xs sm:text-sm">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#4CAF4F] shrink-0" />
-                      Heavy-gauge powder-coated steel linkage tested for 25,000+ cycles
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#4CAF4F] shrink-0" />
-                      Place anywhere in bedrooms or living corners without trailing cords
-                    </li>
-                  </ul>
-                  <div className="pt-2">
-                    <button
-                      type="button"
-                      onClick={() => onSelectCategory('Manual Recliners')}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-[#333333] border-b-2 border-[#E27A34] pb-1 hover:text-[#E27A34] transition-colors cursor-pointer"
-                    >
-                      Explore Manual Lever Recliners
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-          </motion.div>
+          </div>
 
           {/* Split 2: Compact Interactive Electric Extendable Sofa-Cum-Bed Preview */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center pt-6 border-t border-[#ECE6DF]"
-          >
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center pt-6 border-t border-[#ECE6DF]">
             <div className="lg:col-span-5 order-2 lg:order-1 flex flex-col justify-center space-y-3.5">
               <div>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#E27A34] mb-1">
@@ -529,19 +482,28 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
 
             <div className="lg:col-span-7 order-1 lg:order-2">
               <div className="aspect-[16/9] max-h-[340px] w-full rounded-2xl overflow-hidden bg-[#FAF4ED] shadow-sm relative border border-[#ECE2D5]">
-                <img
-                  src={sofaBedImages[sofaBedStage]}
-                  alt={`Zain Electric Sofa Cum Bed shown in ${sofaBedLabels[sofaBedStage]}`}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover transition-opacity duration-300"
-                />
-                <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-[#131F2D]/85 backdrop-blur-xs text-white text-[11px] font-semibold tabular-nums flex items-center gap-1.5 shadow-sm">
+                {sofaBedImages.map((src, idx) => {
+                  const isActive = sofaBedStage === idx;
+                  return (
+                    <img
+                      key={src}
+                      src={src}
+                      alt={`Zain Electric Sofa Cum Bed shown in ${sofaBedLabels[idx]}`}
+                      referrerPolicy="no-referrer"
+                      decoding="async"
+                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-out ${
+                        isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                      }`}
+                    />
+                  );
+                })}
+                <div className="absolute bottom-3 left-3 z-20 px-2.5 py-1 rounded-md bg-[#131F2D]/85 backdrop-blur-xs text-white text-[11px] font-semibold tabular-nums flex items-center gap-1.5 shadow-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#E27A34]" />
                   <span>{sofaBedLabels[sofaBedStage]}</span>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

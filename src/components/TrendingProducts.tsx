@@ -234,6 +234,7 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
                       src={product.image}
                       alt={product.name}
                       referrerPolicy="no-referrer"
+                      decoding="async"
                       onClick={() => onOpenQuickView(product)}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer"
                     />

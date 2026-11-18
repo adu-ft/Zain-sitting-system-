@@ -59,6 +59,10 @@ export const HeroAndPromo: React.FC<HeroAndPromoProps> = ({
   const [slideIdx, setSlideIdx] = useState(0);
 
   useEffect(() => {
+    HERO_CAMPAIGNS.forEach((slide) => {
+      const img = new Image();
+      img.src = slide.image;
+    });
     const timer = window.setInterval(() => {
       setSlideIdx((prev) => (prev + 1) % HERO_CAMPAIGNS.length);
     }, 6500);
@@ -84,6 +88,7 @@ export const HeroAndPromo: React.FC<HeroAndPromoProps> = ({
                   src={tile.image}
                   alt={tile.label}
                   referrerPolicy="no-referrer"
+                  decoding="async"
                   className="w-full h-full object-cover group-active:scale-95 transition-transform"
                 />
               </div>
@@ -98,17 +103,19 @@ export const HeroAndPromo: React.FC<HeroAndPromoProps> = ({
       {/* Compact Main Hero Campaign Banner so Products appear immediately */}
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 pt-2 lg:pt-3 pb-1 lg:pb-2">
         <div className="relative overflow-hidden rounded-xl lg:rounded-lg bg-[#2A1D16] min-h-[175px] sm:min-h-[250px] lg:min-h-[320px] flex items-center">
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="sync">
             <motion.img
               key={current.id}
               src={current.image}
               alt={current.categorySubline}
               referrerPolicy="no-referrer"
+              decoding="async"
+              fetchPriority="high"
               onClick={() => onSelectCategory(current.targetCategory)}
-              initial={{ opacity: 0.4, scale: 1.05 }}
+              initial={{ opacity: 0, scale: 1.03 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0.35 }}
-              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
               className="absolute inset-0 w-full h-full object-cover object-center cursor-pointer"
             />
           </AnimatePresence>

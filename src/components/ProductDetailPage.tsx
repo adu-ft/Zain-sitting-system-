@@ -285,6 +285,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                           src={imgUrl}
                           alt={`${product.name} view ${idx + 1}`}
                           referrerPolicy="no-referrer"
+                          decoding="async"
                           className="w-full h-full object-cover"
                         />
                       </button>
@@ -292,17 +293,26 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   })}
                 </div>
 
-                {/* Main Showcase Frame */}
+                {/* Main Showcase Frame (Smooth Blended Image Switching) */}
                 <div className="relative flex-1 aspect-[4/3] sm:aspect-[1/1] rounded-xl overflow-hidden bg-[#FAF4ED] border border-[#ECE3D6]">
-                  <img
-                    src={galleryImages[activePhotoIdx] ?? product.image}
-                    alt={product.name}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover"
-                  />
+                  {galleryImages.map((imgUrl, idx) => {
+                    const isActive = activePhotoIdx === idx;
+                    return (
+                      <img
+                        key={`${imgUrl}-main-${idx}`}
+                        src={imgUrl}
+                        alt={`${product.name} view ${idx + 1}`}
+                        referrerPolicy="no-referrer"
+                        decoding="async"
+                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-350 ease-out ${
+                          isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                        }`}
+                      />
+                    );
+                  })}
 
                   {discountPct > 0 && (
-                    <span className="absolute top-3 left-3 px-2.5 py-1 rounded bg-[#131F2D] text-white text-[11px] font-bold tracking-wide uppercase tabular-nums">
+                    <span className="absolute top-3 left-3 z-20 px-2.5 py-1 rounded bg-[#131F2D] text-white text-[11px] font-bold tracking-wide uppercase tabular-nums">
                       {discountPct}% Factory Off
                     </span>
                   )}
