@@ -3,7 +3,6 @@ import {
   ArrowRight,
   BadgeCheck,
   Camera,
-  CheckCircle2,
   ChevronLeft,
   ChevronRight,
   CornerDownRight,
@@ -11,9 +10,7 @@ import {
   MapPin,
   ShieldCheck,
   Star,
-  Wrench,
   X,
-  Zap,
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import {
@@ -202,8 +199,7 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
           {/* Bold Section Separator Header — Clearly Distinguishes How It Works from Product Sections */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 pb-4 border-b-2 border-[#E27A34]/30">
             <div>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#131F2D] text-white text-[10px] font-bold uppercase tracking-[0.2em]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E27A34]" />
+              <span className="inline-block px-2.5 py-1 rounded bg-[#131F2D] text-white text-[10px] font-bold uppercase tracking-[0.2em]">
                 How It Works
               </span>
               <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-[#131F2D] tracking-tight mt-2">
@@ -244,13 +240,6 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
                     />
                   );
                 })}
-                <div className="absolute bottom-3 left-3 z-20 px-2.5 py-1 rounded-md bg-[#131F2D]/85 backdrop-blur-xs text-white text-[11px] font-semibold tabular-nums flex items-center gap-1.5 shadow-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#E27A34]" />
-                  <span>
-                    {mechanismTab === 'motorized' ? 'Motorized' : 'Manual Lever'} ·{' '}
-                    {reclineLabels[reclineAngle]}
-                  </span>
-                </div>
               </div>
 
               {/* Flush Attached Recliner Control Dock */}
@@ -362,13 +351,12 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
                     setMechanismTab('motorized');
                     setReclineAngle(0);
                   }}
-                  className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2.5 sm:py-2 rounded-md text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                  className={`flex-1 sm:flex-initial inline-flex items-center justify-center px-3.5 sm:px-4 py-2.5 sm:py-2 rounded-md text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
                     mechanismTab === 'motorized'
                       ? 'bg-white text-[#131F2D] shadow-xs'
                       : 'text-[#515151] hover:text-[#333333]'
                   }`}
                 >
-                  <Zap className="w-3.5 h-3.5 text-[#E27A34]" />
                   Motorized Button
                 </button>
                 <button
@@ -377,13 +365,12 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
                     setMechanismTab('manual');
                     setReclineAngle(0);
                   }}
-                  className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2.5 sm:py-2 rounded-md text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                  className={`flex-1 sm:flex-initial inline-flex items-center justify-center px-3.5 sm:px-4 py-2.5 sm:py-2 rounded-md text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
                     mechanismTab === 'manual'
                       ? 'bg-white text-[#131F2D] shadow-xs'
                       : 'text-[#515151] hover:text-[#333333]'
                   }`}
                 >
-                  <Wrench className="w-3.5 h-3.5 text-[#E27A34]" />
                   Manual Lever
                 </button>
               </div>
@@ -394,13 +381,11 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
                     <strong className="text-[#333333]">Button-Operated Electric Glide:</strong>{' '}
                     Press the sleek side control buttons to smoothly glide to any angle between 90° upright viewing and 160° zero-gravity lounging.
                   </p>
-                  <ul className="space-y-1.5 text-xs sm:text-sm">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#4CAF4F] shrink-0" />
+                  <ul className="space-y-1.5 text-xs sm:text-sm pl-4 list-disc marker:text-[#E27A34]">
+                    <li>
                       Whisper-quiet 24V Okin actuator motor with integrated USB charging port
                     </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#4CAF4F] shrink-0" />
+                    <li>
                       Available in 1-Seater Lounge, 2-Seater Love Seat, or Cinema Rows
                     </li>
                   </ul>
@@ -421,13 +406,11 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
                     <strong className="text-[#333333]">Precision Side-Lever Operation:</strong>{' '}
                     Pull the discreet side lever to instantly release the footrest and lean back smoothly using balanced bodyweight mechanics—zero wall plug needed.
                   </p>
-                  <ul className="space-y-1.5 text-xs sm:text-sm">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#4CAF4F] shrink-0" />
+                  <ul className="space-y-1.5 text-xs sm:text-sm pl-4 list-disc marker:text-[#E27A34]">
+                    <li>
                       Heavy-gauge powder-coated steel linkage tested for 25,000+ cycles
                     </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#4CAF4F] shrink-0" />
+                    <li>
                       Place anywhere in bedrooms or living corners without trailing cords
                     </li>
                   </ul>
@@ -567,10 +550,6 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
                     />
                   );
                 })}
-                <div className="absolute bottom-3 left-3 z-20 px-2.5 py-1 rounded-md bg-[#131F2D]/85 backdrop-blur-xs text-white text-[11px] font-semibold tabular-nums flex items-center gap-1.5 shadow-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#E27A34]" />
-                  <span>{sofaBedLabels[sofaBedStage]}</span>
-                </div>
               </div>
             </div>
           </div>
@@ -610,8 +589,7 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
                       <strong className="text-[#131F2D] tabular-nums">246+ verified orders</strong>
                     </span>
                     <span className="hidden sm:inline text-[#D9D0C5]">·</span>
-                    <span className="hidden sm:inline-flex items-center gap-1 text-xs font-medium text-[#4CAF4F]">
-                      <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span className="hidden sm:inline text-xs font-medium text-[#4CAF4F]">
                       Verified Factory Buyers
                     </span>
                   </div>

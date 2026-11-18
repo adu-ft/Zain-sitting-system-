@@ -1,17 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import {
   ArrowLeft,
-  CheckCircle2,
   Eye,
   Heart,
-  Palette,
   RotateCcw,
   Search,
-  ShieldCheck,
   ShoppingBag,
   SlidersHorizontal,
   Star,
-  Truck,
   X,
 } from 'lucide-react';
 import type { CategoryKey, Product } from '../types';
@@ -336,17 +332,14 @@ export const BrowseCatalogPage: React.FC<BrowseCatalogPageProps> = ({
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 text-[11px] sm:text-xs font-medium text-[#333333]">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#FAF4ED] border border-[#ECE2D5]">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#4CAF4F]" />
+          <div className="flex flex-wrap items-center gap-2.5 text-[11px] sm:text-xs font-medium text-[#333333]">
+            <span className="px-2.5 py-1.5 rounded-lg bg-[#FAF4ED] border border-[#ECE2D5]">
               5-Yr Frame Warranty
             </span>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#FAF4ED] border border-[#ECE2D5]">
-              <Palette className="w-3.5 h-3.5 text-[#E27A34]" />
+            <span className="px-2.5 py-1.5 rounded-lg bg-[#FAF4ED] border border-[#ECE2D5]">
               Custom Colors
             </span>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#FAF4ED] border border-[#ECE2D5]">
-              <Truck className="w-3.5 h-3.5 text-[#E27A34]" />
+            <span className="px-2.5 py-1.5 rounded-lg bg-[#FAF4ED] border border-[#ECE2D5]">
               Factory Direct
             </span>
           </div>
@@ -593,8 +586,7 @@ export const BrowseCatalogPage: React.FC<BrowseCatalogPageProps> = ({
                                 </span>
                               )}
                             </div>
-                            <span className="inline-flex items-center gap-1 text-[10px] text-[#4CAF4F] font-medium shrink-0">
-                              <CheckCircle2 className="w-3 h-3" />
+                            <span className="text-[10px] text-[#4CAF4F] font-semibold shrink-0">
                               Custom Size
                             </span>
                           </div>

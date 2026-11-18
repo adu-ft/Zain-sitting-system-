@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState } from 'react';
-import { ArrowRight, ChevronLeft, ChevronRight, Eye, Heart, LayoutGrid, Search, ShoppingBag, Star, X } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, Eye, Heart, Search, ShoppingBag, Star, X } from 'lucide-react';
 import type { CategoryKey, Product } from '../types';
 import { calcDiscountPercent, formatINR } from '../utils/format';
 
@@ -153,36 +153,6 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
               <option value="price-desc">Price: High to Low</option>
               <option value="rating">Highest Rated</option>
             </select>
-
-            <div className="col-span-2 sm:col-span-1 flex items-center justify-end gap-1.5">
-              <button
-                type="button"
-                onClick={() => scrollRail('left')}
-                aria-label="Scroll products left"
-                className="w-8 h-8 rounded-full border border-[#E2DAD1] bg-[#FAF4ED]/70 hover:bg-[#FAF4ED] text-[#333333] flex items-center justify-center transition-colors cursor-pointer"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                type="button"
-                onClick={() => scrollRail('right')}
-                aria-label="Scroll products right"
-                className="w-8 h-8 rounded-full border border-[#E2DAD1] bg-[#FAF4ED]/70 hover:bg-[#FAF4ED] text-[#333333] flex items-center justify-center transition-colors cursor-pointer"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-              {onOpenBrowseAll && (
-                <button
-                  type="button"
-                  onClick={onOpenBrowseAll}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#131F2D] hover:bg-[#E27A34] text-white text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ml-1"
-                >
-                  <LayoutGrid className="w-3.5 h-3.5" />
-                  <span>View All</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              )}
-            </div>
           </div>
         </div>
 
@@ -208,7 +178,8 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
             </button>
           </div>
         ) : (
-          /* Compact Horizontal Scrolling Product Rail */
+          <>
+          {/* Compact Horizontal Scrolling Product Rail */}
           <div
             ref={productRailRef}
             className="flex gap-3 sm:gap-4 overflow-x-auto scrollbar-hide snap-x scroll-smooth pb-2 pr-3 sm:pr-0"
@@ -395,11 +366,8 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
               <button
                 type="button"
                 onClick={onOpenBrowseAll}
-                className="w-[180px] sm:w-[205px] shrink-0 snap-start rounded-xl bg-[#FAF4ED] border-2 border-dashed border-[#DFCDB9] hover:border-[#E27A34] hover:bg-[#F5E9DB] p-5 flex flex-col items-center justify-center text-center gap-2.5 transition-all cursor-pointer group"
+                className="w-[180px] sm:w-[205px] shrink-0 snap-start rounded-xl bg-[#FAF4ED] border-2 border-dashed border-[#DFCDB9] hover:border-[#E27A34] hover:bg-[#F5E9DB] p-5 flex flex-col items-center justify-center text-center gap-2 transition-all cursor-pointer group"
               >
-                <div className="w-11 h-11 rounded-full bg-[#131F2D] group-hover:bg-[#E27A34] text-white flex items-center justify-center transition-colors">
-                  <LayoutGrid className="w-5 h-5" />
-                </div>
                 <div>
                   <p className="font-display text-sm font-bold text-[#131F2D]">
                     View All Products
@@ -415,6 +383,37 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
               </button>
             )}
           </div>
+
+          {/* Bottom-Right Product Rail Navigation & View All Bar */}
+          <div className="mt-3 flex items-center justify-end gap-1.5">
+            <button
+              type="button"
+              onClick={() => scrollRail('left')}
+              aria-label="Scroll products left"
+              className="w-8 h-8 rounded-full border border-[#E2DAD1] bg-[#FAF4ED]/70 hover:bg-[#FAF4ED] text-[#333333] flex items-center justify-center transition-colors cursor-pointer"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollRail('right')}
+              aria-label="Scroll products right"
+              className="w-8 h-8 rounded-full border border-[#E2DAD1] bg-[#FAF4ED]/70 hover:bg-[#FAF4ED] text-[#333333] flex items-center justify-center transition-colors cursor-pointer"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+            {onOpenBrowseAll && (
+              <button
+                type="button"
+                onClick={onOpenBrowseAll}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#131F2D] hover:bg-[#E27A34] text-white text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ml-1"
+              >
+                <span>View All</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
+          </>
         )}
       </div>
     </section>

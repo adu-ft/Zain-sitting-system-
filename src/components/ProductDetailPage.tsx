@@ -3,22 +3,15 @@ import {
   ArrowLeft,
   BadgeCheck,
   Camera,
-  CheckCircle2,
   ChevronLeft,
   ChevronRight,
   CornerDownRight,
-  Factory,
   Heart,
-  Layers,
   MapPin,
   MessageCircle,
-  Palette,
-  Ruler,
   ShieldCheck,
   ShoppingBag,
-  Sparkles,
   Star,
-  Truck,
   X,
 } from 'lucide-react';
 import {
@@ -250,8 +243,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             </span>
           </div>
 
-          <span className="hidden md:inline-flex items-center gap-1.5 text-xs font-medium text-[#E27A34] shrink-0">
-            <Factory className="w-3.5 h-3.5" />
+          <span className="hidden md:inline-block text-xs font-medium text-[#E27A34] shrink-0">
             Direct Factory Manufacturing
           </span>
         </div>
@@ -417,30 +409,20 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               </p>
             </div>
 
-            {/* Factory Offers / Value Highlights (Amazon/Flipkart "Available Offers") */}
+            {/* Factory Offers / Value Highlights */}
             <div className="rounded-xl bg-[#FAF4ED]/80 border border-[#ECE2D5] p-4 space-y-2">
-              <p className="text-xs font-bold uppercase tracking-wider text-[#131F2D] flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-[#E27A34]" />
+              <p className="text-xs font-bold uppercase tracking-wider text-[#131F2D]">
                 Direct Manufacturing Benefits
               </p>
-              <ul className="space-y-1.5 text-xs sm:text-sm text-[#333333]">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#4CAF4F] shrink-0 mt-0.5" />
-                  <span>
-                    <strong>100% Made to Order:</strong> Customize length, width, corner chaise side &amp; fabric shade directly with our unit.
-                  </span>
+              <ul className="space-y-1.5 text-xs sm:text-sm text-[#333333] pl-4 list-disc marker:text-[#E27A34]">
+                <li>
+                  <strong>100% Made to Order:</strong> Customize length, width, corner chaise side &amp; fabric shade directly with our unit.
                 </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#4CAF4F] shrink-0 mt-0.5" />
-                  <span>
-                    <strong>Zero Middleman Markup:</strong> Built in our own workshop using {product.foamAndSpring.toLowerCase()}.
-                  </span>
+                <li>
+                  <strong>Zero Middleman Markup:</strong> Built in our own workshop using {product.foamAndSpring.toLowerCase()}.
                 </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#4CAF4F] shrink-0 mt-0.5" />
-                  <span>
-                    <strong>Warranty Coverage:</strong> {product.warranty}.
-                  </span>
+                <li>
+                  <strong>Warranty Coverage:</strong> {product.warranty}.
                 </li>
               </ul>
             </div>
@@ -577,23 +559,11 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               )}
 
               {/* 4-Badge Trust Strip */}
-              <div className="pt-2 grid grid-cols-2 sm:grid-cols-4 gap-2.5 border-t border-[#F2ECE4]">
-                <div className="flex items-center gap-1.5 text-[11px] text-[#333333]">
-                  <Factory className="w-4 h-4 text-[#E27A34] shrink-0" />
-                  <span>Direct Factory</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-[11px] text-[#333333]">
-                  <ShieldCheck className="w-4 h-4 text-[#E27A34] shrink-0" />
-                  <span>5-Year Warranty</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-[11px] text-[#333333]">
-                  <Truck className="w-4 h-4 text-[#E27A34] shrink-0" />
-                  <span>Insured Transit</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-[11px] text-[#333333]">
-                  <Palette className="w-4 h-4 text-[#E27A34] shrink-0" />
-                  <span>20+ Shades</span>
-                </div>
+              <div className="pt-2.5 grid grid-cols-2 sm:grid-cols-4 gap-2 border-t border-[#F2ECE4] text-[11px] font-medium text-[#333333]">
+                <span>Direct Factory</span>
+                <span>5-Year Warranty</span>
+                <span>Insured Transit</span>
+                <span>20+ Fabric Shades</span>
               </div>
             </div>
 
@@ -609,9 +579,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 {product.customizableOptions.map((opt) => (
                   <span
                     key={opt}
-                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#FAF4ED] border border-[#ECE2D5] text-[11px] font-medium text-[#333333]"
+                    className="px-2.5 py-1 rounded bg-[#FAF4ED] border border-[#ECE2D5] text-[11px] font-medium text-[#333333]"
                   >
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#E27A34]" />
                     {opt}
                   </span>
                 ))}
@@ -628,8 +597,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               </div>
               <dl className="divide-y divide-[#F2ECE4] text-xs sm:text-sm">
                 <div className="grid grid-cols-12 px-4 py-2.5 bg-white">
-                  <dt className="col-span-5 sm:col-span-4 text-[#78716A] font-medium flex items-center gap-1.5">
-                    <Ruler className="w-3.5 h-3.5 text-[#E27A34]" />
+                  <dt className="col-span-5 sm:col-span-4 text-[#78716A] font-medium">
                     Dimensions
                   </dt>
                   <dd className="col-span-7 sm:col-span-8 text-[#131F2D] font-medium tabular-nums">
@@ -637,8 +605,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   </dd>
                 </div>
                 <div className="grid grid-cols-12 px-4 py-2.5 bg-[#FAFAFA]">
-                  <dt className="col-span-5 sm:col-span-4 text-[#78716A] font-medium flex items-center gap-1.5">
-                    <Layers className="w-3.5 h-3.5 text-[#E27A34]" />
+                  <dt className="col-span-5 sm:col-span-4 text-[#78716A] font-medium">
                     Frame &amp; Hardware
                   </dt>
                   <dd className="col-span-7 sm:col-span-8 text-[#131F2D] font-medium">
