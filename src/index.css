@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-zain-orange: #E27A34;
+  --color-zain-orange-hover: #C96625;
+  --color-zain-cream: #FAF4ED;
+  --color-zain-paper: #FAFAFA;
+  --color-zain-footer: #F5F5F5;
+  --color-zain-navy: #131F2D;
+  --color-zain-ink: #333333;
+  --color-zain-muted: #515151;
+  --color-zain-savings: #4CAF4F;
+
+  --font-display: "Red Hat Display", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", "Red Hat Display", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color: #333333;
+    background-color: #ffffff;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior-y: none;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

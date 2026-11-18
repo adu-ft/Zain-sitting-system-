@@ -1,0 +1,8 @@
+{
+  "name": "Zain Seating System",
+  "description": "Handcrafted Indian sofas, ergonomic executive chairs, luxury recliners, and solid timber dining seating designed for enduring comfort and architectural poise.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
