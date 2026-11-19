@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {
+  Check,
   CheckCircle2,
+  Copy,
   Heart,
   MessageCircle,
   Minus,
@@ -338,7 +340,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
 };
 
 /* -------------------------------------------------------------------------- */
-/* 2. Slide-Over Shopping Bag & COD/Card Checkout Drawer                      */
+/* 2. Slide-Over Shopping Bag & Direct WhatsApp Checkout Drawer               */
 /* -------------------------------------------------------------------------- */
 interface CartDrawerProps {
   isOpen: boolean;
@@ -358,14 +360,16 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   onClearCart,
 }) => {
   const [checkoutStep, setCheckoutStep] = useState<'bag' | 'checkout' | 'confirmed'>('bag');
-  const [paymentMethod, setPaymentMethod] = useState<'UPI / Card' | 'Cash on Delivery'>('UPI / Card');
   const [customerName, setCustomerName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [pincode, setPincode] = useState('');
-  const [orderId, setOrderId] = useState('');
-
+  const [orderNotes, setOrderNotes] = useState('');
+  const [orderId, setOrderId] = useState(
+    () => `ZSS-${Math.floor(100000 + Math.random() * 899999)}`
+  );
   const [confirmedOrderSnapshot, setConfirmedOrderSnapshot] = useState<string>('');
+  const [copiedReceipt, setCopiedReceipt] = useState(false);
 
   if (!isOpen) return null;
 
@@ -377,36 +381,59 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   const itemsText = items
     .map(
       (i, idx) =>
-        `${idx + 1}. ${i.product.name} (${i.finishName})${
-          i.customNote ? ` [Custom: ${i.customNote}]` : ''
-        } x${i.quantity} = ${formatINR(i.unitPrice * i.quantity)}`
+        `${idx + 1}. ${i.product.name}\n   Option: ${i.finishName}${
+          i.customNote ? `\n   Custom Spec: ${i.customNote}` : ''
+        }\n   Qty: ${i.quantity} × ${formatINR(i.unitPrice)} = ${formatINR(
+          i.unitPrice * i.quantity
+        )}`
     )
-    .join('\n');
+    .join('\n\n');
 
-  const whatsappBagSummary =
-    `Hello Zain Seating System, I want to place an order from my bag:\n${itemsText}\nTotal: ${formatINR(subtotal)}`;
+  const whatsappBagSummary = `Hello Zain Seating System, I'd like to place an order via WhatsApp Checkout:\n\n${itemsText}\n\nFactory Total: ${formatINR(
+    subtotal
+  )}\n\nPlease confirm availability, customization & delivery schedule.`;
 
-  const whatsappFullCheckoutSummary =
-    `Hello Zain Seating System, WhatsApp Order Checkout:\n${itemsText}\nTotal: ${formatINR(
+  const isFormComplete =
+    customerName.trim().length > 0 &&
+    phone.trim().length > 0 &&
+    address.trim().length > 0 &&
+    /^\d{6}$/.test(pincode.trim());
+
+  const buildFullWhatsAppMessage = (refId: string) =>
+    `Hello Zain Seating System, I'd like to confirm my order via WhatsApp Checkout:\n\nOrder Ref: #${refId}\n\n${itemsText}\n\nFactory Total: ${formatINR(
       subtotal
-    )}\nPayment: ${paymentMethod}\nCustomer: ${customerName || 'Pending'}\nPhone: ${
-      phone || 'Pending'
-    }\nAddress: ${address || 'Pending'}, PIN: ${pincode || 'Pending'}`;
+    )}\n\nDelivery Details:\nName: ${customerName.trim()}\nPhone: ${phone.trim()}\nAddress: ${address.trim()}\nPIN Code: ${pincode.trim()}${
+      orderNotes.trim() ? `\nNotes: ${orderNotes.trim()}` : ''
+    }\n\nPlease confirm customization & delivery schedule on WhatsApp.`;
 
-  const handlePlaceOrder = (e: React.FormEvent) => {
-    e.preventDefault();
-    const generatedId = `ZSS-${Math.floor(100000 + Math.random() * 899999)}`;
-    setOrderId(generatedId);
-    setConfirmedOrderSnapshot(
-      `Order #${generatedId}\n${whatsappFullCheckoutSummary}`
-    );
+  const liveWhatsAppCheckoutUrl = getWhatsAppUrl(
+    buildFullWhatsAppMessage(orderId)
+  );
+
+  const finalizeOrderToWhatsApp = () => {
+    setConfirmedOrderSnapshot(buildFullWhatsAppMessage(orderId));
+    setCopiedReceipt(false);
     setCheckoutStep('confirmed');
     onClearCart();
+  };
+
+  const handleSubmitForm = (e: React.FormEvent) => {
+    e.preventDefault();
+    finalizeOrderToWhatsApp();
+  };
+
+  const handleCopySummary = () => {
+    if (!confirmedOrderSnapshot) return;
+    navigator.clipboard?.writeText(confirmedOrderSnapshot).then(() => {
+      setCopiedReceipt(true);
+      window.setTimeout(() => setCopiedReceipt(false), 2200);
+    });
   };
 
   const handleCloseDrawer = () => {
     if (checkoutStep === 'confirmed') {
       setCheckoutStep('bag');
+      setOrderId(`ZSS-${Math.floor(100000 + Math.random() * 899999)}`);
     }
     onClose();
   };
@@ -422,9 +449,10 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
           <div className="flex items-center gap-2">
             <ShoppingBag className="w-5 h-5 text-[#E27A34]" />
             <h3 className="font-display text-lg font-semibold text-[#131F2D]">
-              {checkoutStep === 'bag' && `Your Bag (${items.reduce((a, b) => a + b.quantity, 0)})`}
-              {checkoutStep === 'checkout' && 'WhatsApp & Factory Checkout'}
-              {checkoutStep === 'confirmed' && 'Factory Order Confirmed'}
+              {checkoutStep === 'bag' &&
+                `Your Bag (${items.reduce((a, b) => a + b.quantity, 0)})`}
+              {checkoutStep === 'checkout' && 'WhatsApp Checkout'}
+              {checkoutStep === 'confirmed' && 'WhatsApp Order Ready'}
             </h3>
           </div>
           <button
@@ -439,32 +467,71 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
         <div className="flex-1 overflow-y-auto p-5">
           {checkoutStep === 'confirmed' ? (
-            <div className="py-8 text-center space-y-4">
+            <div className="py-6 text-center space-y-4">
               <div className="w-14 h-14 rounded-full bg-[#4CAF4F]/15 text-[#4CAF4F] mx-auto flex items-center justify-center">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
-              <h4 className="font-display text-xl font-semibold text-[#131F2D]">
-                Order #{orderId} Confirmed
-              </h4>
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#E27A34]">
+                  No Online Payment Required
+                </p>
+                <h4 className="font-display text-xl font-semibold text-[#131F2D] mt-1">
+                  Order Ref #{orderId}
+                </h4>
+              </div>
               <p className="text-sm text-[#515151] leading-relaxed">
-                Thank you, <span className="font-semibold text-[#333333]">{customerName || 'Guest'}</span>. Our manufacturing desk will share build updates &amp; dispatch scheduling to PIN <span className="font-semibold tabular-nums">{pincode}</span>.
+                Thank you,{' '}
+                <span className="font-semibold text-[#333333]">
+                  {customerName || 'Guest'}
+                </span>
+                . Tap below to send your itemized order directly to our factory desk on WhatsApp (
+                <span className="font-semibold text-[#131F2D] tabular-nums">
+                  {WHATSAPP_DISPLAY}
+                </span>
+                ) for final confirmation &amp; delivery to PIN{' '}
+                <span className="font-semibold tabular-nums">{pincode}</span>.
               </p>
+
+              <div className="text-left p-3.5 rounded-xl bg-[#FAF4ED] border border-[#EAE0D4] text-xs text-[#333333] whitespace-pre-line max-h-48 overflow-y-auto">
+                {confirmedOrderSnapshot}
+              </div>
+
               <a
                 href={getWhatsAppUrl(confirmedOrderSnapshot)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-[#E27A34] hover:bg-[#C96625] text-white text-sm font-semibold transition-colors"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-[#E27A34] hover:bg-[#C96625] text-white text-sm font-semibold transition-colors shadow-sm"
               >
                 <MessageCircle className="w-4 h-4" />
-                Send Receipt to Factory WhatsApp ({WHATSAPP_DISPLAY})
+                Send Order on WhatsApp ({WHATSAPP_DISPLAY})
               </a>
-              <button
-                type="button"
-                onClick={handleCloseDrawer}
-                className="w-full py-3 rounded-lg bg-[#131F2D] hover:bg-[#1E2E42] text-white text-sm font-semibold cursor-pointer"
-              >
-                Continue Browsing
-              </button>
+
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={handleCopySummary}
+                  className="inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg border border-[#DCD4CB] hover:border-[#131F2D] text-[#131F2D] text-xs font-semibold transition-colors cursor-pointer"
+                >
+                  {copiedReceipt ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-[#4CAF4F]" />
+                      Copied Summary
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      Copy Details
+                    </>
+                  )}
+                </button>
+                <button
+                  type="button"
+                  onClick={handleCloseDrawer}
+                  className="py-2.5 px-3 rounded-lg bg-[#131F2D] hover:bg-[#1E2E42] text-white text-xs font-semibold transition-colors cursor-pointer"
+                >
+                  Continue Browsing
+                </button>
+              </div>
             </div>
           ) : items.length === 0 ? (
             <div className="py-16 text-center space-y-3">
@@ -558,7 +625,17 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
               ))}
             </div>
           ) : (
-            <form id="zain-checkout-form" onSubmit={handlePlaceOrder} className="space-y-4">
+            <form id="zain-checkout-form" onSubmit={handleSubmitForm} className="space-y-4">
+              <div className="p-3.5 rounded-xl bg-[#FAF4ED] border border-[#EAE0D4] space-y-1">
+                <p className="text-xs font-bold text-[#131F2D] flex items-center gap-1.5">
+                  <MessageCircle className="w-4 h-4 text-[#E27A34] shrink-0" />
+                  Direct WhatsApp Checkout ({WHATSAPP_DISPLAY})
+                </p>
+                <p className="text-[11.5px] text-[#515151] leading-relaxed">
+                  We do not take online payments on the website yet. Enter your delivery details to send your itemized order straight to our factory desk on WhatsApp.
+                </p>
+              </div>
+
               <div>
                 <label className="block text-xs font-semibold text-[#333333] mb-1">
                   Full Name *
@@ -588,14 +665,15 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-[#333333] mb-1">
-                    Postal Code *
+                    PIN Code *
                   </label>
                   <input
                     type="text"
                     required
+                    pattern="\d{6}"
                     maxLength={6}
                     value={pincode}
-                    onChange={(e) => setPincode(e.target.value)}
+                    onChange={(e) => setPincode(e.target.value.replace(/\D/g, ''))}
                     placeholder="110020"
                     className="w-full px-3 py-2.5 rounded-lg border border-[#DCD4CB] text-sm tabular-nums focus:outline-none focus:border-[#E27A34]"
                   />
@@ -616,37 +694,31 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#333333] mb-1.5">
-                  Payment Method
+                <label className="block text-xs font-semibold text-[#333333] mb-1">
+                  Customization or Delivery Notes (Optional)
                 </label>
-                <div className="grid grid-cols-2 gap-2.5">
-                  {(['UPI / Card', 'Cash on Delivery'] as const).map((method) => (
-                    <button
-                      key={method}
-                      type="button"
-                      onClick={() => setPaymentMethod(method)}
-                      className={`py-2.5 px-3 rounded-lg border text-xs font-semibold cursor-pointer ${
-                        paymentMethod === method
-                          ? 'border-[#E27A34] bg-[#FAF4ED] text-[#333333]'
-                          : 'border-[#DCD4CB] text-[#515151]'
-                      }`}
-                    >
-                      {method}
-                    </button>
-                  ))}
-                </div>
+                <input
+                  type="text"
+                  value={orderNotes}
+                  onChange={(e) => setOrderNotes(e.target.value)}
+                  placeholder="e.g., Fabric swatch video, exact wall width, weekend delivery"
+                  className="w-full px-3 py-2.5 rounded-lg border border-[#DCD4CB] text-sm focus:outline-none focus:border-[#E27A34]"
+                />
               </div>
 
               <div className="p-3.5 rounded-xl bg-[#FAF4ED] text-xs space-y-1">
                 <div className="flex justify-between">
-                  <span className="text-[#515151]">Total Factory Price:</span>
+                  <span className="text-[#515151]">
+                    Estimated Factory Total ({items.reduce((a, b) => a + b.quantity, 0)}{' '}
+                    {items.reduce((a, b) => a + b.quantity, 0) === 1 ? 'item' : 'items'}):
+                  </span>
                   <span className="font-bold text-[#131F2D] tabular-nums">
                     {formatINR(subtotal)}
                   </span>
                 </div>
                 <p className="text-[#515151] flex items-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#4CAF4F]" />
-                  Free dispatch &amp; 5-year structural warranty included
+                  Pay nothing online · Finalize directly on WhatsApp
                 </p>
               </div>
             </form>
@@ -655,7 +727,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
         {items.length > 0 && checkoutStep !== 'confirmed' && (
           <div className="p-5 border-t border-[#ECE6DF] bg-[#FAFAFA] space-y-2.5">
-            <div className="flex justify-between font-bold text-base text-[#131F2D]">
+            <div className="flex justify-between items-baseline font-bold text-base text-[#131F2D]">
               <span>Factory Total</span>
               <span className="tabular-nums">{formatINR(subtotal)}</span>
             </div>
@@ -665,9 +737,10 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 <button
                   type="button"
                   onClick={() => setCheckoutStep('checkout')}
-                  className="w-full py-3 rounded-lg bg-[#E27A34] hover:bg-[#C96625] text-white text-sm font-semibold transition-colors cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-[#E27A34] hover:bg-[#C96625] text-white text-sm font-semibold transition-colors cursor-pointer"
                 >
-                  Proceed to Checkout
+                  <MessageCircle className="w-4 h-4" />
+                  Checkout on WhatsApp
                 </button>
                 <a
                   href={getWhatsAppUrl(whatsappBagSummary)}
@@ -675,9 +748,11 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   rel="noopener noreferrer"
                   className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-[#131F2D] hover:bg-[#1E2E42] text-white text-xs font-semibold transition-colors"
                 >
-                  <MessageCircle className="w-4 h-4 text-[#E27A34]" />
-                  Express WhatsApp Checkout ({WHATSAPP_DISPLAY})
+                  Quick Send Bag to {WHATSAPP_DISPLAY}
                 </a>
+                <p className="text-[11px] text-center text-[#78716A]">
+                  No online payment required · Confirm directly on WhatsApp
+                </p>
               </>
             ) : (
               <div className="space-y-2">
@@ -685,27 +760,35 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   <button
                     type="button"
                     onClick={() => setCheckoutStep('bag')}
-                    className="px-4 py-3 rounded-lg border border-[#DCD4CB] text-xs font-semibold text-[#333333] cursor-pointer"
+                    className="px-4 py-3 rounded-lg border border-[#DCD4CB] hover:border-[#131F2D] text-xs font-semibold text-[#333333] cursor-pointer"
                   >
                     Back
                   </button>
-                  <button
-                    type="submit"
-                    form="zain-checkout-form"
-                    className="flex-1 py-3 rounded-lg bg-[#E27A34] hover:bg-[#C96625] text-white text-sm font-semibold transition-colors cursor-pointer"
-                  >
-                    Confirm Order — {formatINR(subtotal)}
-                  </button>
+                  {isFormComplete ? (
+                    <a
+                      href={liveWhatsAppCheckoutUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={finalizeOrderToWhatsApp}
+                      className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-[#E27A34] hover:bg-[#C96625] text-white text-sm font-semibold transition-colors text-center"
+                    >
+                      <MessageCircle className="w-4 h-4 shrink-0" />
+                      Send Order on WhatsApp
+                    </a>
+                  ) : (
+                    <button
+                      type="submit"
+                      form="zain-checkout-form"
+                      className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-[#E27A34] hover:bg-[#C96625] text-white text-sm font-semibold transition-colors cursor-pointer"
+                    >
+                      <MessageCircle className="w-4 h-4 shrink-0" />
+                      Send Order on WhatsApp
+                    </button>
+                  )}
                 </div>
-                <a
-                  href={getWhatsAppUrl(whatsappFullCheckoutSummary)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-[#131F2D] hover:bg-[#1E2E42] text-white text-xs font-semibold transition-colors"
-                >
-                  <MessageCircle className="w-4 h-4 text-[#E27A34]" />
-                  Send Full Checkout Order on WhatsApp
-                </a>
+                <p className="text-[11px] text-center text-[#78716A]">
+                  Opens WhatsApp chat with {WHATSAPP_DISPLAY} — no online payment charged
+                </p>
               </div>
             )}
           </div>
