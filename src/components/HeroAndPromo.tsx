@@ -72,10 +72,10 @@ export const HeroAndPromo: React.FC<HeroAndPromoProps> = ({
   const current = HERO_CAMPAIGNS[slideIdx];
 
   return (
-    <section id="top" className="bg-white">
+    <section id="top" className="bg-white w-full max-w-full overflow-x-clip">
       {/* Mobile-Only Top Horizontal Category Strip */}
-      <div className="lg:hidden bg-white pt-2.5 pb-1">
-        <div className="flex items-start gap-3 overflow-x-auto scrollbar-hide px-4 snap-x">
+      <div className="lg:hidden bg-white pt-2.5 pb-1 w-full max-w-full overflow-x-clip">
+        <div className="flex items-start gap-3 overflow-x-auto overscroll-x-contain scrollbar-hide px-4 snap-x">
           {CATEGORY_TILES.map((tile) => (
             <button
               key={tile.id}

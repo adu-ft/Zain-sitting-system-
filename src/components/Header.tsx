@@ -119,9 +119,9 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <>
-      <header className="lg:sticky lg:top-0 z-40 bg-white border-b border-[#ECE6DF]">
+      <header className="w-full max-w-full min-w-0 lg:sticky lg:top-0 z-40 bg-white border-b border-[#ECE6DF]">
         {/* Row 1: Brand Wordmark + Desktop Search + Real Action Icons (Sticky on Mobile) */}
-        <div className="sticky top-0 z-40 lg:static bg-white/95 backdrop-blur-md">
+        <div className="sticky top-0 z-40 lg:static w-full max-w-full overflow-x-clip lg:overflow-visible bg-white/95 backdrop-blur-md">
           <div className="max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-10 h-[52px] lg:h-auto lg:py-3 flex items-center justify-between gap-3 lg:gap-8">
             {/* Mobile Hamburger + Brand Logo */}
             <div className="flex items-center gap-2 shrink-0">
@@ -316,7 +316,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Mobile Full-Width Search Bar + Quick Category Tabs (Exact App Layout) */}
-        <div className="lg:hidden bg-white px-4 pt-1 pb-0">
+        <div className="lg:hidden w-full max-w-full overflow-x-clip bg-white px-4 pt-1 pb-0">
           <div className="relative">
             <div className="flex items-center rounded-lg border border-[#E5DDD3] focus-within:border-[#E27A34] bg-[#FAFAFA] h-10 px-3.5 transition-colors">
               <input
@@ -390,8 +390,8 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Mobile Horizontal Quick Filter Bar + 4-Grid Button */}
-          <div className="flex items-center justify-between gap-2 mt-1.5 border-b border-[#F2ECE4]">
-            <div className="flex items-center gap-5 overflow-x-auto scrollbar-hide flex-1 min-w-0">
+          <div className="flex items-center justify-between gap-2 mt-1.5 border-b border-[#F2ECE4] min-w-0 max-w-full">
+            <div className="flex items-center gap-5 overflow-x-auto overscroll-x-contain scrollbar-hide flex-1 min-w-0">
               {mobileTabs.map((tab) => {
                 const isSelected = activeNavLabel === tab.label || (tab.label === 'All' && activeNavLabel === 'All Factory Lines');
                 return (

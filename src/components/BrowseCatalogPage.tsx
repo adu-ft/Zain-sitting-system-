@@ -290,7 +290,7 @@ export const BrowseCatalogPage: React.FC<BrowseCatalogPageProps> = ({
   );
 
   return (
-    <div className="bg-[#FAF4ED]/45 min-h-screen pb-14">
+    <div className="bg-[#FAF4ED]/45 min-h-screen pb-14 w-full max-w-full overflow-x-clip">
       {/* Sticky Breadcrumb & Page Top Bar */}
       <div className="bg-[#FAF4ED] border-b border-[#ECE2D5] sticky top-[56px] sm:top-[64px] z-30">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-2.5 flex items-center justify-between gap-3">
@@ -377,20 +377,20 @@ export const BrowseCatalogPage: React.FC<BrowseCatalogPageProps> = ({
           </aside>
 
           {/* Product Grid Area */}
-          <div className="lg:col-span-9 space-y-4">
+          <div className="lg:col-span-9 min-w-0 space-y-4">
             {/* Controls Bar (Mobile Filter Button + Quick Category Pills + Sort) */}
-            <div className="bg-white rounded-xl border border-[#ECE6DF] p-3 flex flex-wrap items-center justify-between gap-2.5">
-              <div className="flex items-center gap-2 flex-wrap">
+            <div className="bg-white rounded-xl border border-[#ECE6DF] p-3 flex flex-wrap items-center justify-between gap-2.5 max-w-full overflow-x-clip">
+              <div className="flex items-center gap-2 flex-wrap min-w-0 max-w-full">
                 <button
                   type="button"
                   onClick={() => setIsMobileFilterOpen(true)}
-                  className="lg:hidden inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#131F2D] text-white text-xs font-semibold cursor-pointer"
+                  className="lg:hidden inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#131F2D] text-white text-xs font-semibold cursor-pointer shrink-0"
                 >
                   <SlidersHorizontal className="w-3.5 h-3.5 text-[#E27A34]" />
                   Filters {activeFilterCount > 0 ? `(${activeFilterCount})` : ''}
                 </button>
 
-                <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-hide">
+                <div className="flex items-center gap-1.5 overflow-x-auto overscroll-x-contain max-w-full min-w-0 scrollbar-hide">
                   {CATEGORIES.map((cat) => {
                     const isActive = activeCategory === cat.key;
                     return (

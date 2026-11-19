@@ -628,12 +628,12 @@ export const BuyingGuideAndFooter: React.FC<BuyingGuideAndFooterProps> = ({
       </section>
 
       {/* Clean Focused Footer */}
-      <footer className="bg-[#F5F5F5] text-[#333333] pt-14 pb-10 border-t border-[#E6E0D8]">
+      <footer className="bg-[#F5F5F5] text-[#333333] pt-14 pb-10 border-t border-[#E6E0D8] w-full max-w-full overflow-x-clip">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-[#E2DDD6]">
             {/* Brand & WhatsApp Contact Column */}
-            <div className="lg:col-span-2">
-              <div className="flex items-center gap-3.5 mb-4">
+            <div className="lg:col-span-2 min-w-0">
+              <div className="flex items-center gap-3.5 mb-4 min-w-0">
                 <div className="w-20 h-20 overflow-hidden shrink-0 flex items-center justify-center">
                   <img
                     src={BRAND_LOGO_COMPACT}
@@ -642,7 +642,7 @@ export const BuyingGuideAndFooter: React.FC<BuyingGuideAndFooterProps> = ({
                     className="w-full h-full object-contain scale-[1.5] mix-blend-multiply"
                   />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <span className="font-display font-bold text-lg text-[#131F2D] block leading-none tracking-tight">
                     ZSS · ZAIN SEATING SYSTEM
                   </span>

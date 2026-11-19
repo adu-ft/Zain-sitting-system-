@@ -15,7 +15,7 @@ export const ShowroomBanner: React.FC<ShowroomBannerProps> = ({
   onOpenCustomModal,
 }) => {
   return (
-    <section className="py-5 bg-white">
+    <section className="py-5 bg-white w-full max-w-full overflow-x-clip">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
@@ -48,25 +48,25 @@ export const ShowroomBanner: React.FC<ShowroomBannerProps> = ({
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+            <div className="flex flex-wrap items-center gap-2.5 w-full lg:w-auto lg:shrink-0 min-w-0">
               <a
                 href={getWhatsAppUrl(
                   'Hello Zain Seating System, I would like to customize a sofa set / recliner directly from your manufacturing unit.'
                 )}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-[#E27A34] hover:bg-[#C96625] text-white text-xs sm:text-sm font-semibold transition-colors whitespace-nowrap shadow-sm"
+                className="inline-flex items-center justify-center gap-1.5 px-3.5 sm:px-4 py-2.5 rounded-lg bg-[#E27A34] hover:bg-[#C96625] text-white text-xs sm:text-sm font-semibold transition-colors max-w-full whitespace-normal sm:whitespace-nowrap text-center shadow-sm"
               >
-                <MessageCircle className="w-4 h-4" />
-                WhatsApp Factory ({WHATSAPP_DISPLAY})
-                <ArrowRight className="w-3.5 h-3.5" />
+                <MessageCircle className="w-4 h-4 shrink-0" />
+                <span>WhatsApp Factory ({WHATSAPP_DISPLAY})</span>
+                <ArrowRight className="w-3.5 h-3.5 shrink-0" />
               </a>
               <button
                 type="button"
                 onClick={onOpenCustomModal}
-                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-white/12 hover:bg-white/20 backdrop-blur-sm border border-white/25 text-white text-xs sm:text-sm font-medium transition-colors cursor-pointer whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-1.5 px-3.5 sm:px-4 py-2.5 rounded-lg bg-white/12 hover:bg-white/20 backdrop-blur-sm border border-white/25 text-white text-xs sm:text-sm font-medium transition-colors cursor-pointer max-w-full whitespace-nowrap"
               >
-                <Palette className="w-4 h-4" />
+                <Palette className="w-4 h-4 shrink-0" />
                 Submit Custom Spec
               </button>
             </div>

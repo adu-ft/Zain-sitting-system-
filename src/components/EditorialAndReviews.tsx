@@ -193,7 +193,7 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
       {/* Interactive Mechanism Showcase (How It Works) */}
       <section
         id="mechanisms"
-        className="py-8 lg:py-12 bg-[#FAFAFA] border-y-2 border-[#E6DCD0]"
+        className="py-8 lg:py-12 bg-[#FAFAFA] border-y-2 border-[#E6DCD0] w-full max-w-full overflow-x-clip"
       >
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 space-y-8 lg:space-y-10">
           {/* Bold Section Separator Header — Clearly Distinguishes How It Works from Product Sections */}
@@ -222,7 +222,7 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
               </h2>
             </div>
 
-            <div className="lg:col-span-6 rounded-2xl overflow-hidden bg-white border border-[#E2D8CD] shadow-sm">
+            <div className="lg:col-span-6 min-w-0 rounded-2xl overflow-hidden bg-white border border-[#E2D8CD] shadow-sm">
               {/* Stacked Crossfade-Blended Recliner Degree Photos */}
               <div className="aspect-[16/10] bg-[#FAF4ED] relative overflow-hidden">
                 {reclineImages.map((src, idx) => {
@@ -336,7 +336,7 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
               </div>
             </div>
 
-            <div className="lg:col-span-6 flex flex-col justify-center">
+            <div className="lg:col-span-6 min-w-0 flex flex-col justify-center">
               <p className="hidden lg:block text-xs font-semibold uppercase tracking-[0.18em] text-[#E27A34] mb-2">
                 TWO RECLINER MECHANISMS
               </p>
@@ -444,7 +444,7 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
               </p>
             </div>
 
-            <div className="lg:col-span-5 order-2 lg:order-1 flex flex-col justify-center space-y-3.5">
+            <div className="lg:col-span-5 min-w-0 order-2 lg:order-1 flex flex-col justify-center space-y-3.5">
               <div className="hidden lg:block">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#E27A34] mb-1">
                   ELECTRIC SOFA CUM BED
@@ -477,7 +477,7 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
                         type="button"
                         onClick={() => setSofaBedStage(step)}
                         aria-pressed={isActive}
-                        className={`group rounded-lg overflow-hidden border text-left transition-all cursor-pointer ${
+                        className={`min-w-0 group rounded-lg overflow-hidden border text-left transition-all cursor-pointer ${
                           isActive
                             ? 'border-[#E27A34] ring-1 ring-[#E27A34] bg-[#FAF4ED]'
                             : 'border-[#EAE0D4] bg-[#FDFCFA] hover:border-[#C9B9A6]'
@@ -533,7 +533,7 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
               </div>
             </div>
 
-            <div className="lg:col-span-7 order-1 lg:order-2">
+            <div className="lg:col-span-7 min-w-0 order-1 lg:order-2">
               <div className="aspect-[16/9] max-h-[340px] w-full rounded-2xl overflow-hidden bg-[#FAF4ED] shadow-sm relative border border-[#ECE2D5]">
                 {sofaBedImages.map((src, idx) => {
                   const isActive = sofaBedStage === idx;
@@ -557,9 +557,9 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
       </section>
 
       {/* Real People Reviews & Customer Delivery Photos Section (Theme Matched) */}
-      <section className="py-6 sm:py-10 lg:py-14 bg-[#FAF4ED] border-b border-[#ECE3D6]">
+      <section className="py-6 sm:py-10 lg:py-14 bg-[#FAF4ED] border-b border-[#ECE3D6] w-full max-w-full overflow-x-clip">
         <div className="max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-10">
-          <div className="bg-white rounded-2xl border border-[#E7DDD0] shadow-xs p-3.5 sm:p-6 lg:p-8">
+          <div className="bg-white rounded-2xl border border-[#E7DDD0] shadow-xs p-3.5 sm:p-6 lg:p-8 w-full max-w-full overflow-x-clip">
             {/* Top Summary & Actions Row */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-3.5 pb-4 sm:pb-5 border-b border-[#F0EAE2]">
               <div className="flex items-center gap-3">
@@ -626,7 +626,7 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
             </div>
 
             {/* Category Filter Bar — Single Horizontal Swipe Row on Mobile */}
-            <div className="flex items-center gap-2 py-3 sm:py-4 overflow-x-auto scrollbar-hide flex-nowrap sm:flex-wrap">
+            <div className="flex items-center gap-2 py-3 sm:py-4 overflow-x-auto overscroll-x-contain max-w-full scrollbar-hide flex-nowrap sm:flex-wrap">
               <span className="hidden sm:inline text-[11px] font-semibold uppercase tracking-wider text-[#78716A] mr-1 shrink-0">
                 Filter:
               </span>
@@ -731,7 +731,7 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
             {/* Horizontal Multi-Card Real Customer Reviews Row (Card 2 peeks cleanly on mobile) */}
             <div
               ref={carouselRef}
-              className="flex gap-3 sm:gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth pb-2.5 pr-3 sm:pr-0"
+              className="flex gap-3 sm:gap-4 overflow-x-auto overscroll-x-contain max-w-full scrollbar-hide snap-x snap-mandatory scroll-smooth pb-2.5 pr-3 sm:pr-0"
             >
               {filteredStories.map((story) => {
                 const isExpanded = !!expandedQuotes[story.id];
@@ -909,7 +909,7 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
               <button
                 type="button"
                 onClick={() => setIsReviewFormOpen(true)}
-                className="inline-flex items-center gap-1 font-semibold text-[#E27A34] hover:text-[#C96625] transition-colors cursor-pointer self-start sm:self-auto whitespace-nowrap"
+                className="inline-flex items-center gap-1 font-semibold text-[#E27A34] hover:text-[#C96625] transition-colors cursor-pointer self-start sm:self-auto max-w-full"
               >
                 Share Your Home Photo &amp; Review
                 <ArrowRight className="w-3.5 h-3.5" />

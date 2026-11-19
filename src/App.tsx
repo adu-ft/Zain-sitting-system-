@@ -112,6 +112,9 @@ export default function App() {
     };
 
     const onScrollSync = () => {
+      if (window.scrollX !== 0) {
+        window.scrollTo({ left: 0, top: window.scrollY, behavior: 'instant' });
+      }
       setShowBackToTop(window.scrollY > 360);
       if (!isGliding) {
         currentY = window.scrollY;

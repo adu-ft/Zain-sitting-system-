@@ -85,7 +85,7 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
   }, [products, activeCategory, mechanismFilter, catalogSearch, sortBy]);
 
   return (
-    <section id="catalog" className="pt-5 pb-10 lg:pt-8 lg:pb-12 bg-white overflow-x-clip">
+    <section id="catalog" className="pt-5 pb-10 lg:pt-8 lg:pb-12 bg-white w-full max-w-full overflow-x-clip">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
         {/* Header & Dynamic Catalog Controls */}
         <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-4 mb-6 pb-5 border-b border-[#ECE6DF]">
@@ -127,7 +127,7 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
               aria-label="Filter by category"
               value={activeCategory}
               onChange={(e) => onSelectCategory(e.target.value as CategoryKey)}
-              className="col-span-2 sm:col-span-1 w-full sm:w-auto min-w-0 px-3 py-2 rounded-lg border border-[#E27A34]/45 bg-[#FAF4ED] text-xs sm:text-sm font-semibold text-[#131F2D] focus:outline-none focus:border-[#E27A34] cursor-pointer"
+              className="col-span-2 sm:col-span-1 w-full max-w-full sm:w-auto min-w-0 px-3 py-2 rounded-lg border border-[#E27A34]/45 bg-[#FAF4ED] text-xs sm:text-sm font-semibold text-[#131F2D] focus:outline-none focus:border-[#E27A34] cursor-pointer"
             >
               {PRODUCT_TABS.map((tab) => (
                 <option key={tab.key} value={tab.key}>
@@ -140,7 +140,7 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
               aria-label="Filter by mechanism"
               value={mechanismFilter}
               onChange={(e) => setMechanismFilter(e.target.value as MechanismFilter)}
-              className="w-full sm:w-auto min-w-0 px-2.5 sm:px-3 py-2 rounded-lg border border-[#E2DAD1] bg-[#FAFAFA] text-xs sm:text-sm font-medium text-[#333333] focus:outline-none focus:border-[#E27A34] cursor-pointer"
+              className="w-full max-w-full sm:w-auto min-w-0 px-2.5 sm:px-3 py-2 rounded-lg border border-[#E2DAD1] bg-[#FAFAFA] text-xs sm:text-sm font-medium text-[#333333] focus:outline-none focus:border-[#E27A34] cursor-pointer"
             >
               <option value="All">All Actions</option>
               <option value="Motorized Push-Button">Motorized Push-Button</option>
@@ -153,7 +153,7 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
               aria-label="Sort products"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as SortOption)}
-              className="w-full sm:w-auto min-w-0 px-2.5 sm:px-3 py-2 rounded-lg border border-[#E2DAD1] bg-[#FAFAFA] text-xs sm:text-sm font-medium text-[#333333] focus:outline-none focus:border-[#E27A34] cursor-pointer"
+              className="w-full max-w-full sm:w-auto min-w-0 px-2.5 sm:px-3 py-2 rounded-lg border border-[#E2DAD1] bg-[#FAFAFA] text-xs sm:text-sm font-medium text-[#333333] focus:outline-none focus:border-[#E27A34] cursor-pointer"
             >
               <option value="featured">Featured Craft</option>
               <option value="price-asc">Price: Low to High</option>
@@ -189,7 +189,7 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
           {/* Compact Horizontal Scrolling Product Rail */}
           <div
             ref={productRailRef}
-            className="flex gap-3 sm:gap-4 overflow-x-auto scrollbar-hide snap-x scroll-smooth pb-2 pr-3 sm:pr-0"
+            className="flex gap-3 sm:gap-4 overflow-x-auto overscroll-x-contain max-w-full scrollbar-hide snap-x scroll-smooth pb-2 pr-3 sm:pr-0"
           >
             {filteredProducts.map((product) => {
               const isWishlisted = wishlistIds.includes(product.id);

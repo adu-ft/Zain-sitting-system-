@@ -251,7 +251,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
   ];
 
   return (
-    <div className="bg-[#FAFAFA] min-h-screen pb-24 lg:pb-12">
+    <div className="bg-[#FAFAFA] min-h-screen pb-24 lg:pb-12 w-full max-w-full overflow-x-clip">
       {/* Top Breadcrumb Bar */}
       <div className="bg-white border-b border-[#ECE6DF]">
         <div className="max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-10 py-3 flex items-center justify-between gap-3">
@@ -284,12 +284,12 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       <div className="max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-10 pt-4 sm:pt-6">
         <div className="bg-white rounded-2xl border border-[#ECE6DF] p-4 sm:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10">
           {/* LEFT COLUMN: Sticky Gallery + Primary Action Buttons */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 min-w-0">
             <div className="lg:sticky lg:top-24 space-y-4">
               {/* Thumbnail + Main Image Row on Desktop / Stacked on Mobile */}
-              <div className="flex flex-col-reverse sm:flex-row gap-3">
+              <div className="flex flex-col-reverse sm:flex-row gap-3 min-w-0">
                 {/* Thumbnails */}
-                <div className="flex sm:flex-col gap-2 overflow-x-auto sm:overflow-visible scrollbar-hide shrink-0">
+                <div className="flex sm:flex-col gap-2 overflow-x-auto overscroll-x-contain max-w-full sm:overflow-visible scrollbar-hide shrink-0">
                   {galleryImages.map((imgUrl, idx) => {
                     const active = activePhotoIdx === idx;
                     return (
@@ -392,7 +392,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           </div>
 
           {/* RIGHT COLUMN: Full Details, Pricing, Variants, Specs & Reviews */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 min-w-0 space-y-6">
             {/* Brand + Title + Rating Summary */}
             <div className="border-b border-[#F0EAE2] pb-5">
               <div className="flex flex-wrap items-center gap-2 mb-1.5">
@@ -580,7 +580,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   value={pincode}
                   onChange={(e) => setPincode(e.target.value)}
                   placeholder="Enter 6-digit Delivery PIN Code"
-                  className="flex-1 px-3 py-2 rounded-lg border border-[#DCD4CB] text-xs sm:text-sm focus:outline-none focus:border-[#E27A34]"
+                  className="flex-1 min-w-0 px-3 py-2 rounded-lg border border-[#DCD4CB] text-xs sm:text-sm focus:outline-none focus:border-[#E27A34]"
                 />
                 <button
                   type="submit"
@@ -838,7 +838,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               {/* Horizontal Real-People Review Cards */}
               <div
                 ref={reviewsScrollRef}
-                className="flex gap-3 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth pb-1.5 pr-3 sm:pr-0"
+                className="flex gap-3 overflow-x-auto overscroll-x-contain max-w-full scrollbar-hide snap-x snap-mandatory scroll-smooth pb-1.5 pr-3 sm:pr-0"
               >
                 {productReviews.map((rev) => {
                   const isExpanded = !!expandedQuotes[rev.id];
@@ -1011,7 +1011,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               View All Catalog
             </button>
           </div>
-          <div className="flex gap-3 sm:gap-4 overflow-x-auto scrollbar-hide snap-x pb-2">
+          <div className="flex gap-3 sm:gap-4 overflow-x-auto overscroll-x-contain max-w-full scrollbar-hide snap-x pb-2">
             {relatedProducts.map((rel) => {
               const relDiscount = calcDiscountPercent(rel.price, rel.mrp);
               return (
