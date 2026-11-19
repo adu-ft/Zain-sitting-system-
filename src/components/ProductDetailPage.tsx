@@ -28,6 +28,8 @@ import { calcDiscountPercent, formatINR } from '../utils/format';
 
 interface ProductDetailPageProps {
   product: Product;
+  initialFinishName?: string;
+  initialVariantIdx?: number;
   allProducts: Product[];
   isWishlisted: boolean;
   onToggleWishlist: (productId: string) => void;
@@ -35,7 +37,8 @@ interface ProductDetailPageProps {
     product: Product,
     finishName: string,
     unitPrice?: number,
-    customNote?: string
+    customNote?: string,
+    selectedImage?: string
   ) => void;
   onSelectProduct: (product: Product) => void;
   onBack: () => void;
@@ -43,6 +46,8 @@ interface ProductDetailPageProps {
 
 export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
   product,
+  initialFinishName,
+  initialVariantIdx,
   allProducts,
   isWishlisted,
   onToggleWishlist,
@@ -50,9 +55,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
   onSelectProduct,
   onBack,
 }) => {
-  const [selectedVariantIdx, setSelectedVariantIdx] = useState(0);
+  const [selectedVariantIdx, setSelectedVariantIdx] = useState(initialVariantIdx ?? 0);
   const [selectedFinishName, setSelectedFinishName] = useState(
-    product.finishes[0]?.name ?? 'Standard'
+    initialFinishName ?? product.finishes[0]?.name ?? 'Standard'
   );
   const [customNote, setCustomNote] = useState('');
   const [pincode, setPincode] = useState('');
@@ -75,18 +80,19 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
   } | null>(null);
   const reviewsScrollRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    setSelectedVariantIdx(0);
-    setSelectedFinishName(product.finishes[0]?.name ?? 'Standard');
-    setCustomNote('');
-    setPincode('');
-    setPincodeStatus(null);
-    setActivePhotoIdx(0);
-    setIsReviewFormOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [product]);
-
   const galleryImages = useMemo(() => {
+    const finishImgs = product.finishes.map((f) => f.image);
+    const variantImgs = product.variants.map((v) => v.image);
+    const explicitGallery = product.gallery ?? [];
+    const combined = [
+      product.image,
+      ...finishImgs,
+      ...explicitGallery,
+      ...variantImgs,
+    ].filter((img): img is string => Boolean(img));
+    if (combined.length > 0) {
+      return Array.from(new Set(combined)).slice(0, 6);
+    }
     const matchedReviewPhoto = CUSTOMER_STORIES.find(
       (s) => s.productId === product.id
     )?.image;
@@ -104,6 +110,31 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
     ].filter((img): img is string => Boolean(img));
     return Array.from(new Set(pool)).slice(0, 4);
   }, [product]);
+
+  useEffect(() => {
+    const nextVariant = initialVariantIdx ?? 0;
+    const nextFinish = initialFinishName ?? product.finishes[0]?.name ?? 'Standard';
+    setSelectedVariantIdx(nextVariant);
+    setSelectedFinishName(nextFinish);
+    setCustomNote('');
+    setPincode('');
+    setPincodeStatus(null);
+    const matchedFinishImg = product.finishes.find((f) => f.name === nextFinish)?.image;
+    const matchedVariantImg = product.variants[nextVariant]?.image;
+    const targetImg = matchedFinishImg || matchedVariantImg || product.image;
+    const targetIdx = galleryImages.indexOf(targetImg);
+    setActivePhotoIdx(targetIdx >= 0 ? targetIdx : 0);
+    setIsReviewFormOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [product, initialFinishName, initialVariantIdx, galleryImages]);
+
+  const jumpToImage = (imgUrl?: string) => {
+    if (!imgUrl) return;
+    const foundIdx = galleryImages.indexOf(imgUrl);
+    if (foundIdx >= 0) {
+      setActivePhotoIdx(foundIdx);
+    }
+  };
 
   const activeVariant =
     product.variants[selectedVariantIdx] ?? product.variants[0];
@@ -289,6 +320,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 <div className="relative flex-1 aspect-[4/3] sm:aspect-[1/1] rounded-xl overflow-hidden bg-[#FAF4ED] border border-[#ECE3D6]">
                   {galleryImages.map((imgUrl, idx) => {
                     const isActive = activePhotoIdx === idx;
+                    const isSpecSheet = imgUrl.includes('dimensions_spec');
                     return (
                       <img
                         key={`${imgUrl}-main-${idx}`}
@@ -296,7 +328,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                         alt={`${product.name} view ${idx + 1}`}
                         referrerPolicy="no-referrer"
                         decoding="async"
-                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-350 ease-out ${
+                        className={`absolute inset-0 w-full h-full ${
+                          isSpecSheet ? 'object-contain bg-white p-2' : 'object-cover'
+                        } transition-opacity duration-350 ease-out ${
                           isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
                         }`}
                       />
@@ -313,7 +347,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     type="button"
                     onClick={() => onToggleWishlist(product.id)}
                     aria-label={isWishlisted ? 'Remove from wishlist' : 'Save to wishlist'}
-                    className="absolute top-3 right-3 w-10 h-10 rounded-full bg-white/95 hover:bg-white shadow-sm flex items-center justify-center transition-colors cursor-pointer"
+                    className="absolute top-3 right-3 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-white shadow-sm flex items-center justify-center transition-colors cursor-pointer"
                   >
                     <Heart
                       className={`w-5 h-5 ${
@@ -335,7 +369,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                       product,
                       fullVariantFinishLabel,
                       finalPrice,
-                      customNote.trim() || undefined
+                      customNote.trim() || undefined,
+                      galleryImages[activePhotoIdx] ?? activeFinishObj?.image ?? product.image
                     )
                   }
                   className="flex items-center justify-center gap-2 py-3.5 px-5 rounded-xl bg-[#131F2D] hover:bg-[#1E2E42] text-white text-sm font-semibold transition-colors cursor-pointer shadow-sm"
@@ -447,7 +482,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                       <button
                         key={variant.label}
                         type="button"
-                        onClick={() => setSelectedVariantIdx(idx)}
+                        onClick={() => {
+                          setSelectedVariantIdx(idx);
+                          jumpToImage(variant.image);
+                        }}
                         className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
                           selected
                             ? 'border-[#E27A34] bg-[#FAF4ED] ring-1 ring-[#E27A34]/30'
@@ -485,7 +523,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     <button
                       key={fin.name}
                       type="button"
-                      onClick={() => setSelectedFinishName(fin.name)}
+                      onClick={() => {
+                        setSelectedFinishName(fin.name);
+                        jumpToImage(fin.image);
+                      }}
                       className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg border text-xs font-medium transition-all cursor-pointer ${
                         selected
                           ? 'border-[#E27A34] bg-[#FAF4ED] text-[#131F2D] font-semibold'
@@ -1019,7 +1060,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               product,
               fullVariantFinishLabel,
               finalPrice,
-              customNote.trim() || undefined
+              customNote.trim() || undefined,
+              galleryImages[activePhotoIdx] ?? activeFinishObj?.image ?? product.image
             )
           }
           className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg bg-[#131F2D] text-white text-xs font-semibold cursor-pointer"

@@ -19,8 +19,14 @@ interface BrowseCatalogPageProps {
   onSelectCategory: (cat: CategoryKey) => void;
   wishlistIds: string[];
   onToggleWishlist: (productId: string) => void;
-  onOpenProduct: (product: Product) => void;
-  onAddToCart: (product: Product, finishName: string, unitPrice?: number) => void;
+  onOpenProduct: (product: Product, finishName?: string, variantIdx?: number) => void;
+  onAddToCart: (
+    product: Product,
+    finishName: string,
+    unitPrice?: number,
+    customNote?: string,
+    selectedImage?: string
+  ) => void;
   onBackHome: () => void;
 }
 
@@ -54,6 +60,7 @@ export const BrowseCatalogPage: React.FC<BrowseCatalogPageProps> = ({
   const [sortBy, setSortBy] = useState<SortOption>('featured');
   const [selectedFinishes, setSelectedFinishes] = useState<Record<string, string>>({});
   const [selectedVariantIdx, setSelectedVariantIdx] = useState<Record<string, number>>({});
+  const [selectedCardImages, setSelectedCardImages] = useState<Record<string, string>>({});
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
   useEffect(() => {
@@ -445,8 +452,24 @@ export const BrowseCatalogPage: React.FC<BrowseCatalogPageProps> = ({
                   const isWishlisted = wishlistIds.includes(product.id);
                   const activeFinish =
                     selectedFinishes[product.id] ?? product.finishes[0]?.name ?? 'Standard';
+                  const activeFinishObj =
+                    product.finishes.find((f) => f.name === activeFinish) ?? product.finishes[0];
                   const vIdx = selectedVariantIdx[product.id] ?? 0;
                   const activeVariant = product.variants[vIdx] ?? product.variants[0];
+                  const activeImage =
+                    selectedCardImages[product.id] ??
+                    activeFinishObj?.image ??
+                    activeVariant?.image ??
+                    product.image;
+                  const cardImages = Array.from(
+                    new Set(
+                      [
+                        product.image,
+                        ...product.finishes.map((f) => f.image),
+                        ...product.variants.map((v) => v.image),
+                      ].filter((img): img is string => Boolean(img))
+                    )
+                  );
                   const finalPrice = Math.max(9999, product.price + (activeVariant?.priceDelta ?? 0));
                   const finalMrp = Math.max(finalPrice + 6000, product.mrp + (activeVariant?.priceDelta ?? 0));
                   const discountPct = calcDiscountPercent(finalPrice, finalMrp);
@@ -456,20 +479,29 @@ export const BrowseCatalogPage: React.FC<BrowseCatalogPageProps> = ({
                       key={product.id}
                       className="group flex flex-col rounded-xl bg-white border border-[#ECE6DF] hover:border-[#DECBB8] hover:shadow-md transition-all duration-200 overflow-hidden"
                     >
-                      {/* Image */}
+                      {/* Image (Blended Color & Variant Crossfade) */}
                       <div className="relative aspect-[4/3] w-full bg-[#FAF4ED] overflow-hidden">
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          referrerPolicy="no-referrer"
-                          onClick={() => onOpenProduct(product)}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer"
-                        />
+                        {cardImages.map((imgUrl) => {
+                          const isCurrent = imgUrl === activeImage;
+                          return (
+                            <img
+                              key={imgUrl}
+                              src={imgUrl}
+                              alt={`${product.name} — ${activeFinish}`}
+                              referrerPolicy="no-referrer"
+                              decoding="async"
+                              onClick={() => onOpenProduct(product, activeFinish, vIdx)}
+                              className={`absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-350 ease-out cursor-pointer ${
+                                isCurrent ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                              }`}
+                            />
+                          );
+                        })}
                         <button
                           type="button"
                           onClick={() => onToggleWishlist(product.id)}
                           aria-label={isWishlisted ? 'Remove from wishlist' : 'Save to wishlist'}
-                          className="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-white/95 hover:bg-white shadow-sm flex items-center justify-center transition-colors cursor-pointer"
+                          className="absolute top-2.5 right-2.5 z-20 w-8 h-8 rounded-full bg-white/95 hover:bg-white shadow-sm flex items-center justify-center transition-colors cursor-pointer"
                         >
                           <Heart
                             className={`w-4 h-4 ${
@@ -477,11 +509,6 @@ export const BrowseCatalogPage: React.FC<BrowseCatalogPageProps> = ({
                             }`}
                           />
                         </button>
-                        {product.tag && (
-                          <span className="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded bg-[#131F2D]/85 backdrop-blur-xs text-white text-[10px] font-semibold uppercase tracking-wide">
-                            {product.tag}
-                          </span>
-                        )}
                       </div>
 
                       {/* Details */}
@@ -501,7 +528,7 @@ export const BrowseCatalogPage: React.FC<BrowseCatalogPageProps> = ({
                           </div>
 
                           <h3
-                            onClick={() => onOpenProduct(product)}
+                            onClick={() => onOpenProduct(product, activeFinish, vIdx)}
                             className="font-display text-base font-semibold text-[#131F2D] leading-snug hover:text-[#E27A34] transition-colors cursor-pointer"
                           >
                             {product.name}
@@ -517,12 +544,20 @@ export const BrowseCatalogPage: React.FC<BrowseCatalogPageProps> = ({
                               <select
                                 aria-label={`Select configuration for ${product.name}`}
                                 value={vIdx}
-                                onChange={(e) =>
+                                onChange={(e) => {
+                                  const nextIdx = Number(e.target.value);
                                   setSelectedVariantIdx((prev) => ({
                                     ...prev,
-                                    [product.id]: Number(e.target.value),
-                                  }))
-                                }
+                                    [product.id]: nextIdx,
+                                  }));
+                                  const nextImg = product.variants[nextIdx]?.image;
+                                  if (nextImg) {
+                                    setSelectedCardImages((prev) => ({
+                                      ...prev,
+                                      [product.id]: nextImg,
+                                    }));
+                                  }
+                                }}
                                 className="w-full px-2.5 py-1.5 rounded-md border border-[#E6DDD2] bg-[#FAF4ED]/70 text-xs font-medium text-[#131F2D] focus:outline-none focus:border-[#E27A34] cursor-pointer"
                               >
                                 {product.variants.map((variant, i) => (
@@ -549,12 +584,18 @@ export const BrowseCatalogPage: React.FC<BrowseCatalogPageProps> = ({
                                   type="button"
                                   title={fin.name}
                                   aria-label={`Select ${fin.name}`}
-                                  onClick={() =>
+                                  onClick={() => {
                                     setSelectedFinishes((prev) => ({
                                       ...prev,
                                       [product.id]: fin.name,
-                                    }))
-                                  }
+                                    }));
+                                    if (fin.image) {
+                                      setSelectedCardImages((prev) => ({
+                                        ...prev,
+                                        [product.id]: fin.image!,
+                                      }));
+                                    }
+                                  }}
                                   className={`w-4 h-4 rounded-full border transition-transform cursor-pointer ${
                                     isPicked
                                       ? 'ring-2 ring-offset-1 ring-[#131F2D] scale-110'
@@ -594,7 +635,7 @@ export const BrowseCatalogPage: React.FC<BrowseCatalogPageProps> = ({
                           <div className="grid grid-cols-2 gap-2">
                             <button
                               type="button"
-                              onClick={() => onOpenProduct(product)}
+                              onClick={() => onOpenProduct(product, activeFinish, vIdx)}
                               className="min-h-[38px] flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border border-[#DCD4CB] hover:border-[#131F2D] text-xs font-semibold text-[#131F2D] transition-colors cursor-pointer"
                             >
                               <Eye className="w-3.5 h-3.5" />
@@ -608,7 +649,9 @@ export const BrowseCatalogPage: React.FC<BrowseCatalogPageProps> = ({
                                   activeVariant
                                     ? `${activeFinish} · ${activeVariant.label}`
                                     : activeFinish,
-                                  finalPrice
+                                  finalPrice,
+                                  undefined,
+                                  activeImage
                                 )
                               }
                               className="min-h-[38px] flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-[#E27A34] hover:bg-[#C96625] text-white text-xs font-semibold transition-colors cursor-pointer"

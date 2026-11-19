@@ -17,12 +17,14 @@ export interface ProductFinish {
   name: string;
   swatchHex: string;
   upholstery: string;
+  image?: string;
 }
 
 export interface ProductVariant {
   label: string;
   dimensions: string;
   priceDelta: number;
+  image?: string;
 }
 
 export interface Product {
@@ -37,6 +39,7 @@ export interface Product {
   rating: number;
   reviewCount: number;
   image: string;
+  gallery?: string[];
   tag?: string;
   dimensions: string;
   frameMaterial: string;
@@ -111,6 +114,7 @@ export interface CartItem {
   product: Product;
   finishName: string;
   customNote?: string;
+  selectedImage?: string;
   unitPrice: number;
   quantity: number;
 }

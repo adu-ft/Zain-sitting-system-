@@ -15,6 +15,7 @@ export function getWhatsAppUrl(message: string): string {
   return `https://wa.me/${WHATSAPP_RAW}?text=${encodeURIComponent(message)}`;
 }
 
+/* Campaign Banners & Interactive Mechanism Explainer Assets */
 export const IMG_HERO_LIVING = '/src/assets/images/zain_hero_living_1794901393144.jpg';
 export const IMG_SHOWROOM_NIGHT = '/src/assets/images/zain_showroom_night_1794901393520.jpg';
 export const IMG_SOFA_MODULAR = '/src/assets/images/zain_sofa_modular_1794901395208.jpg';
@@ -31,6 +32,54 @@ export const IMG_SOFABED_STEP1 = '/src/assets/images/sofabed_step1_switch_179498
 export const IMG_SOFABED_STEP2 = '/src/assets/images/sofabed_step2_rails_1794980545090.jpg';
 export const IMG_SOFABED_STEP3 = '/src/assets/images/sofabed_step3_support_1794980548263.jpg';
 
+/* Studio Color-Variant Renders (Matched to Exact Product Silhouettes) */
+export const IMG_VAR_SOFABED_CHARCOAL = '/src/assets/images/sofabed_charcoal_ash_1795082505413.jpg';
+export const IMG_VAR_SOFABED_CARAMEL = '/src/assets/images/sofabed_caramel_suede_1795082504249.jpg';
+export const IMG_VAR_SOFASET_COGNAC = '/src/assets/images/sofa_set_cognac_tan_1795082506064.jpg';
+export const IMG_VAR_CHAIR_SAGE = '/src/assets/images/chair_sage_velvet_1795082506018.jpg';
+export const IMG_VAR_LOVESEAT_NAVY = '/src/assets/images/loveseat_navy_plush_1795082506432.jpg';
+
+/* Real Zain Seating System Product Photography (Optimized local test copies — swap with DB URLs when ready) */
+export const IMG_DRV_BEIGE_MOTOR = '/src/assets/images/drive/recliner_beige_motorized.jpg';
+export const IMG_DRV_CREAM_TRAY = '/src/assets/images/drive/cinema_1seater_cream_tray.jpg';
+export const IMG_DRV_CREAM_EXT = '/src/assets/images/drive/recliner_cream_extended.jpg';
+export const IMG_DRV_NAVY_TRAY = '/src/assets/images/drive/cinema_1seater_navy_tray.jpg';
+export const IMG_DRV_SAND_TRAY = '/src/assets/images/drive/cinema_1seater_sand_tray.jpg';
+export const IMG_DRV_CARAMEL_TRAY = '/src/assets/images/drive/cinema_1seater_caramel_tray.jpg';
+export const IMG_DRV_ROYAL_USB = '/src/assets/images/drive/cinema_1seater_royal_usb.jpg';
+export const IMG_DRV_COGNAC_USB = '/src/assets/images/drive/recliner_cognac_usb.jpg';
+export const IMG_DRV_CHARCOAL_SLATE = '/src/assets/images/drive/recliner_charcoal_slate.jpg';
+export const IMG_DRV_ESPRESSO_BROWN = '/src/assets/images/drive/recliner_espresso_brown.jpg';
+export const IMG_DRV_BLACK_MANUAL = '/src/assets/images/drive/recliner_black_manual.jpg';
+export const IMG_DRV_IVORY_MANUAL = '/src/assets/images/drive/recliner_ivory_manual.jpg';
+export const IMG_DRV_TERRACOTTA_MANUAL = '/src/assets/images/drive/recliner_terracotta_manual.jpg';
+export const IMG_DRV_NAVY_CLOUD = '/src/assets/images/drive/recliner_navy_cloud.jpg';
+export const IMG_DRV_MUSTARD_MANUAL = '/src/assets/images/drive/recliner_mustard_manual.jpg';
+export const IMG_DRV_WHITE_SWIVEL = '/src/assets/images/drive/recliner_white_swivel.jpg';
+export const IMG_DRV_GREY_FABRIC_EXT = '/src/assets/images/drive/recliner_grey_fabric_extended.jpg';
+export const IMG_DRV_TEAL_UPRIGHT = '/src/assets/images/drive/recliner_teal_upright.jpg';
+export const IMG_DRV_TEAL_RECLINED = '/src/assets/images/drive/recliner_teal_reclined.jpg';
+export const IMG_DRV_LOVESEAT_CHARCOAL = '/src/assets/images/drive/loveseat_charcoal_manual.jpg';
+export const IMG_DRV_LOVESEAT_TAUPE = '/src/assets/images/drive/loveseat_taupe_upright.jpg';
+export const IMG_DRV_CINEMA2_CHARCOAL_UP = '/src/assets/images/drive/cinema_2seater_charcoal_upright.jpg';
+export const IMG_DRV_CINEMA2_CHARCOAL_REC = '/src/assets/images/drive/cinema_2seater_charcoal_reclined.jpg';
+export const IMG_DRV_CINEMA2_COGNAC = '/src/assets/images/drive/cinema_2seater_cognac.jpg';
+export const IMG_DRV_CINEMA2_BLACK = '/src/assets/images/drive/cinema_2seater_black_console.jpg';
+export const IMG_DRV_CINEMA2_OLIVE = '/src/assets/images/drive/cinema_2seater_olive_tray.jpg';
+export const IMG_DRV_CINEMA3_GREY = '/src/assets/images/drive/cinema_3seater_grey.jpg';
+export const IMG_DRV_CINEMA3_BLACK = '/src/assets/images/drive/cinema_3seater_black.jpg';
+export const IMG_DRV_CINEMA4_COGNAC = '/src/assets/images/drive/cinema_4seater_cognac_factory.jpg';
+export const IMG_DRV_CINEMA4_CRIMSON = '/src/assets/images/drive/cinema_4seater_crimson.jpg';
+export const IMG_DRV_LSHAPE_BROWN = '/src/assets/images/drive/sofa_lshape_brown.jpg';
+export const IMG_DRV_LSHAPE_TAUPE = '/src/assets/images/drive/sofa_lshape_taupe_extended.jpg';
+export const IMG_DRV_SOFASET_321 = '/src/assets/images/drive/sofa_set_321_espresso.jpg';
+export const IMG_DRV_SOFA3_GREY = '/src/assets/images/drive/sofa_3seater_grey_recliner.jpg';
+export const IMG_DRV_SOFA3_ESPRESSO = '/src/assets/images/drive/sofa_3seater_espresso_recliner.jpg';
+export const IMG_DRV_CHAIR_ESPRESSO = '/src/assets/images/drive/chair_espresso_modern.jpg';
+export const IMG_DRV_CHAIR_SAND = '/src/assets/images/drive/chair_sand_swivel.jpg';
+export const IMG_DRV_SPEC_DIMENSIONS = '/src/assets/images/drive/recliner_dimensions_spec.jpg';
+export const IMG_DRV_FACTORY_FLOOR = '/src/assets/images/drive/factory_floor_recliners.jpg';
+
 /* Authentic Customer Delivery & Portrait Review Assets */
 export const IMG_REVIEW_RECLINER_HOME = '/src/assets/images/review_recliner_home_1794978621438.jpg';
 export const IMG_REVIEW_SOFA_HOME = '/src/assets/images/review_sofa_delivered_1794978624596.jpg';
@@ -39,7 +88,7 @@ export const IMG_REVIEW_CHAIR_HOME = '/src/assets/images/review_chair_home_17949
 export const IMG_REVIEW_AVATAR_MAN = '/src/assets/images/review_customer_avatar_1794978625502.jpg';
 export const IMG_REVIEW_AVATAR_WOMAN = '/src/assets/images/review_woman_avatar_1794978642354.jpg';
 
-/* Exactly 5 distinct core manufactured categories — zero duplicate padding */
+/* Exactly 5 distinct core manufactured categories */
 export const CATEGORY_TILES: CategoryTile[] = [
   {
     id: 'cat-manual-recliners',
@@ -47,7 +96,7 @@ export const CATEGORY_TILES: CategoryTile[] = [
     sublabel: 'Side Lever Operated',
     room: 'Recliners',
     targetCategory: 'Manual Recliners',
-    image: IMG_RECLINER_SOFA,
+    image: IMG_DRV_BLACK_MANUAL,
     startingPrice: 18999,
   },
   {
@@ -56,7 +105,7 @@ export const CATEGORY_TILES: CategoryTile[] = [
     sublabel: 'Electric Push-Button',
     room: 'Recliners',
     targetCategory: 'Motorized Recliners',
-    image: IMG_RECLINER_SOFA,
+    image: IMG_DRV_BEIGE_MOTOR,
     startingPrice: 28999,
   },
   {
@@ -65,7 +114,7 @@ export const CATEGORY_TILES: CategoryTile[] = [
     sublabel: 'Any Color, Fabric & Size',
     room: 'Sofa Sets',
     targetCategory: 'Sofa Sets',
-    image: IMG_SOFA_MODULAR,
+    image: IMG_DRV_LSHAPE_BROWN,
     startingPrice: 34999,
   },
   {
@@ -83,7 +132,7 @@ export const CATEGORY_TILES: CategoryTile[] = [
     sublabel: 'Modernist Accent Chairs',
     room: 'Home Chairs',
     targetCategory: 'Home Chairs',
-    image: IMG_WING_LOUNGE,
+    image: IMG_DRV_CHAIR_ESPRESSO,
     startingPrice: 14499,
   },
 ];
@@ -91,19 +140,19 @@ export const CATEGORY_TILES: CategoryTile[] = [
 export const EXCLUSIVE_DEALS: DealCard[] = [
   {
     id: 'deal-recline',
-    title: 'Manual & Motorized Recliners',
-    highlight: 'Side Lever from ₹18,999 · Electric from ₹28,999',
-    caption: 'Heavy-gauge steel glide linkages tested for 25,000+ recline cycles.',
+    title: 'Manual & Motorized Cinema Recliners',
+    highlight: 'Side Lever from ₹18,999 · Push-Button from ₹28,999',
+    caption: 'Heavy-gauge steel glide linkages with optional swivel tray tables, cup holders & USB charging.',
     targetCategory: 'Motorized Recliners',
-    image: IMG_RECLINER_SOFA,
+    image: IMG_DRV_CINEMA2_CHARCOAL_UP,
   },
   {
     id: 'deal-sofas',
-    title: '100% Custom Sofa Sets',
+    title: '100% Custom Recliner & L-Shape Sofa Sets',
     highlight: 'Made in Your Exact Color, Fabric & Size',
     caption: 'Built directly in our manufacturing unit with 40-density HR foam & pocket springs.',
     targetCategory: 'Sofa Sets',
-    image: IMG_SOFA_MODULAR,
+    image: IMG_DRV_SOFASET_321,
   },
   {
     id: 'deal-electric-bed',
@@ -119,7 +168,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'zss-sultan-motor-recliner',
     name: 'Zain Sultan Motorized Push-Button Recliner',
-    subtitle: 'Motorized Recliner · Button Operated',
+    subtitle: 'Motorized Recliner · Side Push-Button + USB',
     category: 'Motorized Recliners',
     room: 'Recliners',
     mechanism: 'Motorized Push-Button',
@@ -127,9 +176,17 @@ export const PRODUCTS: Product[] = [
     mrp: 42999,
     rating: 4.9,
     reviewCount: 312,
-    image: IMG_RECLINER_SOFA,
+    image: IMG_DRV_BEIGE_MOTOR,
+    gallery: [
+      IMG_DRV_BEIGE_MOTOR,
+      IMG_DRV_CREAM_TRAY,
+      IMG_DRV_COGNAC_USB,
+      IMG_DRV_CHARCOAL_SLATE,
+      IMG_DRV_ESPRESSO_BROWN,
+      IMG_DRV_SPEC_DIMENSIONS,
+    ],
     tag: 'Electric Push-Button',
-    dimensions: '88 cm W × 96 cm D × 103 cm H (162 cm Reclined)',
+    dimensions: '93 cm W × 96 cm D × 104 cm H (162 cm Reclined)',
     frameMaterial: 'Seasoned Hardwood Frame + Okin 24V Silent Actuator + Heavy Steel Chassis',
     foamAndSpring: '40-Density Super-Soft HR Foam + Pocket Spring Core',
     warranty: '5-Year Frame & 3-Year Electric Motor Warranty',
@@ -138,21 +195,21 @@ export const PRODUCTS: Product[] = [
       'Operated effortlessly via sleek side push-buttons that glide the backrest and footrest into infinite micro-angles. Built in-house with whisper-quiet motorized hardware, integrated USB charging port, and customizable leatherette or suede colors.',
     customizableOptions: ['Custom Color Swatch', 'Leatherette or Suede', 'USB + Cup Holder Trim'],
     variants: [
-      { label: '1-Seater Push-Button', dimensions: '88 cm W × 96 cm D × 103 cm H', priceDelta: 0 },
-      { label: '1-Seater + Swivel Rocker', dimensions: '90 cm W × 98 cm D × 104 cm H', priceDelta: 4500 },
-      { label: '2-Seater Cinema Console', dimensions: '176 cm W × 96 cm D × 103 cm H', priceDelta: 24000 },
+      { label: '1-Seater Push-Button', dimensions: '93 cm W × 96 cm D × 104 cm H', priceDelta: 0, image: IMG_DRV_BEIGE_MOTOR },
+      { label: '1-Seater + Swivel Tray & Cup Holders', dimensions: '95 cm W × 96 cm D × 104 cm H', priceDelta: 4500, image: IMG_DRV_CREAM_TRAY },
+      { label: '2-Seater Cinema Console', dimensions: '176 cm W × 96 cm D × 104 cm H', priceDelta: 24000, image: IMG_DRV_CINEMA2_COGNAC },
     ],
     finishes: [
-      { name: 'Saddle Cognac', swatchHex: '#B66338', upholstery: 'Breathable Pro Leatherette' },
-      { name: 'Espresso Brown', swatchHex: '#433029', upholstery: 'Breathable Pro Leatherette' },
-      { name: 'Charcoal Slate', swatchHex: '#3A3D42', upholstery: 'Matte Molfino Suede' },
-      { name: 'Warm Sand', swatchHex: '#C7B69E', upholstery: 'Easy-Clean Performance Weave' },
+      { name: 'Champagne Cream', swatchHex: '#DFD2BD', upholstery: 'Breathable Pro Leatherette', image: IMG_DRV_BEIGE_MOTOR },
+      { name: 'Saddle Cognac', swatchHex: '#B66338', upholstery: 'Breathable Pro Leatherette', image: IMG_DRV_COGNAC_USB },
+      { name: 'Charcoal Slate', swatchHex: '#3A3D42', upholstery: 'Matte Molfino Suede', image: IMG_DRV_CHARCOAL_SLATE },
+      { name: 'Espresso Brown', swatchHex: '#433029', upholstery: 'Breathable Pro Leatherette', image: IMG_DRV_ESPRESSO_BROWN },
     ],
   },
   {
     id: 'zss-nawab-manual-recliner',
-    name: 'Zain Nawab Manual Lever Recliner Chair',
-    subtitle: 'Manual Recliner · Heavy-Duty Lever',
+    name: 'Zain Nawab Manual Side-Lever Recliner Chair',
+    subtitle: 'Manual Recliner · Heavy-Duty Side Lever',
     category: 'Manual Recliners',
     room: 'Recliners',
     mechanism: 'Manual Lever',
@@ -160,90 +217,110 @@ export const PRODUCTS: Product[] = [
     mrp: 28999,
     rating: 4.8,
     reviewCount: 248,
-    image: IMG_RECLINER_SOFA,
+    image: IMG_DRV_BLACK_MANUAL,
+    gallery: [
+      IMG_DRV_BLACK_MANUAL,
+      IMG_DRV_TERRACOTTA_MANUAL,
+      IMG_DRV_MUSTARD_MANUAL,
+      IMG_DRV_WHITE_SWIVEL,
+      IMG_DRV_SPEC_DIMENSIONS,
+    ],
     tag: 'Manual Side Lever',
-    dimensions: '84 cm W × 92 cm D × 102 cm H',
+    dimensions: '93 cm W × 96 cm D × 104 cm H',
     frameMaterial: 'Kiln-Dried Pinewood + High-Tensile Manual Lever Steel Mechanism',
     foamAndSpring: '3-Zone 40-Density HR Foam + Elastic Webbing Support',
     warranty: '5-Year Structural & Lever Linkage Warranty',
     deliveryEstimate: 'Ready to Dispatch in 3–5 Days',
     description:
-      'Operated smoothly by pulling our ergonomic brushed side lever—requiring zero wall plug or power socket. Ideal for bedrooms, reading balconies, and sunlit living corners with 360-degree rocker/swivel option available on request.',
+      'Operated smoothly by pulling our ergonomic recessed side lever—requiring zero wall plug or power socket. Ideal for bedrooms, reading balconies, and sunlit living corners with 360-degree rocker/swivel option available on request.',
     customizableOptions: ['Custom Fabric or Leatherette', 'Rocker Swivel Option', '2-Seater Love Seat Custom'],
     variants: [
-      { label: '1-Seater Fixed Base', dimensions: '84 cm W × 92 cm D × 102 cm H', priceDelta: 0 },
-      { label: '1-Seater 360° Rocker Swivel', dimensions: '86 cm W × 94 cm D × 103 cm H', priceDelta: 3500 },
-      { label: '2-Seater Manual Love Seat', dimensions: '158 cm W × 92 cm D × 102 cm H', priceDelta: 17000 },
+      { label: '1-Seater Fixed Base', dimensions: '93 cm W × 96 cm D × 104 cm H', priceDelta: 0, image: IMG_DRV_BLACK_MANUAL },
+      { label: '1-Seater 360° Rocker Swivel', dimensions: '93 cm W × 96 cm D × 104 cm H', priceDelta: 3500, image: IMG_DRV_WHITE_SWIVEL },
+      { label: '2-Seater Manual Love Seat', dimensions: '158 cm W × 96 cm D × 104 cm H', priceDelta: 17000, image: IMG_DRV_LOVESEAT_CHARCOAL },
     ],
     finishes: [
-      { name: 'Terracotta Tan', swatchHex: '#B66338', upholstery: 'Micro-Perforated Leatherette' },
-      { name: 'Olive Grey', swatchHex: '#6E7368', upholstery: 'Textured Cotton Suede' },
-      { name: 'Deep Mocha', swatchHex: '#4B362A', upholstery: 'Breathable Pro Leatherette' },
+      { name: 'Jet Matte Black', swatchHex: '#252629', upholstery: 'Breathable Pro Leatherette', image: IMG_DRV_BLACK_MANUAL },
+      { name: 'Terracotta Suede', swatchHex: '#B85D32', upholstery: 'Soft Matte Molfino Suede', image: IMG_DRV_TERRACOTTA_MANUAL },
+      { name: 'Mustard Ochre', swatchHex: '#D19A24', upholstery: 'Textured Velvet Suede', image: IMG_DRV_MUSTARD_MANUAL },
     ],
   },
   {
-    id: 'zss-mirza-custom-sofa',
-    name: 'Zain Mirza Factory-Custom 3-Seater Sofa Set',
-    subtitle: 'Sofa Sets · Custom Color, Fabric & Size',
-    category: 'Sofa Sets',
-    room: 'Sofa Sets',
-    mechanism: 'Fixed / Static',
-    price: 34999,
-    mrp: 52999,
+    id: 'zss-imperial-cinema-recliner',
+    name: 'Zain Imperial Cinema Recliner with Swivel Tray',
+    subtitle: 'Motorized Cinema Seat · Cup Holders + USB + Tray',
+    category: 'Motorized Recliners',
+    room: 'Recliners',
+    mechanism: 'Motorized Push-Button',
+    price: 33499,
+    mrp: 48999,
     rating: 4.9,
-    reviewCount: 364,
-    image: IMG_HERO_LIVING,
-    tag: '100% Customizable',
-    dimensions: '215 cm W × 90 cm D × 80 cm H (Custom Lengths Available)',
-    frameMaterial: 'Kiln-Dried Meranti Hardwood & Solid Teak Exposed Arms',
-    foamAndSpring: '40-Density HR Foam + Heavy Zigzag Spring Seat Deck',
-    warranty: '5-Year Manufacturing Structural Warranty',
-    deliveryEstimate: 'Custom Built in 7–10 Days',
+    reviewCount: 204,
+    image: IMG_DRV_NAVY_TRAY,
+    gallery: [
+      IMG_DRV_NAVY_TRAY,
+      IMG_DRV_SAND_TRAY,
+      IMG_DRV_ROYAL_USB,
+      IMG_DRV_CARAMEL_TRAY,
+      IMG_DRV_CREAM_TRAY,
+    ],
+    tag: 'Tray + Cup Holders',
+    dimensions: '94 cm W × 96 cm D × 105 cm H',
+    frameMaterial: 'Reinforced Cinema Steel Chassis + Okin 24V Motor + Brushed USB Switch',
+    foamAndSpring: 'High-Loft 40-Density HR Foam + Diamond-Quilted Arm Panels',
+    warranty: '5-Year Frame & 3-Year Electric Actuator Warranty',
+    deliveryEstimate: 'Factory Dispatch in 5–7 Days',
     description:
-      'Manufactured to order in our unit so you never settle on dimensions or shade. Customize seating depth, armrest silhouette, fabric texture (linen, bouclé, velvet, or leatherette), and choose from 20+ upholstery colors at factory-direct pricing.',
-    customizableOptions: ['3+1+1 Full Set', 'Custom Width & Depth', '20+ Factory Colors'],
+      'Engineered for dedicated home theatres and executive lounges. Features dual integrated armrest cup holders, a removable 360-degree wooden swivel tray table, brushed metal USB electric buttons, and custom diamond-stitched upholstery.',
+    customizableOptions: ['Wood or Matte Black Tray', 'Diamond Quilted Arms', 'Single or Multi-Seat Row'],
     variants: [
-      { label: '3-Seater Sofa (7 ft)', dimensions: '215 cm W × 90 cm D × 80 cm H', priceDelta: 0 },
-      { label: '3+2 Living Set', dimensions: '215 cm + 158 cm W × 90 cm D', priceDelta: 22000 },
-      { label: '3+1+1 Full Lounge Set', dimensions: '215 cm 3-Seat + Two 86 cm Armchairs', priceDelta: 27000 },
+      { label: '1-Seater Cinema + Tray', dimensions: '94 cm W × 96 cm D × 105 cm H', priceDelta: 0, image: IMG_DRV_NAVY_TRAY },
+      { label: 'Pair of 2 Individual Seats', dimensions: '2 × (94 cm W × 96 cm D)', priceDelta: 31000, image: IMG_DRV_CINEMA2_CHARCOAL_UP },
+      { label: '3-Seater Connected Row', dimensions: '248 cm W × 96 cm D × 105 cm H', priceDelta: 58000, image: IMG_DRV_CINEMA3_BLACK },
     ],
     finishes: [
-      { name: 'Cognac Linen', swatchHex: '#9C582B', upholstery: 'Stain-Resistant Woven Linen' },
-      { name: 'Oatmeal Bouclé', swatchHex: '#E5DDD0', upholstery: 'Heavyweight Textured Bouclé' },
-      { name: 'Sage Velvet', swatchHex: '#5E7560', upholstery: '380 GSM Matte Velvet' },
-      { name: 'Slate Indigo', swatchHex: '#3B4D63', upholstery: 'Performance Cotton Blend' },
+      { name: 'Midnight Navy', swatchHex: '#233146', upholstery: 'Pro Grain Leatherette', image: IMG_DRV_NAVY_TRAY },
+      { name: 'Sandstone Quilted', swatchHex: '#D8C7B2', upholstery: 'Diamond-Stitched Leatherette', image: IMG_DRV_SAND_TRAY },
+      { name: 'Royal Blue Suede', swatchHex: '#234490', upholstery: 'Velvet-Touch Suede', image: IMG_DRV_ROYAL_USB },
+      { name: 'Caramel Tan', swatchHex: '#C69049', upholstery: 'Pro Grain Leatherette', image: IMG_DRV_CARAMEL_TRAY },
     ],
   },
   {
     id: 'zss-noor-sectional-custom',
-    name: 'Zain Noor L-Shape Custom Modular Sofa Set',
-    subtitle: 'Sofa Sets · Left or Right Lounger Custom',
+    name: 'Zain Noor L-Shape Custom Recliner Sectional Sofa',
+    subtitle: 'Sofa Sets · L-Shape Corner with Built-In Recliner',
     category: 'Sofa Sets',
     room: 'Sofa Sets',
-    mechanism: 'Fixed / Static',
-    price: 46999,
-    mrp: 69999,
-    rating: 4.8,
+    mechanism: 'Both Options',
+    price: 54999,
+    mrp: 79999,
+    rating: 4.9,
     reviewCount: 289,
-    image: IMG_SOFA_MODULAR,
+    image: IMG_DRV_LSHAPE_BROWN,
+    gallery: [
+      IMG_DRV_LSHAPE_BROWN,
+      IMG_DRV_LSHAPE_TAUPE,
+      IMG_SOFA_MODULAR,
+      IMG_DRV_LOVESEAT_TAUPE,
+    ],
     tag: 'Custom L-Shape',
-    dimensions: '275 cm W × 168 cm D × 80 cm H',
-    frameMaterial: 'Seasoned Hardwood Box Frame + Honey Teak Plinth Base',
-    foamAndSpring: 'Dual-Layer HR Foam + Feather-Touch Topper Cushions',
+    dimensions: '275 cm W × 210 cm D × 98 cm H (Custom Wall Sizes)',
+    frameMaterial: 'Seasoned Hardwood Box Frame + Steel Recliner Corner Modules',
+    foamAndSpring: 'Dual-Layer 40-Density HR Foam + Plush Pillow-Back Cushions',
     warranty: '5-Year Frame & Cushion Core Warranty',
     deliveryEstimate: 'Custom Built in 7–12 Days',
     description:
-      'Configured directly to your living room wall measurements with choice of Left or Right chaise lounger. Add manual or motorized reclining end seats on demand straight from our factory floor.',
-    customizableOptions: ['Left / Right Chaise', 'Add End Recliner Seat', 'Any Fabric Color'],
+      'Configured directly to your living room wall measurements with choice of Left or Right corner layout. Combine fixed deep-seating modules with manual or motorized reclining seats on either end straight from our factory floor.',
+    customizableOptions: ['Left / Right Corner', '1 or 2 Built-In Recliners', '20+ Factory Fabrics'],
     variants: [
-      { label: 'Left Chaise L-Shape (9×5.5 ft)', dimensions: '275 cm W × 168 cm D × 80 cm H', priceDelta: 0 },
-      { label: 'Right Chaise L-Shape (9×5.5 ft)', dimensions: '275 cm W × 168 cm D × 80 cm H', priceDelta: 0 },
-      { label: 'L-Shape + End Electric Recliner', dimensions: '285 cm W × 168 cm D × 84 cm H', priceDelta: 12500 },
+      { label: '5-Seater L-Shape + 1 Manual Recliner', dimensions: '275 cm × 210 cm × 98 cm H', priceDelta: 0, image: IMG_DRV_LSHAPE_BROWN },
+      { label: '6-Seater L-Shape + 2 Manual Recliners', dimensions: '295 cm × 230 cm × 98 cm H', priceDelta: 12000, image: IMG_DRV_LSHAPE_TAUPE },
+      { label: '6-Seater L-Shape + Dual Motorized Seats', dimensions: '295 cm × 230 cm × 98 cm H', priceDelta: 22000, image: IMG_SOFA_MODULAR },
     ],
     finishes: [
-      { name: 'Ivory Bouclé', swatchHex: '#EDE6DA', upholstery: 'Loop-Pile Bouclé' },
-      { name: 'Warm Sand', swatchHex: '#C7B69E', upholstery: 'Spill-Guard Linen' },
-      { name: 'Forest Moss', swatchHex: '#4F6352', upholstery: 'Matte Velvet' },
+      { name: 'Warm Walnut Suede', swatchHex: '#7A5B47', upholstery: 'Spill-Guard Matte Suede', image: IMG_DRV_LSHAPE_BROWN },
+      { name: 'Taupe Linen', swatchHex: '#A6907E', upholstery: 'Heavy Woven Linen', image: IMG_DRV_LSHAPE_TAUPE },
+      { name: 'Ivory Bouclé', swatchHex: '#EDE6DA', upholstery: 'Loop-Pile Bouclé', image: IMG_SOFA_MODULAR },
     ],
   },
   {
@@ -258,6 +335,13 @@ export const PRODUCTS: Product[] = [
     rating: 4.9,
     reviewCount: 221,
     image: IMG_SOFA_CUM_BED,
+    gallery: [
+      IMG_SOFA_CUM_BED,
+      IMG_VAR_SOFABED_CHARCOAL,
+      IMG_VAR_SOFABED_CARAMEL,
+      IMG_SOFABED_125,
+      IMG_SOFABED_156,
+    ],
     tag: 'Electric Forward-Extend',
     dimensions: '198 cm W × 92 cm D (Extends Forward to 156 cm Sleeper)',
     frameMaterial: 'Reinforced Steel Telescopic Rails + 24V Dual Linear Actuator + Hardwood Frame',
@@ -270,106 +354,282 @@ export const PRODUCTS: Product[] = [
     variants: [
       { label: '2-Seater Compact (5.5 ft)', dimensions: '168 cm W × 92–156 cm D', priceDelta: -3500 },
       { label: '3-Seater Standard (6.5 ft)', dimensions: '198 cm W × 92–156 cm D', priceDelta: 0 },
-      { label: 'King Sleeper (7 ft + USB)', dimensions: '214 cm W × 96–164 cm D', priceDelta: 6500 },
+      { label: 'King Sleeper (7 ft + USB)', dimensions: '214 cm W × 96–164 cm D', priceDelta: 6500, image: IMG_SOFABED_156 },
     ],
     finishes: [
-      { name: 'Oatmeal Melange', swatchHex: '#CFC6B8', upholstery: 'Heavy Textured Linen' },
-      { name: 'Charcoal Ash', swatchHex: '#4A4E54', upholstery: 'Performance Upholstery' },
-      { name: 'Caramel Suede', swatchHex: '#9C582B', upholstery: 'Soft Matte Suede' },
-    ],
-  },
-  {
-    id: 'zss-aranya-modern-chair',
-    name: 'Zain Aranya Modernist Wingback Home Chair',
-    subtitle: 'Home Chairs · Contemporary Sculpted Profile',
-    category: 'Home Chairs',
-    room: 'Home Chairs',
-    mechanism: 'Fixed / Static',
-    price: 16499,
-    mrp: 24999,
-    rating: 4.8,
-    reviewCount: 192,
-    image: IMG_WING_LOUNGE,
-    tag: 'Modernist Design',
-    dimensions: '78 cm W × 84 cm D × 102 cm H',
-    frameMaterial: 'Solid Seasoned Hardwood Legs & Mortise Joinery',
-    foamAndSpring: 'Curved Contour HR Foam Seat + Matching Ottoman Optional',
-    warranty: '3-Year Structural Warranty',
-    deliveryEstimate: 'Ships in 4–6 Days',
-    description:
-      'A crisp modernist take on the classic reading armchair, scaled cleanly for apartments, master bedrooms, and living suites. Custom upholstered in your preferred velvet, bouclé, or woven shade.',
-    customizableOptions: ['Add Matching Ottoman', 'Wood Stain Options', 'Custom Fabric Color'],
-    variants: [
-      { label: 'Wingback Chair Only', dimensions: '78 cm W × 84 cm D × 102 cm H', priceDelta: 0 },
-      { label: 'Chair + Matching Ottoman', dimensions: 'Chair + 54 cm × 44 cm Footstool', priceDelta: 4500 },
-      { label: 'Pair of 2 Chairs', dimensions: '2 × (78 cm W × 84 cm D × 102 cm H)', priceDelta: 14500 },
-    ],
-    finishes: [
-      { name: 'Sage Velvet', swatchHex: '#5E7560', upholstery: '380 GSM Cotton Velvet' },
-      { name: 'Terracotta Spice', swatchHex: '#B85D3B', upholstery: 'Herringbone Linen' },
-      { name: 'Sandstone Ivory', swatchHex: '#DDD4C6', upholstery: 'Soft Bouclé' },
-    ],
-  },
-  {
-    id: 'zss-verve-modern-homechair',
-    name: 'Zain Verve Modernist Shell Home & Study Chair',
-    subtitle: 'Home Chairs · Curved Timber Backrest',
-    category: 'Home Chairs',
-    room: 'Home Chairs',
-    mechanism: 'Fixed / Static',
-    price: 14499,
-    mrp: 21999,
-    rating: 4.7,
-    reviewCount: 149,
-    image: IMG_ERGONOMIC_OFFICE,
-    tag: 'Modernist Profile',
-    dimensions: '64 cm W × 62 cm D × 96 cm H',
-    frameMaterial: 'Molded Walnut Veneer Shell & Brushed Alloy Base',
-    foamAndSpring: 'Molded High-Density Seat Cushion + Breathable Mesh Back',
-    warranty: '3-Year Mechanism Warranty',
-    deliveryEstimate: 'Ships in 2–4 Days',
-    description:
-      'Minimalist modernist chair crafted for work-from-home studies, reading desks, and bedroom corners where sleek silhouette meets lasting everyday support.',
-    customizableOptions: ['Static or Swivel Castors', 'Walnut or White Oak Shell'],
-    variants: [
-      { label: 'Fixed Lounge Base', dimensions: '64 cm W × 62 cm D × 94 cm H', priceDelta: 0 },
-      { label: '360° Swivel + Height Lift', dimensions: '64 cm W × 62 cm D × 96–106 cm H', priceDelta: 2200 },
-    ],
-    finishes: [
-      { name: 'Charcoal & Walnut', swatchHex: '#33363B', upholstery: 'Breathable Weave + Walnut' },
-      { name: 'Cognac & Walnut', swatchHex: '#9C582B', upholstery: 'Leatherette + Walnut' },
+      { name: 'Oatmeal Melange', swatchHex: '#CFC6B8', upholstery: 'Heavy Textured Linen', image: IMG_SOFA_CUM_BED },
+      { name: 'Charcoal Ash', swatchHex: '#4A4E54', upholstery: 'Performance Upholstery', image: IMG_VAR_SOFABED_CHARCOAL },
+      { name: 'Caramel Suede', swatchHex: '#9C582B', upholstery: 'Soft Matte Suede', image: IMG_VAR_SOFABED_CARAMEL },
     ],
   },
   {
     id: 'zss-majlis-dual-recliner',
-    name: 'Zain Majlis 2-Seater Dual-Mechanism Recliner Sofa',
-    subtitle: 'Manual or Electric · Cinema & Lounge Seating',
+    name: 'Zain Majlis 2-Seater Cinema Recliner with Trays',
+    subtitle: 'Motorized Cinema Loveseat · Quilted Arms & Trays',
     category: 'Motorized Recliners',
     room: 'Recliners',
     mechanism: 'Both Options',
-    price: 49999,
-    mrp: 72999,
+    price: 54999,
+    mrp: 78999,
     rating: 4.9,
     reviewCount: 176,
-    image: IMG_RECLINER_SOFA,
-    tag: 'Manual or Electric',
-    dimensions: '164 cm W × 96 cm D × 103 cm H',
-    frameMaterial: 'Heavy-Gauge Twin Recliner Chassis + Seasoned Hardwood Box',
-    foamAndSpring: '40-Density HR Foam + Dual Pocket Springs',
+    image: IMG_DRV_CINEMA2_CHARCOAL_UP,
+    gallery: [
+      IMG_DRV_CINEMA2_CHARCOAL_UP,
+      IMG_DRV_CINEMA2_CHARCOAL_REC,
+      IMG_DRV_CINEMA2_COGNAC,
+      IMG_DRV_CINEMA2_OLIVE,
+      IMG_DRV_CINEMA2_BLACK,
+    ],
+    tag: 'Dual Cinema Seats',
+    dimensions: '176 cm W × 96 cm D × 104 cm H (162 cm Reclined)',
+    frameMaterial: 'Heavy-Gauge Twin Cinema Chassis + Diamond-Quilted Side Consoles',
+    foamAndSpring: '40-Density HR Foam + Dual Independent Pocket Springs',
     warranty: '5-Year Frame & 3-Year Mechanism Warranty',
     deliveryEstimate: 'Custom Built in 7–10 Days',
     description:
-      'Two plush independently reclining lounge seats configurable in either Manual Lever or Electric Push-Button operation straight from our manufacturing line. Optional center storage console available.',
-    customizableOptions: ['Manual or Electric Action', 'Optional Cup Console', 'Any Shade Selection'],
+      'Two plush independently reclining home-theatre seats with removable swivel wooden snack trays, concealed cup holders, and optional center storage console. Available in charcoal suede, cognac leatherette, olive green, or matte black.',
+    customizableOptions: ['Manual or Electric Action', 'Center Storage Console', 'Swivel Wood Trays'],
     variants: [
-      { label: '2-Seater Twin Manual Lever', dimensions: '164 cm W × 96 cm D × 103 cm H', priceDelta: 0 },
-      { label: '2-Seater Dual Motorized Button', dimensions: '164 cm W × 96 cm D × 103 cm H', priceDelta: 7000 },
-      { label: '3-Seater Motorized + Center Console', dimensions: '238 cm W × 96 cm D × 103 cm H', priceDelta: 24500 },
+      { label: '2-Seater Twin Manual + Trays', dimensions: '176 cm W × 96 cm D × 104 cm H', priceDelta: 0, image: IMG_DRV_CINEMA2_CHARCOAL_UP },
+      { label: '2-Seater Dual Motorized + Trays', dimensions: '176 cm W × 96 cm D × 104 cm H', priceDelta: 9000, image: IMG_DRV_CINEMA2_CHARCOAL_REC },
+      { label: '2-Seater Motorized + Storage Console', dimensions: '192 cm W × 96 cm D × 104 cm H', priceDelta: 14500, image: IMG_DRV_CINEMA2_BLACK },
     ],
     finishes: [
-      { name: 'Cognac Hide', swatchHex: '#B66338', upholstery: 'Breathable Pro Leatherette' },
-      { name: 'Slate Velvet', swatchHex: '#3A3D42', upholstery: 'Performance Suede' },
-      { name: 'Warm Sand', swatchHex: '#C7B69E', upholstery: 'Heavyweight Linen' },
+      { name: 'Charcoal Slate Suede', swatchHex: '#3B3E44', upholstery: 'Diamond-Quilted Molfino Suede', image: IMG_DRV_CINEMA2_CHARCOAL_UP },
+      { name: 'Cognac Hide', swatchHex: '#B66338', upholstery: 'Breathable Pro Leatherette', image: IMG_DRV_CINEMA2_COGNAC },
+      { name: 'Olive Emerald', swatchHex: '#3D5234', upholstery: 'Quilted Grain Leatherette', image: IMG_DRV_CINEMA2_OLIVE },
+      { name: 'Matte Jet Black', swatchHex: '#252629', upholstery: 'Breathable Pro Leatherette', image: IMG_DRV_CINEMA2_BLACK },
+    ],
+  },
+  {
+    id: 'zss-aura-fabric-recliner',
+    name: 'Zain Aura Ivory Fabric Manual Lever Recliner',
+    subtitle: 'Manual Recliner · Breathable Soft Weave Fabric',
+    category: 'Manual Recliners',
+    room: 'Recliners',
+    mechanism: 'Manual Lever',
+    price: 19999,
+    mrp: 30999,
+    rating: 4.8,
+    reviewCount: 164,
+    image: IMG_DRV_IVORY_MANUAL,
+    gallery: [
+      IMG_DRV_IVORY_MANUAL,
+      IMG_DRV_GREY_FABRIC_EXT,
+      IMG_DRV_TEAL_UPRIGHT,
+      IMG_DRV_TEAL_RECLINED,
+    ],
+    tag: 'Cool Breathable Fabric',
+    dimensions: '90 cm W × 94 cm D × 102 cm H',
+    frameMaterial: 'Seasoned Hardwood Frame + Zero-Electricity Side Lever Mechanism',
+    foamAndSpring: '40-Density Cool-Touch HR Foam + Soft Pillow Armrests',
+    warranty: '5-Year Structural & Lever Linkage Warranty',
+    deliveryEstimate: 'Ships in 4–6 Days',
+    description:
+      'Tailored in airy woven upholstery that stays cool during Indian summers. Pull the side lever to kick up the full-length padded footrest—ideal for sunlit apartments, nursing corners, and everyday living rooms.',
+    customizableOptions: ['Summer-Cool Linen Weave', '360° Swivel Rocker Base', '15+ Pastel & Jewel Shades'],
+    variants: [
+      { label: '1-Seater Manual Lever', dimensions: '90 cm W × 94 cm D × 102 cm H', priceDelta: 0, image: IMG_DRV_IVORY_MANUAL },
+      { label: '1-Seater Rocker + Swivel', dimensions: '90 cm W × 95 cm D × 103 cm H', priceDelta: 3500, image: IMG_DRV_GREY_FABRIC_EXT },
+      { label: '1-Seater Push-Button Electric', dimensions: '90 cm W × 94 cm D × 102 cm H', priceDelta: 8500, image: IMG_DRV_CREAM_EXT },
+    ],
+    finishes: [
+      { name: 'Ivory Oat Fabric', swatchHex: '#E5DFD5', upholstery: 'Breathable Textured Weave', image: IMG_DRV_IVORY_MANUAL },
+      { name: 'Cloud Mist Grey', swatchHex: '#C5C3C0', upholstery: 'Breathable Textured Weave', image: IMG_DRV_GREY_FABRIC_EXT },
+      { name: 'Peacock Teal Velvet', swatchHex: '#0F6F8C', upholstery: '380 GSM Soft Velvet', image: IMG_DRV_TEAL_UPRIGHT },
+    ],
+  },
+  {
+    id: 'zss-mirza-custom-sofa',
+    name: 'Zain Mirza 3+2+1 Full Living Room Recliner Set',
+    subtitle: 'Sofa Sets · Complete 6-Seater Factory Custom Suite',
+    category: 'Sofa Sets',
+    room: 'Sofa Sets',
+    mechanism: 'Both Options',
+    price: 78999,
+    mrp: 114999,
+    rating: 4.9,
+    reviewCount: 364,
+    image: IMG_DRV_SOFASET_321,
+    gallery: [
+      IMG_DRV_SOFASET_321,
+      IMG_DRV_SOFA3_GREY,
+      IMG_VAR_SOFASET_COGNAC,
+      IMG_DRV_SOFA3_ESPRESSO,
+    ],
+    tag: '3+2+1 Full Suite',
+    dimensions: '3-Seat (215 cm) + 2-Seat (158 cm) + 1-Seat Recliner (93 cm)',
+    frameMaterial: 'Kiln-Dried Meranti Hardwood & Heavy-Gauge Steel Recliner Mechanisms',
+    foamAndSpring: '40-Density HR Foam + Heavy Zigzag Spring Seat Deck',
+    warranty: '5-Year Manufacturing Structural Warranty',
+    deliveryEstimate: 'Custom Built in 7–10 Days',
+    description:
+      'Complete living room seating suite manufactured to order in our own factory. Choose which seats recline (manual lever or electric push-button), select from 20+ leatherette or fabric shades, and adjust widths to fit your exact living hall.',
+    customizableOptions: ['Buy 3-Seater Alone or 3+2+1', 'Custom Width & Depth', '20+ Factory Colors'],
+    variants: [
+      { label: '3-Seater Recliner Sofa Only', dimensions: '215 cm W × 96 cm D × 102 cm H', priceDelta: -36000, image: IMG_DRV_SOFA3_ESPRESSO },
+      { label: '3+2 Living Set (5-Seater)', dimensions: '215 cm + 158 cm W × 96 cm D', priceDelta: -14000, image: IMG_DRV_SOFA3_GREY },
+      { label: '3+2+1 Complete 6-Seater Suite', dimensions: '215 cm + 158 cm + 93 cm W', priceDelta: 0, image: IMG_DRV_SOFASET_321 },
+    ],
+    finishes: [
+      { name: 'Espresso Mocha', swatchHex: '#4A3731', upholstery: 'Pro Grain Leatherette', image: IMG_DRV_SOFASET_321 },
+      { name: 'Warm Ash Grey', swatchHex: '#7A7876', upholstery: 'Soft Matte Suede', image: IMG_DRV_SOFA3_GREY },
+      { name: 'Cognac Tan', swatchHex: '#9C582B', upholstery: 'Breathable Pro Leatherette', image: IMG_VAR_SOFASET_COGNAC },
+    ],
+  },
+  {
+    id: 'zss-aranya-modern-chair',
+    name: 'Zain Aranya Slim-Arm Modernist Push-Back Chair',
+    subtitle: 'Home Chairs · Compact Architectural Profile',
+    category: 'Home Chairs',
+    room: 'Home Chairs',
+    mechanism: 'Manual Lever',
+    price: 16499,
+    mrp: 24999,
+    rating: 4.8,
+    reviewCount: 192,
+    image: IMG_DRV_CHAIR_ESPRESSO,
+    gallery: [
+      IMG_DRV_CHAIR_ESPRESSO,
+      IMG_DRV_CHAIR_SAND,
+      IMG_VAR_CHAIR_SAGE,
+      IMG_WING_LOUNGE,
+    ],
+    tag: 'Modernist Profile',
+    dimensions: '74 cm W × 84 cm D × 100 cm H',
+    frameMaterial: 'Solid Seasoned Hardwood Legs & Smooth Push-Back Recline Mechanism',
+    foamAndSpring: 'Contoured High-Resilience Foam with Tailored Lumbar Bolster',
+    warranty: '3-Year Structural & Mechanism Warranty',
+    deliveryEstimate: 'Ships in 4–6 Days',
+    description:
+      'A sleek, space-saving modernist armchair that looks like a tailored accent piece upright yet gently reclines back when you lean in. Built for compact bedrooms, living corners, and executive reading rooms.',
+    customizableOptions: ['Fixed or Push-Back Action', 'Leatherette or Textured Fabric', 'Pair Discount Available'],
+    variants: [
+      { label: 'Single Push-Back Chair', dimensions: '74 cm W × 84 cm D × 100 cm H', priceDelta: 0, image: IMG_DRV_CHAIR_ESPRESSO },
+      { label: 'Single Chair + Swivel Base', dimensions: '74 cm W × 84 cm D × 100 cm H', priceDelta: 3000, image: IMG_DRV_CHAIR_SAND },
+      { label: 'Pair of 2 Chairs', dimensions: '2 × (74 cm W × 84 cm D)', priceDelta: 14500, image: IMG_VAR_CHAIR_SAGE },
+    ],
+    finishes: [
+      { name: 'Espresso Leatherette', swatchHex: '#3B2B28', upholstery: 'Matte Grain Leatherette', image: IMG_DRV_CHAIR_ESPRESSO },
+      { name: 'Warm Sand Linen', swatchHex: '#BFA792', upholstery: 'Woven Performance Fabric', image: IMG_DRV_CHAIR_SAND },
+      { name: 'Sage Velvet', swatchHex: '#5E7560', upholstery: '380 GSM Cotton Velvet', image: IMG_VAR_CHAIR_SAGE },
+    ],
+  },
+  {
+    id: 'zss-harmony-manual-loveseat',
+    name: 'Zain Harmony 2-Seater Manual Recliner Loveseat',
+    subtitle: 'Manual Recliners · Dual Independent Footrests',
+    category: 'Manual Recliners',
+    room: 'Recliners',
+    mechanism: 'Manual Lever',
+    price: 34999,
+    mrp: 49999,
+    rating: 4.8,
+    reviewCount: 138,
+    image: IMG_DRV_LOVESEAT_CHARCOAL,
+    gallery: [
+      IMG_DRV_LOVESEAT_CHARCOAL,
+      IMG_DRV_LOVESEAT_TAUPE,
+      IMG_VAR_LOVESEAT_NAVY,
+      IMG_DRV_SOFA3_GREY,
+      IMG_DRV_SPEC_DIMENSIONS,
+    ],
+    tag: '2-Seater Loveseat',
+    dimensions: '158 cm W × 94 cm D × 102 cm H',
+    frameMaterial: 'Kiln-Dried Hardwood + Dual Side-Lever Steel Mechanisms',
+    foamAndSpring: '40-Density Plush HR Foam + Split-Back Lumbar Cushions',
+    warranty: '5-Year Frame & Lever Linkage Warranty',
+    deliveryEstimate: 'Factory Dispatch in 5–7 Days',
+    description:
+      'Compact 2-seater sofa where both left and right seats recline independently via discreet side pull levers—giving couples full lounge comfort without needing the footprint of a 3-seater.',
+    customizableOptions: ['Upgrade to Electric Buttons', 'Matching 1-Seater Available', '20+ Suede & Fabric Colors'],
+    variants: [
+      { label: '2-Seater Twin Manual Lever', dimensions: '158 cm W × 94 cm D × 102 cm H', priceDelta: 0, image: IMG_DRV_LOVESEAT_CHARCOAL },
+      { label: '2-Seater Twin Motorized Button', dimensions: '158 cm W × 94 cm D × 102 cm H', priceDelta: 9500, image: IMG_DRV_LOVESEAT_TAUPE },
+      { label: '3-Seater Matching Recliner Sofa', dimensions: '212 cm W × 94 cm D × 102 cm H', priceDelta: 12000, image: IMG_DRV_SOFA3_GREY },
+    ],
+    finishes: [
+      { name: 'Charcoal Mist Suede', swatchHex: '#51565E', upholstery: 'Soft Brushed Suede', image: IMG_DRV_LOVESEAT_CHARCOAL },
+      { name: 'Warm Greige Taupe', swatchHex: '#ABA198', upholstery: 'Easy-Clean Matte Suede', image: IMG_DRV_LOVESEAT_TAUPE },
+      { name: 'Deep Navy Plush', swatchHex: '#25396B', upholstery: 'Plush Brushed Suede', image: IMG_VAR_LOVESEAT_NAVY },
+    ],
+  },
+  {
+    id: 'zss-royale-theatre-row',
+    name: 'Zain Royale 3-Seater Home Theatre Recliner Row',
+    subtitle: 'Motorized Cinema Row · 3 Independent Push-Button Seats',
+    category: 'Motorized Recliners',
+    room: 'Recliners',
+    mechanism: 'Motorized Push-Button',
+    price: 74999,
+    mrp: 108999,
+    rating: 4.9,
+    reviewCount: 152,
+    image: IMG_DRV_CINEMA3_GREY,
+    gallery: [
+      IMG_DRV_CINEMA3_GREY,
+      IMG_DRV_CINEMA3_BLACK,
+      IMG_DRV_CINEMA4_COGNAC,
+      IMG_DRV_CINEMA4_CRIMSON,
+      IMG_DRV_FACTORY_FLOOR,
+    ],
+    tag: 'Home Theatre Row',
+    dimensions: '248 cm W × 96 cm D × 104 cm H (Custom 3 to 6 Seats)',
+    frameMaterial: 'Commercial-Grade Home Theatre Steel Frame + Triple Okin 24V Motors',
+    foamAndSpring: 'High-Resilience 40-Density Cinema Foam + Integrated Cup Holders',
+    warranty: '5-Year Frame & 3-Year Electric Motor Warranty',
+    deliveryEstimate: 'Custom Built in 7–12 Days',
+    description:
+      'Purpose-built straight or curved home cinema rows manufactured directly in our workshop for villas, basement theatres, and family lounges. Every seat includes smooth electric recline, armrest cup holders, and optional swivel trays.',
+    customizableOptions: ['Straight or Curved Row', '3, 4, or 5-Seat Custom', 'LED Cup Holders & Trays'],
+    variants: [
+      { label: '3-Seater Straight Motorized Row', dimensions: '248 cm W × 96 cm D × 104 cm H', priceDelta: 0, image: IMG_DRV_CINEMA3_GREY },
+      { label: '4-Seater Curved Cinema Row', dimensions: '332 cm W × 98 cm D × 104 cm H', priceDelta: 24000, image: IMG_DRV_CINEMA4_COGNAC },
+      { label: '3-Seater Manual Lever Row', dimensions: '248 cm W × 96 cm D × 104 cm H', priceDelta: -15000, image: IMG_DRV_CINEMA3_BLACK },
+    ],
+    finishes: [
+      { name: 'Dove Cinema Grey', swatchHex: '#8C8E92', upholstery: 'Pro Grain Leatherette', image: IMG_DRV_CINEMA3_GREY },
+      { name: 'Theatre Matte Black', swatchHex: '#24262A', upholstery: 'Pro Grain Leatherette', image: IMG_DRV_CINEMA3_BLACK },
+      { name: 'Saddle Cognac', swatchHex: '#A65D37', upholstery: 'Diamond-Stitched Leatherette', image: IMG_DRV_CINEMA4_COGNAC },
+      { name: 'Crimson Theatre Red', swatchHex: '#7E1F28', upholstery: 'Pro Grain Leatherette', image: IMG_DRV_CINEMA4_CRIMSON },
+    ],
+  },
+  {
+    id: 'zss-verve-modern-homechair',
+    name: 'Zain Verve Swivel Modernist Reading & Cloud Chair',
+    subtitle: 'Home Chairs · 360° Swivel Base & Tailored Backrest',
+    category: 'Home Chairs',
+    room: 'Home Chairs',
+    mechanism: 'Manual Lever',
+    price: 17499,
+    mrp: 25999,
+    rating: 4.8,
+    reviewCount: 149,
+    image: IMG_DRV_CHAIR_SAND,
+    gallery: [
+      IMG_DRV_CHAIR_SAND,
+      IMG_DRV_NAVY_CLOUD,
+      IMG_DRV_WHITE_SWIVEL,
+      IMG_DRV_CHAIR_ESPRESSO,
+    ],
+    tag: '360° Swivel Base',
+    dimensions: '76 cm W × 86 cm D × 101 cm H',
+    frameMaterial: 'Heavy Powder-Coated 360° Steel Swivel Ring + Hardwood Frame',
+    foamAndSpring: 'Molded High-Density Seat Core + Ergonomic Neck Bolster',
+    warranty: '3-Year Swivel & Mechanism Warranty',
+    deliveryEstimate: 'Ships in 4–6 Days',
+    description:
+      'Clean-lined swivel lounge chair engineered for modern bedrooms, study corners, and nursery rooms—combining 360-degree rotation with a discreet side-lever footrest so you can read, work, or unwind effortlessly.',
+    customizableOptions: ['360° Swivel + Rocker', 'Fabric or Leatherette', 'Custom Neutral or Bold Shades'],
+    variants: [
+      { label: '360° Swivel Manual Chair', dimensions: '76 cm W × 86 cm D × 101 cm H', priceDelta: 0, image: IMG_DRV_CHAIR_SAND },
+      { label: 'Cloud-Plush Deep Rocker Edition', dimensions: '88 cm W × 94 cm D × 104 cm H', priceDelta: 4500, image: IMG_DRV_NAVY_CLOUD },
+    ],
+    finishes: [
+      { name: 'Warm Sand Weave', swatchHex: '#C2AA93', upholstery: 'Textured Cotton Linen', image: IMG_DRV_CHAIR_SAND },
+      { name: 'Royal Cloud Navy', swatchHex: '#263B70', upholstery: 'Plush Tufted Velvet', image: IMG_DRV_NAVY_CLOUD },
+      { name: 'Pure Ivory White', swatchHex: '#F3F1EC', upholstery: 'Easy-Wipe Leatherette', image: IMG_DRV_WHITE_SWIVEL },
     ],
   },
 ];
@@ -382,14 +642,14 @@ export const CUSTOMER_STORIES: CustomerStory[] = [
     rating: 5,
     date: '2 weeks ago',
     quote:
-      'Ordered the Sultan push-button motorized recliner directly via WhatsApp after checking their factory video. The Okin motor glide is completely silent, USB port is super handy next to my coffee table, and leatherette color matched my living room perfectly.',
+      'Ordered the Sultan push-button motorized recliner directly via WhatsApp after seeing their factory floor photos. The Okin motor glide is completely silent, USB port is super handy, and the Champagne Cream leatherette matches our living room wall.',
     productId: 'zss-sultan-motor-recliner',
     productName: 'Zain Sultan Motorized Recliner',
     categoryTag: 'Motorized Recliner',
-    image: IMG_REVIEW_RECLINER_HOME,
-    photos: [IMG_REVIEW_RECLINER_HOME, IMG_RECLINER_SOFA],
+    image: IMG_DRV_BEIGE_MOTOR,
+    photos: [IMG_DRV_BEIGE_MOTOR, IMG_DRV_CREAM_TRAY],
     avatarUrl: IMG_REVIEW_AVATAR_MAN,
-    factoryReply: 'Thank you Rohan ji 🙏 Happy that the Saddle Cognac shade and smooth push-button recline fit your corner so well!',
+    factoryReply: 'Thank you Rohan ji. Happy that the Champagne Cream shade and smooth push-button recline fit your corner so well!',
     factoryReplyDate: '2 weeks ago',
   },
   {
@@ -399,12 +659,12 @@ export const CUSTOMER_STORIES: CustomerStory[] = [
     rating: 5,
     date: 'a month ago',
     quote:
-      'Showrooms quoted ₹95k+ and refused custom wall sizes. Zain’s manufacturing team built our Noor L-shape sofa to exact 9×5.5 ft dimensions in Oatmeal Bouclé—40-density HR foam feels firm yet plush even after heavy family use.',
+      'Showrooms quoted ₹95k+ and refused custom wall sizes. Zain’s manufacturing team built our Noor L-shape recliner sectional to exact apartment measurements—40-density HR foam feels firm yet plush even after heavy family use.',
     productId: 'zss-noor-sectional-custom',
-    productName: 'Zain Noor Custom L-Shape Sofa',
+    productName: 'Zain Noor L-Shape Recliner Sectional',
     categoryTag: 'Custom L-Shape Sofa',
-    image: IMG_REVIEW_SOFA_HOME,
-    photos: [IMG_REVIEW_SOFA_HOME, IMG_SOFA_MODULAR],
+    image: IMG_DRV_LSHAPE_BROWN,
+    photos: [IMG_DRV_LSHAPE_BROWN, IMG_DRV_LSHAPE_TAUPE],
     avatarUrl: IMG_REVIEW_AVATAR_WOMAN,
     isRepeatBuyer: true,
     factoryReply: 'Grateful for your trust, Meera mam! Custom-sizing to exact apartment measurements is what we love doing.',
@@ -417,15 +677,15 @@ export const CUSTOMER_STORIES: CustomerStory[] = [
     rating: 5,
     date: '2 months ago',
     quote:
-      'Best decision for our spare guest room. During the day it looks like a crisp linen 3-seater, and at night just press the side button and the seat glides forward smoothly into a comfortable full bed without dragging heavy iron frames.',
-    productId: 'zss-sukun-electric-sofabed',
-    productName: 'Zain Sukun Electric Sofa Cum Bed',
-    categoryTag: 'Electric Sofa Bed',
-    image: IMG_REVIEW_SOFABED_HOME,
-    photos: [IMG_REVIEW_SOFABED_HOME],
+      'Best decision for our home theatre room. We ordered the 2-seater charcoal suede Majlis cinema set with wooden swivel trays—the diamond-quilted arms and full recline look straight out of a luxury multiplex.',
+    productId: 'zss-majlis-dual-recliner',
+    productName: 'Zain Majlis 2-Seater Cinema Recliner',
+    categoryTag: 'Motorized Cinema',
+    image: IMG_DRV_CINEMA2_CHARCOAL_UP,
+    photos: [IMG_DRV_CINEMA2_CHARCOAL_UP, IMG_DRV_CINEMA2_CHARCOAL_REC],
     avatarInitials: 'A',
     avatarBg: '#131F2D',
-    factoryReply: 'Thank you Dr. Arvind 🙏 Glad the forward-glide electric mechanism is effortless for your guests.',
+    factoryReply: 'Thank you Dr. Arvind. Glad the charcoal suede cinema set and swivel trays transformed your theatre room!',
     factoryReplyDate: '2 months ago',
   },
   {
@@ -435,15 +695,15 @@ export const CUSTOMER_STORIES: CustomerStory[] = [
     rating: 5,
     date: '3 months ago',
     quote:
-      'Picked the Sage Velvet Aranya chair for my bedroom reading corner. Solid wood legs, neat piping, and zero middleman markup—packaging arrived completely intact.',
+      'Picked the Espresso Aranya slim-arm chair for my bedroom reading corner. Compact footprint, neat stitching, and zero middleman markup—packaging arrived completely intact.',
     productId: 'zss-aranya-modern-chair',
-    productName: 'Zain Aranya Modern Home Chair',
+    productName: 'Zain Aranya Slim-Arm Modernist Chair',
     categoryTag: 'Modern Home Chair',
-    image: IMG_REVIEW_CHAIR_HOME,
-    photos: [IMG_REVIEW_CHAIR_HOME],
+    image: IMG_DRV_CHAIR_ESPRESSO,
+    photos: [IMG_DRV_CHAIR_ESPRESSO, IMG_VAR_CHAIR_SAGE],
     avatarInitials: 'S',
     avatarBg: '#9C582B',
-    factoryReply: 'Looks awesome beside the floor lamp, Siddharth! Enjoy your reading corner.',
+    factoryReply: 'Looks great beside your wood console, Siddharth! Enjoy your reading corner.',
     factoryReplyDate: '3 months ago',
   },
   {
@@ -457,22 +717,22 @@ export const CUSTOMER_STORIES: CustomerStory[] = [
     productId: 'zss-nawab-manual-recliner',
     productName: 'Zain Nawab Manual Recliner Chair',
     categoryTag: 'Manual Recliner',
-    image: IMG_RECLINER_SOFA,
-    photos: [IMG_RECLINER_SOFA],
+    image: IMG_DRV_BLACK_MANUAL,
+    photos: [IMG_DRV_BLACK_MANUAL, IMG_DRV_IVORY_MANUAL],
     avatarInitials: 'F',
     avatarBg: '#5E7560',
-    factoryReply: 'Thank you Farhan bhai 🙏 Appreciate the feedback on the manual lever linkage!',
+    factoryReply: 'Thank you Farhan bhai. Appreciate the feedback on the manual lever linkage!',
     factoryReplyDate: '3 months ago',
   },
 ];
 
 export const POPULAR_SEARCHES: Array<{ label: string; category: CategoryTile['targetCategory'] }> = [
   { label: 'Manual Lever Recliners', category: 'Manual Recliners' },
-  { label: 'Motorized Push-Button Recliners', category: 'Motorized Recliners' },
+  { label: 'Motorized Cinema Recliners', category: 'Motorized Recliners' },
+  { label: 'Home Theatre Recliner Rows', category: 'Motorized Recliners' },
+  { label: 'L-Shape Recliner Sofas', category: 'Sofa Sets' },
   { label: 'Electric Forward-Extend Sofa Bed', category: 'Electric Sofa Beds' },
-  { label: 'Custom Color Sofa Sets', category: 'Sofa Sets' },
-  { label: 'L-Shape Modular Sofas', category: 'Sofa Sets' },
-  { label: 'Modernist Home Chairs', category: 'Home Chairs' },
+  { label: 'Modernist Swivel Chairs', category: 'Home Chairs' },
 ];
 
 export const DELIVERY_CITIES = [

@@ -100,9 +100,9 @@ export const HeroAndPromo: React.FC<HeroAndPromoProps> = ({
         </div>
       </div>
 
-      {/* Compact Main Hero Campaign Banner so Products appear immediately */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 pt-2 lg:pt-3 pb-1 lg:pb-2">
-        <div className="relative overflow-hidden rounded-xl lg:rounded-lg bg-[#2A1D16] min-h-[175px] sm:min-h-[250px] lg:min-h-[320px] flex items-center">
+      {/* Main Hero Campaign Banner */}
+      <div className="max-w-[1440px] mx-auto px-0 sm:px-6 lg:px-10 pt-2 lg:pt-3 pb-2 lg:pb-3">
+        <div className="relative overflow-hidden rounded-none sm:rounded-xl lg:rounded-lg bg-[#2A1D16] min-h-[260px] sm:min-h-[360px] lg:min-h-[460px] xl:min-h-[520px] flex items-center">
           <AnimatePresence mode="sync">
             <motion.img
               key={current.id}
@@ -121,7 +121,7 @@ export const HeroAndPromo: React.FC<HeroAndPromoProps> = ({
           </AnimatePresence>
 
           <div
-            className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#23140E]/92 via-[#23140E]/55 to-transparent"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#23140E]/58 via-[#23140E]/20 to-transparent"
             aria-hidden="true"
           />
 

@@ -110,7 +110,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
         <div className="md:col-span-6 bg-[#FAF4ED] p-5 flex flex-col justify-between">
           <div className="aspect-[4/3] rounded-xl overflow-hidden bg-white">
             <img
-              src={product.image}
+              src={activeFinishObj?.image || activeVariant?.image || product.image}
               alt={product.name}
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover"
@@ -496,7 +496,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   className="flex gap-3.5 pb-4 border-b border-[#ECE6DF]"
                 >
                   <img
-                    src={item.product.image}
+                    src={item.selectedImage || item.product.image}
                     alt={item.product.name}
                     referrerPolicy="no-referrer"
                     className="w-20 h-20 rounded-lg object-cover bg-[#FAF4ED] shrink-0"

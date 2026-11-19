@@ -1,12 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
   Heart,
-  HelpCircle,
   Menu,
   MessageCircle,
-  PackageCheck,
   Palette,
-  Phone,
   Search,
   ShoppingCart,
   X,
@@ -100,6 +97,13 @@ export const Header: React.FC<HeaderProps> = ({
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         return;
       }
+      onGoHome?.();
+      window.setTimeout(() => {
+        document
+          .getElementById(sectionId)
+          ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+      return;
     }
     onSelectCategory(category);
   };
@@ -116,58 +120,7 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <>
       <header className="lg:sticky lg:top-0 z-40 bg-white border-b border-[#ECE6DF]">
-        {/* Row 1: Factory Direct Utility Strip (Desktop) */}
-        <div className="hidden lg:block border-b border-[#F1ECE6] bg-white">
-          <div className="max-w-[1440px] mx-auto px-6 lg:px-10 h-9 flex items-center justify-between text-xs text-[#515151]">
-            <div className="flex items-center gap-5">
-              <span className="font-semibold text-[#E27A34] whitespace-nowrap">
-                Direct Manufacturing Unit
-              </span>
-              <span className="text-[#DCD4CB]">|</span>
-              <button
-                type="button"
-                onClick={() => onOpenUtilityModal('custom')}
-                className="hover:text-[#E27A34] transition-colors cursor-pointer whitespace-nowrap"
-              >
-                Custom Color &amp; Size Inquiry
-              </button>
-            </div>
-
-            <div className="flex items-center gap-5">
-              <a
-                href={getWhatsAppUrl(
-                  'Hello Zain Seating System, I would like to inquire about custom recliners / sofa sets.'
-                )}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-[#333333] hover:text-[#E27A34] font-medium tabular-nums whitespace-nowrap"
-              >
-                <Phone className="w-3.5 h-3.5 text-[#E27A34]" />
-                WhatsApp: {WHATSAPP_DISPLAY}
-              </a>
-              <span className="text-[#DCD4CB]">|</span>
-              <button
-                type="button"
-                onClick={() => onOpenUtilityModal('track')}
-                className="inline-flex items-center gap-1.5 hover:text-[#E27A34] transition-colors cursor-pointer whitespace-nowrap"
-              >
-                <PackageCheck className="w-3.5 h-3.5" />
-                Track Order
-              </button>
-              <span className="text-[#DCD4CB]">|</span>
-              <button
-                type="button"
-                onClick={() => onOpenUtilityModal('help')}
-                className="inline-flex items-center gap-1.5 hover:text-[#E27A34] transition-colors cursor-pointer whitespace-nowrap"
-              >
-                <HelpCircle className="w-3.5 h-3.5" />
-                Factory Concierge
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Row 2: Brand Wordmark + Desktop Search + Real Action Icons (Sticky on Mobile) */}
+        {/* Row 1: Brand Wordmark + Desktop Search + Real Action Icons (Sticky on Mobile) */}
         <div className="sticky top-0 z-40 lg:static bg-white/95 backdrop-blur-md">
           <div className="max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-10 h-[52px] lg:h-auto lg:py-3 flex items-center justify-between gap-3 lg:gap-8">
             {/* Mobile Hamburger + Brand Logo */}

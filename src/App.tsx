@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { useEffect, useState } from 'react';
-import { ArrowUp, CheckCircle2 } from 'lucide-react';
-import { MotionConfig, motion, useScroll, useSpring } from 'motion/react';
+import { ArrowRight, ArrowUp, X } from 'lucide-react';
+import { AnimatePresence, MotionConfig, motion, useScroll, useSpring } from 'motion/react';
 import { Header, type UtilityModalType } from './components/Header';
 import { HeroAndPromo } from './components/HeroAndPromo';
 import { CategoryExplorer } from './components/CategoryExplorer';
@@ -22,16 +22,29 @@ import {
 import { PRODUCTS } from './data/catalog';
 import type { CartItem, CategoryKey, Product } from './types';
 
+interface ToastNotification {
+  id: number;
+  kicker: string;
+  title: string;
+  subtitle?: string;
+  image?: string;
+  actionType?: 'cart' | 'wishlist';
+}
+
 export default function App() {
   const [activeCategory, setActiveCategory] = useState<CategoryKey>('All');
   const [cart, setCart] = useState<CartItem[]>([]);
   const [wishlistIds, setWishlistIds] = useState<string[]>(['zss-mirza-custom-sofa']);
-  const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
+  const [activeProductView, setActiveProductView] = useState<{
+    product: Product;
+    finishName?: string;
+    variantIdx?: number;
+  } | null>(null);
   const [isBrowseAllOpen, setIsBrowseAllOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [utilityModal, setUtilityModal] = useState<UtilityModalType>(null);
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [toast, setToast] = useState<ToastNotification | null>(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   const { scrollYProgress } = useScroll();
@@ -128,10 +141,10 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (!toastMessage) return;
-    const timer = window.setTimeout(() => setToastMessage(null), 2600);
+    if (!toast) return;
+    const timer = window.setTimeout(() => setToast(null), 3200);
     return () => window.clearTimeout(timer);
-  }, [toastMessage]);
+  }, [toast]);
 
   const scrollToCatalog = () => {
     const el = document.getElementById('catalog');
@@ -140,8 +153,16 @@ export default function App() {
     }
   };
 
+  const openProductDetail = (
+    product: Product,
+    finishName?: string,
+    variantIdx?: number
+  ) => {
+    setActiveProductView({ product, finishName, variantIdx });
+  };
+
   const handleSelectCategory = (category: CategoryKey) => {
-    setQuickViewProduct(null);
+    setActiveProductView(null);
     setActiveCategory(category);
     if (!isBrowseAllOpen) {
       window.setTimeout(() => {
@@ -154,9 +175,11 @@ export default function App() {
     product: Product,
     finishName: string,
     unitPrice?: number,
-    customNote?: string
+    customNote?: string,
+    selectedImage?: string
   ) => {
     const finalPrice = unitPrice ?? product.price;
+    const itemImage = selectedImage ?? product.image;
     setCart((prev) => {
       const existing = prev.find(
         (item) =>
@@ -169,16 +192,30 @@ export default function App() {
           item.product.id === product.id &&
           item.finishName === finishName &&
           item.customNote === customNote
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + 1, selectedImage: itemImage }
             : item
         );
       }
       return [
         ...prev,
-        { product, finishName, customNote, unitPrice: finalPrice, quantity: 1 },
+        {
+          product,
+          finishName,
+          customNote,
+          selectedImage: itemImage,
+          unitPrice: finalPrice,
+          quantity: 1,
+        },
       ];
     });
-    setToastMessage(`Added ${product.name} (${finishName}) to bag`);
+    setToast({
+      id: Date.now(),
+      kicker: 'Added to Bag',
+      title: product.name,
+      subtitle: finishName,
+      image: itemImage,
+      actionType: 'cart',
+    });
   };
 
   const handleUpdateQty = (
@@ -206,13 +243,18 @@ export default function App() {
   };
 
   const handleToggleWishlist = (productId: string) => {
-    setWishlistIds((prev) => {
-      const exists = prev.includes(productId);
-      const next = exists
-        ? prev.filter((id) => id !== productId)
-        : [...prev, productId];
-      setToastMessage(exists ? 'Removed from saved seating' : 'Saved to wishlist');
-      return next;
+    const exists = wishlistIds.includes(productId);
+    const matched = PRODUCTS.find((p) => p.id === productId);
+    setWishlistIds((prev) =>
+      exists ? prev.filter((id) => id !== productId) : [...prev, productId]
+    );
+    setToast({
+      id: Date.now(),
+      kicker: exists ? 'Removed from Saved' : 'Saved to Wishlist',
+      title: matched?.name ?? 'Seating Design',
+      subtitle: matched?.category,
+      image: matched?.image,
+      actionType: exists ? undefined : 'wishlist',
     });
   };
 
@@ -239,10 +281,10 @@ export default function App() {
           onSelectCategory={handleSelectCategory}
           onOpenWishlist={() => setIsWishlistOpen(true)}
           onOpenCart={() => setIsCartOpen(true)}
-          onOpenQuickView={(product) => setQuickViewProduct(product)}
+          onOpenQuickView={(product) => openProductDetail(product)}
           onOpenUtilityModal={(modal) => setUtilityModal(modal)}
           onGoHome={() => {
-            setQuickViewProduct(null);
+            setActiveProductView(null);
             setIsBrowseAllOpen(false);
           }}
           cartCount={totalCartItems}
@@ -251,16 +293,18 @@ export default function App() {
         />
 
         <main className="flex-1">
-          {quickViewProduct ? (
+          {activeProductView ? (
             <>
               <ProductDetailPage
-                product={quickViewProduct}
+                product={activeProductView.product}
+                initialFinishName={activeProductView.finishName}
+                initialVariantIdx={activeProductView.variantIdx}
                 allProducts={PRODUCTS}
-                isWishlisted={wishlistIds.includes(quickViewProduct.id)}
+                isWishlisted={wishlistIds.includes(activeProductView.product.id)}
                 onToggleWishlist={handleToggleWishlist}
                 onAddToCart={handleAddToCart}
-                onSelectProduct={(product) => setQuickViewProduct(product)}
-                onBack={() => setQuickViewProduct(null)}
+                onSelectProduct={(product) => openProductDetail(product)}
+                onBack={() => setActiveProductView(null)}
               />
               <BuyingGuideAndFooter
                 onSelectCategory={handleSelectCategory}
@@ -275,7 +319,7 @@ export default function App() {
                 onSelectCategory={setActiveCategory}
                 wishlistIds={wishlistIds}
                 onToggleWishlist={handleToggleWishlist}
-                onOpenProduct={(product) => setQuickViewProduct(product)}
+                onOpenProduct={openProductDetail}
                 onAddToCart={handleAddToCart}
                 onBackHome={() => setIsBrowseAllOpen(false)}
               />
@@ -294,7 +338,7 @@ export default function App() {
                 onSelectCategory={setActiveCategory}
                 wishlistIds={wishlistIds}
                 onToggleWishlist={handleToggleWishlist}
-                onOpenQuickView={(product) => setQuickViewProduct(product)}
+                onOpenQuickView={openProductDetail}
                 onAddToCart={handleAddToCart}
                 onOpenBrowseAll={() => setIsBrowseAllOpen(true)}
               />
@@ -306,7 +350,7 @@ export default function App() {
               <EditorialAndReviews
                 products={PRODUCTS}
                 onSelectCategory={handleSelectCategory}
-                onOpenQuickView={(product) => setQuickViewProduct(product)}
+                onOpenQuickView={(product) => openProductDetail(product)}
               />
 
               <BuyingGuideAndFooter
@@ -358,17 +402,76 @@ export default function App() {
           </div>
         )}
 
-        {/* Toast Feedback */}
-        {toastMessage && (
-          <div
-            role="status"
-            aria-live="polite"
-            className="fixed bottom-5 left-5 z-50 flex items-center gap-2.5 px-4 py-3 rounded-xl bg-[#131F2D] text-white text-xs sm:text-sm font-medium shadow-xl border border-white/10"
-          >
-            <CheckCircle2 className="w-4 h-4 text-[#4CAF4F] shrink-0" />
-            <span>{toastMessage}</span>
-          </div>
-        )}
+        {/* Brand-Matched Editorial Notification */}
+        <AnimatePresence>
+          {toast && (
+            <motion.div
+              key={toast.id}
+              role="status"
+              aria-live="polite"
+              initial={{ opacity: 0, y: -12, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -8, scale: 0.98 }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed top-[72px] sm:top-20 right-3 left-3 sm:left-auto sm:w-[360px] z-50 rounded-xl bg-[#FDFCFA] border border-[#E2D6C8] shadow-[0_14px_34px_rgba(19,31,45,0.14)] overflow-hidden"
+            >
+              <div className="p-3 flex items-center gap-3">
+                {toast.image && (
+                  <img
+                    src={toast.image}
+                    alt={toast.title}
+                    referrerPolicy="no-referrer"
+                    className="w-11 h-11 rounded-lg object-cover border border-[#EAE0D4] bg-[#FAF4ED] shrink-0"
+                  />
+                )}
+                <div className="min-w-0 flex-1">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#E27A34] leading-none">
+                    {toast.kicker}
+                  </p>
+                  <p className="text-xs sm:text-[13px] font-semibold text-[#131F2D] truncate mt-1">
+                    {toast.title}
+                  </p>
+                  {toast.subtitle && (
+                    <p className="text-[11px] text-[#515151] truncate mt-0.5">
+                      {toast.subtitle}
+                    </p>
+                  )}
+                </div>
+
+                {toast.actionType && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const target = toast.actionType;
+                      setToast(null);
+                      if (target === 'cart') setIsCartOpen(true);
+                      if (target === 'wishlist') setIsWishlistOpen(true);
+                    }}
+                    className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md bg-[#FAF4ED] hover:bg-[#E27A34] text-[#131F2D] hover:text-white border border-[#E5D7C6] text-[11px] font-semibold transition-colors cursor-pointer shrink-0 whitespace-nowrap"
+                  >
+                    <span>{toast.actionType === 'cart' ? 'View Bag' : 'Saved'}</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </button>
+                )}
+
+                <button
+                  type="button"
+                  onClick={() => setToast(null)}
+                  aria-label="Dismiss notification"
+                  className="w-6 h-6 rounded-md text-[#78716A] hover:text-[#131F2D] hover:bg-[#FAF4ED] flex items-center justify-center transition-colors cursor-pointer shrink-0"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+              <motion.div
+                initial={{ scaleX: 1 }}
+                animate={{ scaleX: 0 }}
+                transition={{ duration: 3.2, ease: 'linear' }}
+                className="h-[2.5px] bg-[#E27A34] origin-left"
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </MotionConfig>
   );
