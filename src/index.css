@@ -22,11 +22,17 @@
     background-color: #ffffff;
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    max-width: 100%;
+    overflow-x: clip;
+    overscroll-behavior-x: none;
     overscroll-behavior-y: none;
   }
 
-  body {
-    overflow-x: hidden;
+  body,
+  #root {
+    max-width: 100%;
+    overflow-x: clip;
+    overscroll-behavior-x: none;
   }
 
   h1, h2, h3, h4, .font-display {

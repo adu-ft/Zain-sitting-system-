@@ -269,7 +269,7 @@ export default function App() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="min-h-screen flex flex-col bg-white text-[#333333]">
+      <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white text-[#333333]">
         {/* Top Gliding Scroll Progress Bar */}
         <motion.div
           style={{ scaleX }}
@@ -292,7 +292,7 @@ export default function App() {
           products={PRODUCTS}
         />
 
-        <main className="flex-1">
+        <main className="flex-1 min-w-0 w-full overflow-x-clip">
           {activeProductView ? (
             <>
               <ProductDetailPage

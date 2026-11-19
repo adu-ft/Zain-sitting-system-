@@ -391,7 +391,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Mobile Horizontal Quick Filter Bar + 4-Grid Button */}
           <div className="flex items-center justify-between gap-2 mt-1.5 border-b border-[#F2ECE4]">
-            <div className="flex items-center gap-5 overflow-x-auto scrollbar-hide flex-1">
+            <div className="flex items-center gap-5 overflow-x-auto scrollbar-hide flex-1 min-w-0">
               {mobileTabs.map((tab) => {
                 const isSelected = activeNavLabel === tab.label || (tab.label === 'All' && activeNavLabel === 'All Factory Lines');
                 return (

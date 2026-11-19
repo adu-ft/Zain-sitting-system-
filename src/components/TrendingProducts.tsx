@@ -85,11 +85,11 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
   }, [products, activeCategory, mechanismFilter, catalogSearch, sortBy]);
 
   return (
-    <section id="catalog" className="pt-5 pb-10 lg:pt-8 lg:pb-12 bg-white">
+    <section id="catalog" className="pt-5 pb-10 lg:pt-8 lg:pb-12 bg-white overflow-x-clip">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
         {/* Header & Dynamic Catalog Controls */}
         <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-4 mb-6 pb-5 border-b border-[#ECE6DF]">
-          <div>
+          <div className="min-w-0">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#E27A34] mb-1">
               Dynamic Factory Catalog · {filteredProducts.length} of {products.length} Designs
             </p>
@@ -98,16 +98,16 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2.5">
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2.5 w-full xl:w-auto min-w-0">
             {/* Live Catalog Filter Input */}
-            <div className="col-span-2 flex items-center gap-2 px-3 py-2 rounded-lg border border-[#E2DAD1] bg-[#FAFAFA] focus-within:border-[#E27A34] w-full sm:w-56">
+            <div className="col-span-2 flex items-center gap-2 px-3 py-2 rounded-lg border border-[#E2DAD1] bg-[#FAFAFA] focus-within:border-[#E27A34] w-full sm:w-56 min-w-0">
               <Search className="w-4 h-4 text-[#78716A] shrink-0" />
               <input
                 type="text"
                 value={catalogSearch}
                 onChange={(e) => setCatalogSearch(e.target.value)}
                 placeholder="Filter by model, fabric, size..."
-                className="w-full text-xs sm:text-sm text-[#333333] placeholder-[#8A8178] bg-transparent focus:outline-none"
+                className="w-full min-w-0 text-xs sm:text-sm text-[#333333] placeholder-[#8A8178] bg-transparent focus:outline-none"
               />
               {catalogSearch && (
                 <button
@@ -127,7 +127,7 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
               aria-label="Filter by category"
               value={activeCategory}
               onChange={(e) => onSelectCategory(e.target.value as CategoryKey)}
-              className="col-span-2 sm:col-span-1 px-3 py-2 rounded-lg border border-[#E27A34]/45 bg-[#FAF4ED] text-xs sm:text-sm font-semibold text-[#131F2D] focus:outline-none focus:border-[#E27A34] cursor-pointer"
+              className="col-span-2 sm:col-span-1 w-full sm:w-auto min-w-0 px-3 py-2 rounded-lg border border-[#E27A34]/45 bg-[#FAF4ED] text-xs sm:text-sm font-semibold text-[#131F2D] focus:outline-none focus:border-[#E27A34] cursor-pointer"
             >
               {PRODUCT_TABS.map((tab) => (
                 <option key={tab.key} value={tab.key}>
@@ -140,7 +140,7 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
               aria-label="Filter by mechanism"
               value={mechanismFilter}
               onChange={(e) => setMechanismFilter(e.target.value as MechanismFilter)}
-              className="px-3 py-2 rounded-lg border border-[#E2DAD1] bg-[#FAFAFA] text-xs sm:text-sm font-medium text-[#333333] focus:outline-none focus:border-[#E27A34] cursor-pointer"
+              className="w-full sm:w-auto min-w-0 px-2.5 sm:px-3 py-2 rounded-lg border border-[#E2DAD1] bg-[#FAFAFA] text-xs sm:text-sm font-medium text-[#333333] focus:outline-none focus:border-[#E27A34] cursor-pointer"
             >
               <option value="All">All Actions</option>
               <option value="Motorized Push-Button">Motorized Push-Button</option>
@@ -153,7 +153,7 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
               aria-label="Sort products"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as SortOption)}
-              className="px-3 py-2 rounded-lg border border-[#E2DAD1] bg-[#FAFAFA] text-xs sm:text-sm font-medium text-[#333333] focus:outline-none focus:border-[#E27A34] cursor-pointer"
+              className="w-full sm:w-auto min-w-0 px-2.5 sm:px-3 py-2 rounded-lg border border-[#E2DAD1] bg-[#FAFAFA] text-xs sm:text-sm font-medium text-[#333333] focus:outline-none focus:border-[#E27A34] cursor-pointer"
             >
               <option value="featured">Featured Craft</option>
               <option value="price-asc">Price: Low to High</option>
