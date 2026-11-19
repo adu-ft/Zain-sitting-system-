@@ -19,7 +19,33 @@ import {
   UtilityModal,
   WishlistDrawer,
 } from './components/ModalsAndDrawers';
-import { PRODUCTS } from './data/catalog';
+import { OfflineIndicator } from './components/PWAInstallButton';
+import {
+  BRAND_LOGO_COMPACT,
+  BRAND_LOGO_HORIZONTAL,
+  CATEGORY_TILES,
+  CUSTOMER_STORIES,
+  IMG_HERO_LIVING,
+  IMG_RECLINE_95,
+  IMG_RECLINE_130,
+  IMG_RECLINE_160,
+  IMG_RECLINER_SOFA,
+  IMG_SHOWROOM_NIGHT,
+  IMG_SOFA_CUM_BED,
+  IMG_SOFABED_125,
+  IMG_SOFABED_156,
+  IMG_SOFABED_STEP1,
+  IMG_SOFABED_STEP2,
+  IMG_SOFABED_STEP3,
+  PRODUCTS,
+} from './data/catalog';
+import {
+  loadStoredCart,
+  loadStoredWishlist,
+  saveStoredCart,
+  saveStoredWishlist,
+  warmImageCacheInBackground,
+} from './utils/cacheManager';
 import type { CartItem, CategoryKey, Product } from './types';
 
 interface ToastNotification {
@@ -33,8 +59,10 @@ interface ToastNotification {
 
 export default function App() {
   const [activeCategory, setActiveCategory] = useState<CategoryKey>('All');
-  const [cart, setCart] = useState<CartItem[]>([]);
-  const [wishlistIds, setWishlistIds] = useState<string[]>(['zss-mirza-custom-sofa']);
+  const [cart, setCart] = useState<CartItem[]>(() => loadStoredCart());
+  const [wishlistIds, setWishlistIds] = useState<string[]>(() =>
+    loadStoredWishlist(['zss-mirza-custom-sofa'])
+  );
   const [activeProductView, setActiveProductView] = useState<{
     product: Product;
     finishName?: string;
@@ -141,6 +169,46 @@ export default function App() {
       window.removeEventListener('keydown', onInterrupt);
       stopGlide();
     };
+  }, []);
+
+  useEffect(() => {
+    saveStoredCart(cart);
+  }, [cart]);
+
+  useEffect(() => {
+    saveStoredWishlist(wishlistIds);
+  }, [wishlistIds]);
+
+  useEffect(() => {
+    const allImages = [
+      BRAND_LOGO_HORIZONTAL,
+      BRAND_LOGO_COMPACT,
+      IMG_RECLINER_SOFA,
+      IMG_HERO_LIVING,
+      IMG_SOFA_CUM_BED,
+      IMG_SHOWROOM_NIGHT,
+      IMG_RECLINE_95,
+      IMG_RECLINE_130,
+      IMG_RECLINE_160,
+      IMG_SOFABED_125,
+      IMG_SOFABED_156,
+      IMG_SOFABED_STEP1,
+      IMG_SOFABED_STEP2,
+      IMG_SOFABED_STEP3,
+      ...CATEGORY_TILES.map((t) => t.image),
+      ...PRODUCTS.flatMap((p) => [
+        p.image,
+        ...(p.gallery ?? []),
+        ...p.finishes.map((f) => f.image ?? ''),
+        ...p.variants.map((v) => v.image ?? ''),
+      ]),
+      ...CUSTOMER_STORIES.flatMap((s) => [
+        s.image,
+        s.avatarUrl ?? '',
+        ...(s.photos ?? []),
+      ]),
+    ];
+    return warmImageCacheInBackground(allImages);
   }, []);
 
   useEffect(() => {
@@ -475,6 +543,8 @@ export default function App() {
             </motion.div>
           )}
         </AnimatePresence>
+
+        <OfflineIndicator />
       </div>
     </MotionConfig>
   );
