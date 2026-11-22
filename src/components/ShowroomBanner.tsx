@@ -38,7 +38,7 @@ export const ShowroomBanner: React.FC<ShowroomBannerProps> = ({
           <div className="relative z-10 w-full p-5 sm:px-8 sm:py-6 lg:px-10 lg:py-6 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-8">
             <div className="max-w-xl">
               <p className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] text-[#E27A34] mb-1">
-                ZAIN SEATING SYSTEM · OWN MANUFACTURING UNIT
+                ZAIN SEATING SYSTEM · JASOLA VILLAGE, NEW DELHI
               </p>
               <h2 className="font-display text-lg sm:text-2xl font-semibold leading-snug tracking-tight text-white">
                 Custom Colors, Fabrics &amp; Sizes — Built Directly in Our Factory

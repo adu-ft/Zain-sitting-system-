@@ -40,6 +40,7 @@ export interface Product {
   reviewCount: number;
   image: string;
   gallery?: string[];
+  galleryLabels?: string[];
   tag?: string;
   dimensions: string;
   frameMaterial: string;

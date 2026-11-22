@@ -65,7 +65,7 @@ export const HeroAndPromo: React.FC<HeroAndPromoProps> = ({
     });
     const timer = window.setInterval(() => {
       setSlideIdx((prev) => (prev + 1) % HERO_CAMPAIGNS.length);
-    }, 6500);
+    }, 8000);
     return () => window.clearInterval(timer);
   }, []);
 
@@ -103,7 +103,7 @@ export const HeroAndPromo: React.FC<HeroAndPromoProps> = ({
       {/* Main Hero Campaign Banner */}
       <div className="max-w-[1440px] mx-auto px-0 sm:px-6 lg:px-10 pt-2 lg:pt-3 pb-2 lg:pb-3">
         <div className="relative overflow-hidden rounded-none sm:rounded-xl lg:rounded-lg bg-[#2A1D16] min-h-[260px] sm:min-h-[360px] lg:min-h-[460px] xl:min-h-[520px] flex items-center">
-          <AnimatePresence mode="sync">
+          <AnimatePresence mode="sync" initial={false}>
             <motion.img
               key={current.id}
               src={current.image}
@@ -116,7 +116,11 @@ export const HeroAndPromo: React.FC<HeroAndPromoProps> = ({
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-0 w-full h-full object-cover object-center cursor-pointer"
+              className={`absolute inset-0 w-full h-full object-cover cursor-pointer ${
+                current.id === 'campaign-recliners'
+                  ? 'object-[center_58%]'
+                  : 'object-center'
+              }`}
             />
           </AnimatePresence>
 
@@ -126,7 +130,7 @@ export const HeroAndPromo: React.FC<HeroAndPromoProps> = ({
           />
 
           {/* Left Stacked Campaign Typography */}
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={`${current.id}-copy`}
               initial={{ opacity: 0, y: 12 }}

@@ -199,8 +199,6 @@ export default function App() {
       ...PRODUCTS.flatMap((p) => [
         p.image,
         ...(p.gallery ?? []),
-        ...p.finishes.map((f) => f.image ?? ''),
-        ...p.variants.map((v) => v.image ?? ''),
       ]),
       ...CUSTOMER_STORIES.flatMap((s) => [
         s.image,

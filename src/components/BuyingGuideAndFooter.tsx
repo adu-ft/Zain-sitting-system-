@@ -4,7 +4,9 @@ import {
   CheckCircle2,
   ChevronDown,
   Factory,
+  FileText,
   Layers,
+  MapPin,
   MessageCircle,
   Palette,
   Phone,
@@ -14,6 +16,11 @@ import { motion } from 'motion/react';
 import {
   BRAND_LOGO_COMPACT,
   DELIVERY_CITIES,
+  FACTORY_ADDRESS,
+  FACTORY_GSTIN,
+  FACTORY_MOBILE_DISPLAY,
+  FACTORY_MOBILE_RAW,
+  FACTORY_PAN,
   POPULAR_SEARCHES,
   WHATSAPP_DISPLAY,
   getWhatsAppUrl,
@@ -655,20 +662,36 @@ export const BuyingGuideAndFooter: React.FC<BuyingGuideAndFooterProps> = ({
                 Custom manufacturing of Manual &amp; Motorized Recliners, Bespoke Sofa Sets, Electric Sofa Cum Beds, and Modernist Home Chairs — dispatched direct from our factory floor.
               </p>
               <div className="space-y-2.5 text-xs text-[#333333]">
+                <p className="flex items-start gap-2 text-[#515151] leading-relaxed">
+                  <MapPin className="w-4 h-4 text-[#E27A34] shrink-0 mt-0.5" />
+                  <span>{FACTORY_ADDRESS}</span>
+                </p>
                 <a
-                  href={getWhatsAppUrl(
-                    'Hello Zain Seating System, I would like to discuss a custom recliner / sofa order.'
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-semibold text-[#131F2D] hover:text-[#E27A34] transition-colors"
+                  href={`tel:${FACTORY_MOBILE_RAW}`}
+                  className="inline-flex items-center gap-2 font-semibold text-[#131F2D] hover:text-[#E27A34] transition-colors tabular-nums"
                 >
-                  <MessageCircle className="w-4 h-4 text-[#E27A34]" />
-                  <span>WhatsApp Direct: {WHATSAPP_DISPLAY}</span>
+                  <Phone className="w-3.5 h-3.5 text-[#E27A34] shrink-0" />
+                  <span>Mob. No: {FACTORY_MOBILE_DISPLAY} (Mon–Sun, 10 AM – 8 PM)</span>
                 </a>
-                <p className="flex items-center gap-2 text-[#515151]">
-                  <Phone className="w-3.5 h-3.5 text-[#E27A34]" />
-                  <span>Call Desk: {WHATSAPP_DISPLAY} (Mon–Sun, 10 AM – 8 PM)</span>
+                <div>
+                  <a
+                    href={getWhatsAppUrl(
+                      'Hello Zain Seating System, I would like to discuss a custom recliner / sofa order.'
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 font-semibold text-[#131F2D] hover:text-[#E27A34] transition-colors tabular-nums"
+                  >
+                    <MessageCircle className="w-4 h-4 text-[#E27A34] shrink-0" />
+                    <span>WhatsApp Orders: {WHATSAPP_DISPLAY}</span>
+                  </a>
+                </div>
+                <p className="flex items-start gap-2 text-[11px] text-[#515151] pt-1 tabular-nums">
+                  <FileText className="w-3.5 h-3.5 text-[#E27A34] shrink-0 mt-0.5" />
+                  <span>
+                    GSTIN: <strong className="text-[#131F2D]">{FACTORY_GSTIN}</strong> · PAN:{' '}
+                    <strong className="text-[#131F2D]">{FACTORY_PAN}</strong>
+                  </span>
                 </p>
               </div>
             </div>
@@ -787,9 +810,11 @@ export const BuyingGuideAndFooter: React.FC<BuyingGuideAndFooterProps> = ({
             </div>
           </div>
 
-          <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#515151]">
-            <p>© 2026 Zain Seating System. All rights reserved.</p>
-            <p>Direct Factory Manufacturing · WhatsApp {WHATSAPP_DISPLAY}</p>
+          <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#515151] text-center sm:text-left">
+            <p>© 2026 Zain Seating System · {FACTORY_ADDRESS}</p>
+            <p className="tabular-nums">
+              GSTIN: {FACTORY_GSTIN} · Mob: {FACTORY_MOBILE_DISPLAY}
+            </p>
           </div>
         </div>
       </footer>

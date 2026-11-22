@@ -14,7 +14,15 @@ import {
   Truck,
   X,
 } from 'lucide-react';
-import { WHATSAPP_DISPLAY, getWhatsAppUrl } from '../data/catalog';
+import {
+  FACTORY_ADDRESS,
+  FACTORY_GSTIN,
+  FACTORY_MOBILE_DISPLAY,
+  FACTORY_MOBILE_RAW,
+  FACTORY_PAN,
+  WHATSAPP_DISPLAY,
+  getWhatsAppUrl,
+} from '../data/catalog';
 import type { CartItem, Product } from '../types';
 import { calcDiscountPercent, formatINR } from '../utils/format';
 import type { UtilityModalType } from './Header';
@@ -43,7 +51,6 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
   onToggleWishlist,
 }) => {
   const [selectedFinish, setSelectedFinish] = useState<string>('');
-  const [selectedVariantIndex, setSelectedVariantIndex] = useState<number>(0);
   const [customNote, setCustomNote] = useState('');
   const [pincode, setPincode] = useState('');
   const [pincodeStatus, setPincodeStatus] = useState<string | null>(null);
@@ -51,7 +58,6 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
   useEffect(() => {
     if (product) {
       setSelectedFinish(product.finishes[0]?.name ?? 'Standard');
-      setSelectedVariantIndex(0);
       setCustomNote('');
       setPincode('');
       setPincodeStatus(null);
@@ -62,22 +68,12 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
 
   const activeFinishObj =
     product.finishes.find((f) => f.name === selectedFinish) ?? product.finishes[0];
-  const activeVariant =
-    product.variants[selectedVariantIndex] ?? product.variants[0];
-  const computedPrice = Math.max(
-    9999,
-    product.price + (activeVariant?.priceDelta ?? 0)
-  );
-  const computedMrp = Math.max(
-    computedPrice + 6000,
-    product.mrp + (activeVariant?.priceDelta ?? 0)
-  );
-  const displayDimensions = activeVariant?.dimensions ?? product.dimensions;
+  const computedPrice = product.price;
+  const computedMrp = product.mrp;
+  const displayDimensions = product.dimensions;
   const discountPct = calcDiscountPercent(computedPrice, computedMrp);
 
-  const whatsappCustomizeMsg = `Hello Zain Seating System, I am interested in:\nProduct: ${product.name}\nVariant: ${
-    activeVariant?.label ?? 'Standard'
-  }\nFinish: ${selectedFinish}\nFactory Price: ${formatINR(computedPrice)}${
+  const whatsappCustomizeMsg = `Hello Zain Seating System, I am interested in:\nProduct: ${product.name}\nFinish: ${selectedFinish}\nFactory Price: ${formatINR(computedPrice)}${
     customNote.trim() ? `\nCustom Request: ${customNote.trim()}` : ''
   }`;
 
@@ -112,7 +108,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
         <div className="md:col-span-6 bg-[#FAF4ED] p-5 flex flex-col justify-between">
           <div className="aspect-[4/3] rounded-xl overflow-hidden bg-white">
             <img
-              src={activeFinishObj?.image || activeVariant?.image || product.image}
+              src={product.image}
               alt={product.name}
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover"
@@ -185,73 +181,18 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
               {product.description}
             </p>
 
-            {product.variants.length > 0 && (
-              <div className="mt-4">
-                <p className="text-xs font-semibold text-[#333333] mb-2">
-                  Select Size / Configuration Variant:
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {product.variants.map((variant, idx) => {
-                    const selected = selectedVariantIndex === idx;
-                    return (
-                      <button
-                        key={variant.label}
-                        type="button"
-                        onClick={() => setSelectedVariantIndex(idx)}
-                        className={`py-2 px-3 rounded-lg border text-left transition-colors cursor-pointer ${
-                          selected
-                            ? 'border-[#E27A34] bg-[#FAF4ED] text-[#131F2D]'
-                            : 'border-[#E2DAD1] text-[#515151] hover:border-[#333333]'
-                        }`}
-                      >
-                        <span className="block text-xs font-semibold">
-                          {variant.label}
-                        </span>
-                        <span className="block text-[10px] text-[#78716A] tabular-nums mt-0.5">
-                          {variant.priceDelta > 0
-                            ? `+${formatINR(variant.priceDelta)}`
-                            : variant.priceDelta < 0
-                            ? `-${formatINR(Math.abs(variant.priceDelta))}`
-                            : 'Base Factory Price'}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
+
+            {activeFinishObj && (
+              <div className="mt-4 flex items-center gap-2 px-3 py-2 rounded-lg bg-[#FAF4ED] border border-[#ECE2D5] text-xs text-[#333333]">
+                <span
+                  className="w-3.5 h-3.5 rounded-full border border-black/15 shrink-0"
+                  style={{ backgroundColor: activeFinishObj.swatchHex }}
+                />
+                <span>
+                  <strong className="text-[#131F2D]">Finish:</strong> {activeFinishObj.name} ({activeFinishObj.upholstery})
+                </span>
               </div>
             )}
-
-            <div className="mt-4">
-              <p className="text-xs font-semibold text-[#333333] mb-2">
-                Factory Upholstery Color:{' '}
-                <span className="font-normal text-[#515151]">
-                  {activeFinishObj?.name} ({activeFinishObj?.upholstery})
-                </span>
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {product.finishes.map((fin) => {
-                  const selected = selectedFinish === fin.name;
-                  return (
-                    <button
-                      key={fin.name}
-                      type="button"
-                      onClick={() => setSelectedFinish(fin.name)}
-                      className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-medium transition-all cursor-pointer ${
-                        selected
-                          ? 'border-[#E27A34] bg-[#FAF4ED] text-[#333333]'
-                          : 'border-[#E2DAD1] hover:border-[#333333] text-[#515151]'
-                      }`}
-                    >
-                      <span
-                        className="w-3.5 h-3.5 rounded-full border border-black/15"
-                        style={{ backgroundColor: fin.swatchHex }}
-                      />
-                      {fin.name}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
 
             <div className="mt-4">
               <label className="text-xs font-semibold text-[#333333] block mb-1">
@@ -292,9 +233,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
               <button
                 type="button"
                 onClick={() => {
-                  const finishLabel = activeVariant
-                    ? `${selectedFinish || product.finishes[0].name} · ${activeVariant.label}`
-                    : selectedFinish || product.finishes[0].name;
+                  const finishLabel = selectedFinish || product.finishes[0]?.name || 'Standard';
                   onAddToCart(
                     product,
                     finishLabel,
@@ -959,7 +898,11 @@ export const UtilityModal: React.FC<UtilityModalProps> = ({ type, onClose }) => 
           {type === 'track' && (
             <>
               <p className="text-sm text-[#515151]">
-                Enter your Zain Seating Order ID (e.g., <span className="font-semibold">ZSS-482910</span>) or contact our factory desk directly on WhatsApp ({WHATSAPP_DISPLAY}).
+                Enter your Zain Seating Order ID (e.g., <span className="font-semibold">ZSS-482910</span>), call us at{' '}
+                <a href={`tel:${FACTORY_MOBILE_RAW}`} className="font-semibold text-[#131F2D] hover:text-[#E27A34] tabular-nums">
+                  {FACTORY_MOBILE_DISPLAY}
+                </a>
+                , or message us on WhatsApp ({WHATSAPP_DISPLAY}).
               </p>
               <form
                 onSubmit={(e) => {
@@ -967,7 +910,7 @@ export const UtilityModal: React.FC<UtilityModalProps> = ({ type, onClose }) => 
                   const clean = orderLookup.trim().toUpperCase();
                   setLookupResult(
                     clean
-                      ? `Order ${clean}: Passed workshop quality inspection. Scheduled for final white-glove transit in 48 hours.`
+                      ? `Order ${clean}: Passed workshop quality inspection at our Jasola Village, New Delhi unit. Scheduled for final white-glove transit in 48 hours.`
                       : 'Please enter an Order ID.'
                   );
                 }}
@@ -998,11 +941,23 @@ export const UtilityModal: React.FC<UtilityModalProps> = ({ type, onClose }) => 
           {type === 'help' && (
             <div className="space-y-3 text-sm text-[#515151]">
               <p>
-                Want to see live demonstration videos of our Manual Lever Recliner, Push-Button Motorized Recliner, or Electric Forward-Extending Sofa Cum Bed? Message us on WhatsApp and our factory team will send real clips and fabric swatch photos right away.
+                Want to see live demonstration videos of our Manual Lever Recliner, Push-Button Motorized Recliner, or Electric Forward-Extending Sofa Cum Bed? Message us on WhatsApp or visit our New Delhi manufacturing unit.
               </p>
               <div className="p-4 rounded-xl bg-[#FAF4ED] space-y-1.5 text-xs text-[#333333]">
                 <p>
-                  <strong>WhatsApp &amp; Factory Phone:</strong> {WHATSAPP_DISPLAY}
+                  <strong>Address:</strong> {FACTORY_ADDRESS}
+                </p>
+                <p className="tabular-nums">
+                  <strong>Mob. No:</strong>{' '}
+                  <a href={`tel:${FACTORY_MOBILE_RAW}`} className="hover:text-[#E27A34] underline">
+                    {FACTORY_MOBILE_DISPLAY}
+                  </a>
+                </p>
+                <p className="tabular-nums">
+                  <strong>WhatsApp Orders:</strong> {WHATSAPP_DISPLAY}
+                </p>
+                <p className="tabular-nums">
+                  <strong>GSTIN:</strong> {FACTORY_GSTIN} · <strong>PAN:</strong> {FACTORY_PAN}
                 </p>
                 <p>
                   <strong>Hours:</strong> Mon–Sun, 10:00 AM – 8:00 PM IST

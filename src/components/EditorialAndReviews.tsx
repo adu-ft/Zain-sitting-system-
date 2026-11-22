@@ -15,15 +15,10 @@ import {
 import { motion } from 'motion/react';
 import {
   CUSTOMER_STORIES,
+  FACTORY_ADDRESS,
   IMG_RECLINE_95,
   IMG_RECLINE_130,
   IMG_RECLINE_160,
-  IMG_SOFA_CUM_BED,
-  IMG_SOFABED_125,
-  IMG_SOFABED_156,
-  IMG_SOFABED_STEP1,
-  IMG_SOFABED_STEP2,
-  IMG_SOFABED_STEP3,
 } from '../data/catalog';
 import type { CategoryKey, CustomerStory, Product } from '../types';
 
@@ -40,7 +35,6 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
 }) => {
   const [mechanismTab, setMechanismTab] = useState<'manual' | 'motorized'>('motorized');
   const [reclineAngle, setReclineAngle] = useState<0 | 1 | 2>(0);
-  const [sofaBedStage, setSofaBedStage] = useState<0 | 1 | 2>(0);
   const [stories, setStories] = useState<CustomerStory[]>(CUSTOMER_STORIES);
   const [isReviewFormOpen, setIsReviewFormOpen] = useState(false);
   const [revName, setRevName] = useState('');
@@ -155,34 +149,11 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
   const reclineLabels = ['90° Upright', '130° Lounge', '160° Full Recline'];
   const reclineShortLabels = ['90° Upright', '130° Lounge', '160° Full'];
   const reclineImages = [IMG_RECLINE_95, IMG_RECLINE_130, IMG_RECLINE_160];
-  const sofaBedLabels = [
-    'Sofa Mode (92 cm)',
-    'Lounger Mode (125 cm)',
-    'Full Bed Mode (156 cm)',
-  ];
-  const sofaBedSteps = [
-    {
-      thumb: IMG_SOFABED_STEP1,
-      stepLabel: '1. Press Switch',
-      depthLabel: '92 cm Sofa',
-    },
-    {
-      thumb: IMG_SOFABED_STEP2,
-      stepLabel: '2. Rail Glides',
-      depthLabel: '125 cm Lounge',
-    },
-    {
-      thumb: IMG_SOFABED_STEP3,
-      stepLabel: '3. Locks Flat',
-      depthLabel: '156 cm Bed',
-    },
-  ];
-  const sofaBedImages = [IMG_SOFA_CUM_BED, IMG_SOFABED_125, IMG_SOFABED_156];
   const backTiltDegrees = [-6, -24, -44];
   const footrestAngles = [82, 32, 6];
 
   useEffect(() => {
-    [...reclineImages, ...sofaBedImages].forEach((src) => {
+    reclineImages.forEach((src) => {
       const img = new Image();
       img.src = src;
     });
@@ -429,92 +400,74 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
             </div>
           </div>
 
-          {/* Split 2: Compact Interactive Electric Extendable Sofa-Cum-Bed Preview */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-10 items-center pt-6 border-t border-[#ECE6DF]">
-            {/* Mobile-Only Sofa Cum Bed Heading Above Visual */}
+          {/* Split 2: Real Factory Video Demonstration of Electric Sofa-to-Sleeper Bed */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-10 items-center pt-6 border-t border-[#ECE6DF]">
+            {/* Mobile-Only Sofa Cum Bed Heading Above Video */}
             <div className="lg:hidden">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#E27A34] mb-1">
-                ELECTRIC SOFA CUM BED
+                ELECTRIC SOFA CUM BED · LIVE DEMO
               </p>
               <h2 className="font-display text-xl sm:text-2xl font-semibold text-[#333333] leading-tight">
                 One-Touch Sofa to Sleeper Bed
               </h2>
               <p className="text-xs sm:text-sm text-[#515151] mt-1">
-                Press below to preview each forward-glide position in custom fabrics.
+                Watch our motorized sofa-cum-bed glide effortlessly from an upright sofa into a deep sleeper bed with a single remote press.
               </p>
             </div>
 
-            <div className="lg:col-span-5 min-w-0 order-2 lg:order-1 flex flex-col justify-center space-y-3.5">
+            <div className="lg:col-span-5 min-w-0 order-2 lg:order-1 flex flex-col justify-center space-y-4">
               <div className="hidden lg:block">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#E27A34] mb-1">
-                  ELECTRIC SOFA CUM BED
+                  ELECTRIC SOFA CUM BED · LIVE DEMO
                 </p>
                 <h2 className="font-display text-xl sm:text-2xl font-semibold text-[#333333] leading-tight">
                   One-Touch Sofa to Sleeper Bed
                 </h2>
-                <p className="text-xs sm:text-sm text-[#515151] mt-1.5">
-                  Press below to preview each forward-glide position in custom fabrics.
+                <p className="text-xs sm:text-sm text-[#515151] mt-1.5 leading-relaxed">
+                  Watch our motorized sofa-cum-bed glide effortlessly from an upright sofa into a deep sleeper bed with a single remote press.
                 </p>
               </div>
 
-              {/* Visual 3-Step Hardware Explainer Cards */}
-              <div className="p-3 rounded-xl bg-white border border-[#ECE6DF] space-y-2.5">
-                <div className="flex items-center justify-between gap-2 text-xs">
-                  <span className="font-semibold text-[#131F2D]">
-                    {sofaBedLabels[sofaBedStage]}
+              {/* Clean Text-Only 3-Step Mechanism Breakdown */}
+              <div className="p-3.5 sm:p-4 rounded-xl bg-white border border-[#ECE6DF] space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="w-6 h-6 rounded-md bg-[#E27A34] text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 tabular-nums">
+                    1
                   </span>
-                  <span className="text-[11px] text-[#E27A34] font-semibold">
-                    Tap Step to View
-                  </span>
+                  <div className="min-w-0">
+                    <p className="text-xs sm:text-sm font-semibold text-[#131F2D]">
+                      Press Remote Button
+                    </p>
+                    <p className="text-[11.5px] sm:text-xs text-[#515151] mt-0.5 leading-snug">
+                      Handheld electric remote activates dual silent motors — no manual lifting or pulling.
+                    </p>
+                  </div>
                 </div>
-                <div className="grid grid-cols-3 gap-2">
-                  {([0, 1, 2] as const).map((step) => {
-                    const isActive = sofaBedStage === step;
-                    const item = sofaBedSteps[step];
-                    return (
-                      <button
-                        key={step}
-                        type="button"
-                        onClick={() => setSofaBedStage(step)}
-                        aria-pressed={isActive}
-                        className={`min-w-0 group rounded-lg overflow-hidden border text-left transition-all cursor-pointer ${
-                          isActive
-                            ? 'border-[#E27A34] ring-1 ring-[#E27A34] bg-[#FAF4ED]'
-                            : 'border-[#EAE0D4] bg-[#FDFCFA] hover:border-[#C9B9A6]'
-                        }`}
-                      >
-                        <div className="aspect-[4/3] w-full overflow-hidden bg-[#EFE8DF] relative">
-                          <img
-                            src={item.thumb}
-                            alt={item.stepLabel}
-                            referrerPolicy="no-referrer"
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                          <span
-                            className={`absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded text-[9px] font-bold ${
-                              isActive
-                                ? 'bg-[#E27A34] text-white'
-                                : 'bg-[#131F2D]/80 text-white'
-                            }`}
-                          >
-                            {step + 1}
-                          </span>
-                        </div>
-                        <div className="p-1.5 sm:p-2">
-                          <p
-                            className={`text-[10.5px] sm:text-[11px] font-bold leading-tight truncate ${
-                              isActive ? 'text-[#E27A34]' : 'text-[#131F2D]'
-                            }`}
-                          >
-                            {item.stepLabel}
-                          </p>
-                          <p className="text-[9.5px] text-[#515151] tabular-nums mt-0.5">
-                            {item.depthLabel}
-                          </p>
-                        </div>
-                      </button>
-                    );
-                  })}
+                <div className="flex items-start gap-3 pt-2.5 border-t border-[#F3EDE5]">
+                  <span className="w-6 h-6 rounded-md bg-[#131F2D] text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 tabular-nums">
+                    2
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-xs sm:text-sm font-semibold text-[#131F2D]">
+                      Smooth Forward Steel Glide
+                    </p>
+                    <p className="text-[11.5px] sm:text-xs text-[#515151] mt-0.5 leading-snug">
+                      The tufted seat deck extends forward evenly on heavy-gauge steel tracks.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 pt-2.5 border-t border-[#F3EDE5]">
+                  <span className="w-6 h-6 rounded-md bg-[#131F2D] text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 tabular-nums">
+                    3
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-xs sm:text-sm font-semibold text-[#131F2D]">
+                      Full Sleeper Bed Support
+                    </p>
+                    <p className="text-[11.5px] sm:text-xs text-[#515151] mt-0.5 leading-snug">
+                      Stop at any lounger depth or extend completely for overnight sleeping comfort.
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -534,22 +487,19 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
             </div>
 
             <div className="lg:col-span-7 min-w-0 order-1 lg:order-2">
-              <div className="aspect-[16/9] max-h-[340px] w-full rounded-2xl overflow-hidden bg-[#FAF4ED] shadow-sm relative border border-[#ECE2D5]">
-                {sofaBedImages.map((src, idx) => {
-                  const isActive = sofaBedStage === idx;
-                  return (
-                    <img
-                      key={src}
-                      src={src}
-                      alt={`Zain Electric Sofa Cum Bed shown in ${sofaBedLabels[idx]}`}
-                      referrerPolicy="no-referrer"
-                      decoding="async"
-                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-out ${
-                        isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-                      }`}
-                    />
-                  );
-                })}
+              <div className="aspect-video w-full rounded-2xl overflow-hidden bg-[#131F2D] shadow-sm relative border border-[#ECE2D5]">
+                <video
+                  src="/assets/videos/sofa-cum-bed-demo.mp4"
+                  poster="/assets/videos/sofa-cum-bed-poster.webp"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  preload="metadata"
+                  aria-label="Zain Seating System electric sofa-cum-bed mechanism demonstration video"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
@@ -903,7 +853,7 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
               <p className="inline-flex items-center gap-1.5 text-[#515151]">
                 <MapPin className="w-3.5 h-3.5 text-[#E27A34] shrink-0" />
                 <span>
-                  <strong className="text-[#131F2D]">Zain Seating System Factory Unit</strong> · Custom Recliners, Sofas &amp; Electric Sofa Beds (Mon–Sun 10 AM – 8 PM)
+                  <strong className="text-[#131F2D]">Zain Seating System</strong> · {FACTORY_ADDRESS} (Mon–Sun 10 AM – 8 PM)
                 </span>
               </p>
               <button

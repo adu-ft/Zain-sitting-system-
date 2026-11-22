@@ -45,9 +45,6 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
   const [sortBy, setSortBy] = useState<SortOption>('featured');
   const [catalogSearch, setCatalogSearch] = useState('');
   const [mechanismFilter, setMechanismFilter] = useState<MechanismFilter>('All');
-  const [selectedFinishes, setSelectedFinishes] = useState<Record<string, string>>({});
-  const [selectedVariantIdx, setSelectedVariantIdx] = useState<Record<string, number>>({});
-  const [selectedCardImages, setSelectedCardImages] = useState<Record<string, string>>({});
   const productRailRef = useRef<HTMLDivElement>(null);
 
   const scrollRail = (dir: 'left' | 'right') => {
@@ -72,8 +69,7 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
         p.name.toLowerCase().includes(q) ||
         p.category.toLowerCase().includes(q) ||
         p.subtitle.toLowerCase().includes(q) ||
-        p.finishes.some((f) => f.name.toLowerCase().includes(q)) ||
-        p.variants.some((v) => v.label.toLowerCase().includes(q));
+        (p.finishes[0]?.name.toLowerCase().includes(q) ?? false);
       return matchesCat && matchesMech && matchesQuery;
     });
 
@@ -193,28 +189,11 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
           >
             {filteredProducts.map((product) => {
               const isWishlisted = wishlistIds.includes(product.id);
-              const activeFinish =
-                selectedFinishes[product.id] ?? product.finishes[0]?.name ?? 'Standard';
-              const activeFinishObj =
-                product.finishes.find((f) => f.name === activeFinish) ?? product.finishes[0];
-              const vIdx = selectedVariantIdx[product.id] ?? 0;
-              const activeVariant = product.variants[vIdx] ?? product.variants[0];
-              const activeImage =
-                selectedCardImages[product.id] ??
-                activeFinishObj?.image ??
-                activeVariant?.image ??
-                product.image;
-              const cardImages = Array.from(
-                new Set(
-                  [
-                    product.image,
-                    ...product.finishes.map((f) => f.image),
-                    ...product.variants.map((v) => v.image),
-                  ].filter((img): img is string => Boolean(img))
-                )
-              );
-              const finalPrice = Math.max(9999, product.price + (activeVariant?.priceDelta ?? 0));
-              const finalMrp = Math.max(finalPrice + 6000, product.mrp + (activeVariant?.priceDelta ?? 0));
+              const activeFinishObj = product.finishes[0];
+              const activeFinish = activeFinishObj?.name ?? 'Standard';
+              const activeImage = product.image;
+              const finalPrice = product.price;
+              const finalMrp = product.mrp;
               const discountPct = calcDiscountPercent(finalPrice, finalMrp);
 
               return (
@@ -222,24 +201,16 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
                   key={product.id}
                   className="w-[218px] sm:w-[242px] lg:w-[258px] shrink-0 snap-start group flex flex-col rounded-xl bg-white border border-[#ECE6DF] hover:border-[#DECBB8] hover:shadow-md transition-all duration-200 overflow-hidden"
                 >
-                  {/* Compact Media (Blended Color & Variant Crossfade) */}
+                  {/* Compact Media */}
                   <div className="relative aspect-[4/3] w-full bg-[#FAF4ED] overflow-hidden">
-                    {cardImages.map((imgUrl) => {
-                      const isCurrent = imgUrl === activeImage;
-                      return (
-                        <img
-                          key={imgUrl}
-                          src={imgUrl}
-                          alt={`${product.name} — ${activeFinish}`}
-                          referrerPolicy="no-referrer"
-                          decoding="async"
-                          onClick={() => onOpenQuickView(product, activeFinish, vIdx)}
-                          className={`absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-350 ease-out cursor-pointer ${
-                            isCurrent ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-                          }`}
-                        />
-                      );
-                    })}
+                    <img
+                      src={activeImage}
+                      alt={`${product.name} — ${activeFinish}`}
+                      referrerPolicy="no-referrer"
+                      decoding="async"
+                      onClick={() => onOpenQuickView(product, activeFinish)}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-350 ease-out cursor-pointer"
+                    />
 
                     <button
                       type="button"
@@ -271,86 +242,11 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
                       </div>
 
                       <h3
-                        onClick={() => onOpenQuickView(product, activeFinish, vIdx)}
+                        onClick={() => onOpenQuickView(product, activeFinish)}
                         className="font-display text-sm font-semibold text-[#131F2D] leading-snug line-clamp-2 hover:text-[#E27A34] transition-colors cursor-pointer"
                       >
                         {product.name}
                       </h3>
-
-                      {/* Compact Variant Select */}
-                      {product.variants.length > 0 && (
-                        <div className="mt-2">
-                          <label className="sr-only" htmlFor={`var-${product.id}`}>
-                            Select variant
-                          </label>
-                          <select
-                            id={`var-${product.id}`}
-                            value={vIdx}
-                            onChange={(e) => {
-                              const nextIdx = Number(e.target.value);
-                              setSelectedVariantIdx((prev) => ({
-                                ...prev,
-                                [product.id]: nextIdx,
-                              }));
-                              const nextImg = product.variants[nextIdx]?.image;
-                              if (nextImg) {
-                                setSelectedCardImages((prev) => ({
-                                  ...prev,
-                                  [product.id]: nextImg,
-                                }));
-                              }
-                            }}
-                            className="w-full px-2 py-1 rounded border border-[#E6DDD2] bg-[#FAF4ED]/65 text-[11px] font-medium text-[#333333] focus:outline-none focus:border-[#E27A34] cursor-pointer"
-                          >
-                            {product.variants.map((variant, i) => (
-                              <option key={variant.label} value={i}>
-                                {variant.label}
-                                {variant.priceDelta > 0
-                                  ? ` (+${formatINR(variant.priceDelta)})`
-                                  : variant.priceDelta < 0
-                                  ? ` (-${formatINR(Math.abs(variant.priceDelta))})`
-                                  : ''}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      )}
-
-                      {/* Compact Finish Color Swatches */}
-                      <div className="flex items-center gap-1.5 mt-2">
-                        {product.finishes.map((fin) => {
-                          const isPicked = activeFinish === fin.name;
-                          return (
-                            <button
-                              key={fin.name}
-                              type="button"
-                              title={fin.name}
-                              aria-label={`Select ${fin.name}`}
-                              onClick={() => {
-                                setSelectedFinishes((prev) => ({
-                                  ...prev,
-                                  [product.id]: fin.name,
-                                }));
-                                if (fin.image) {
-                                  setSelectedCardImages((prev) => ({
-                                    ...prev,
-                                    [product.id]: fin.image!,
-                                  }));
-                                }
-                              }}
-                              className={`w-3.5 h-3.5 rounded-full border transition-transform cursor-pointer ${
-                                isPicked
-                                  ? 'ring-2 ring-offset-1 ring-[#333333] scale-110'
-                                  : 'border-black/20 hover:scale-110'
-                              }`}
-                              style={{ backgroundColor: fin.swatchHex }}
-                            />
-                          );
-                        })}
-                        <span className="text-[10px] text-[#515151] truncate">
-                          {activeFinish}
-                        </span>
-                      </div>
                     </div>
 
                     {/* Compact Pricing & Actions */}
@@ -372,7 +268,7 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
                       <div className="grid grid-cols-2 gap-1.5">
                         <button
                           type="button"
-                          onClick={() => onOpenQuickView(product, activeFinish, vIdx)}
+                          onClick={() => onOpenQuickView(product, activeFinish)}
                           className="min-h-[34px] flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg border border-[#DCD4CB] hover:border-[#333333] text-[11px] font-semibold text-[#333333] transition-colors cursor-pointer whitespace-nowrap"
                         >
                           <Eye className="w-3 h-3" />
@@ -383,9 +279,7 @@ export const TrendingProducts: React.FC<TrendingProductsProps> = ({
                           onClick={() =>
                             onAddToCart(
                               product,
-                              activeVariant
-                                ? `${activeFinish} · ${activeVariant.label}`
-                                : activeFinish,
+                              activeFinish,
                               finalPrice,
                               undefined,
                               activeImage

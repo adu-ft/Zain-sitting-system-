@@ -7,6 +7,11 @@ import type {
 
 export const WHATSAPP_RAW = '918178942327';
 export const WHATSAPP_DISPLAY = '+91 81789 42327';
+export const FACTORY_MOBILE_RAW = '+919811381895';
+export const FACTORY_MOBILE_DISPLAY = '+91 98113 81895';
+export const FACTORY_ADDRESS = 'E-94, Jasola Village, Ground Floor, New Delhi - 110025';
+export const FACTORY_GSTIN = '07ACMPH7962E1ZD';
+export const FACTORY_PAN = 'ACMPH7962E';
 export const BRAND_LOGO_HORIZONTAL = '/src/assets/images/zain_logo_horizontal_1794908716681.jpg';
 export const BRAND_LOGO_COMPACT = '/src/assets/images/zain_logo_compact_1794908719414.jpg';
 export const BRAND_LOGO_PATH = BRAND_LOGO_HORIZONTAL;
@@ -21,7 +26,7 @@ export const IMG_SHOWROOM_NIGHT = '/src/assets/images/zain_showroom_night_179490
 export const IMG_SOFA_MODULAR = '/src/assets/images/zain_sofa_modular_1794901395208.jpg';
 export const IMG_WING_LOUNGE = '/src/assets/images/zain_wing_lounge_1794901394246.jpg';
 export const IMG_ERGONOMIC_OFFICE = '/src/assets/images/zain_ergonomic_office_1794901395371.jpg';
-export const IMG_RECLINER_SOFA = '/src/assets/images/zain_recliner_sofa_1794901396652.jpg';
+export const IMG_RECLINER_SOFA = '/src/assets/images/hero_recliner_suite.webp';
 export const IMG_RECLINE_95 = '/src/assets/images/recline_95_upright_1794980022627.jpg';
 export const IMG_RECLINE_130 = '/src/assets/images/recline_130_lounge_1794980025041.jpg';
 export const IMG_RECLINE_160 = '/src/assets/images/recline_160_full_1794980025450.jpg';
@@ -38,6 +43,50 @@ export const IMG_VAR_SOFABED_CARAMEL = '/src/assets/images/sofabed_caramel_suede
 export const IMG_VAR_SOFASET_COGNAC = '/src/assets/images/sofa_set_cognac_tan_1795082506064.jpg';
 export const IMG_VAR_CHAIR_SAGE = '/src/assets/images/chair_sage_velvet_1795082506018.jpg';
 export const IMG_VAR_LOVESEAT_NAVY = '/src/assets/images/loveseat_navy_plush_1795082506432.jpg';
+
+/* Multi-Angle E-Commerce Product Shots (Same Product · Front, Reclined, Detail & Rear 3/4 Views) */
+export const IMG_SULTAN_RECLINED = '/src/assets/images/sultan_reclined_side_1795344547187.jpg';
+export const IMG_SULTAN_DETAIL = '/src/assets/images/sultan_detail_usb_1795347005932.jpg';
+export const IMG_SULTAN_BACK = '/src/assets/images/sultan_back_angle_1795344547503.jpg';
+
+export const IMG_NAWAB_RECLINED = '/src/assets/images/nawab_reclined_side_1795344546174.jpg';
+export const IMG_NAWAB_DETAIL = '/src/assets/images/nawab_detail_lever_1795344546865.jpg';
+export const IMG_NAWAB_BACK = '/src/assets/images/nawab_back_angle_1795344546216.jpg';
+
+export const IMG_IMPERIAL_RECLINED = '/src/assets/images/imperial_reclined_side_1795347009117.jpg';
+export const IMG_IMPERIAL_DETAIL = '/src/assets/images/imperial_detail_tray_1795344546793.jpg';
+export const IMG_IMPERIAL_BACK = '/src/assets/images/imperial_back_angle_1795344548862.jpg';
+
+export const IMG_NOOR_RECLINED = '/src/assets/images/noor_recliner_open_1795344547429.jpg';
+export const IMG_NOOR_DETAIL = '/src/assets/images/noor_detail_suede_1795344546867.jpg';
+export const IMG_NOOR_OPPOSITE = '/src/assets/images/noor_opposite_angle_1795344547120.jpg';
+
+export const IMG_MAJLIS_DETAIL = '/src/assets/images/majlis_detail_console_1795347009268.jpg';
+export const IMG_MAJLIS_SIDE = '/src/assets/images/majlis_side_angle_1795344547115.jpg';
+
+export const IMG_AURA_RECLINED = '/src/assets/images/aura_reclined_side_1795347007411.jpg';
+export const IMG_AURA_DETAIL = '/src/assets/images/aura_detail_fabric_1795344547121.jpg';
+export const IMG_AURA_BACK = '/src/assets/images/aura_back_angle_1795344547230.jpg';
+
+export const IMG_MIRZA_RECLINED = '/src/assets/images/mirza_reclined_view_1795347008860.jpg';
+export const IMG_MIRZA_DETAIL = '/src/assets/images/mirza_detail_stitch_1795344546586.jpg';
+
+export const IMG_ARANYA_RECLINED = '/src/assets/images/aranya_reclined_side_1795344547115.jpg';
+export const IMG_ARANYA_DETAIL = '/src/assets/images/aranya_detail_stitch_1795344547266.jpg';
+export const IMG_ARANYA_BACK = '/src/assets/images/aranya_back_angle_1795344548092.jpg';
+
+export const IMG_HARMONY_RECLINED = '/src/assets/images/harmony_reclined_view_1795347007446.jpg';
+export const IMG_HARMONY_DETAIL = '/src/assets/images/harmony_detail_suede_1795344547117.jpg';
+export const IMG_HARMONY_BACK = '/src/assets/images/harmony_back_angle_1795344546092.jpg';
+
+export const IMG_ROYALE_RECLINED = '/src/assets/images/royale_reclined_row_1795344547192.jpg';
+export const IMG_ROYALE_DETAIL = '/src/assets/images/royale_detail_cupholder_1795344549024.jpg';
+export const IMG_ROYALE_SIDE = '/src/assets/images/royale_side_angle_1795344548455.jpg';
+
+export const IMG_VERVE_RECLINED = '/src/assets/images/verve_reclined_side_1795344548783.jpg';
+export const IMG_VERVE_DETAIL = '/src/assets/images/verve_detail_swivel_1795344547396.jpg';
+export const IMG_VERVE_BACK = '/src/assets/images/verve_back_angle_1795344547193.jpg';
+
 
 /* Real Zain Seating System Product Photography (Optimized local test copies — swap with DB URLs when ready) */
 export const IMG_DRV_BEIGE_MOTOR = '/src/assets/images/drive/recliner_beige_motorized.jpg';
@@ -179,11 +228,17 @@ export const PRODUCTS: Product[] = [
     image: IMG_DRV_BEIGE_MOTOR,
     gallery: [
       IMG_DRV_BEIGE_MOTOR,
-      IMG_DRV_CREAM_TRAY,
-      IMG_DRV_COGNAC_USB,
-      IMG_DRV_CHARCOAL_SLATE,
-      IMG_DRV_ESPRESSO_BROWN,
+      IMG_SULTAN_RECLINED,
+      IMG_SULTAN_DETAIL,
+      IMG_SULTAN_BACK,
       IMG_DRV_SPEC_DIMENSIONS,
+    ],
+    galleryLabels: [
+      'Front 3/4 View',
+      'Reclined Side View',
+      'USB & Switch Detail',
+      'Rear 3/4 View',
+      'Dimensions Guide',
     ],
     tag: 'Electric Push-Button',
     dimensions: '93 cm W × 96 cm D × 104 cm H (162 cm Reclined)',
@@ -197,7 +252,7 @@ export const PRODUCTS: Product[] = [
     variants: [
       { label: '1-Seater Push-Button', dimensions: '93 cm W × 96 cm D × 104 cm H', priceDelta: 0, image: IMG_DRV_BEIGE_MOTOR },
       { label: '1-Seater + Swivel Tray & Cup Holders', dimensions: '95 cm W × 96 cm D × 104 cm H', priceDelta: 4500, image: IMG_DRV_CREAM_TRAY },
-      { label: '2-Seater Cinema Console', dimensions: '176 cm W × 96 cm D × 104 cm H', priceDelta: 24000, image: IMG_DRV_CINEMA2_COGNAC },
+      { label: '2-Seater Cinema Console', dimensions: '176 cm W × 96 cm D × 104 cm H', priceDelta: 24000 },
     ],
     finishes: [
       { name: 'Champagne Cream', swatchHex: '#DFD2BD', upholstery: 'Breathable Pro Leatherette', image: IMG_DRV_BEIGE_MOTOR },
@@ -220,10 +275,17 @@ export const PRODUCTS: Product[] = [
     image: IMG_DRV_BLACK_MANUAL,
     gallery: [
       IMG_DRV_BLACK_MANUAL,
-      IMG_DRV_TERRACOTTA_MANUAL,
-      IMG_DRV_MUSTARD_MANUAL,
-      IMG_DRV_WHITE_SWIVEL,
+      IMG_NAWAB_RECLINED,
+      IMG_NAWAB_DETAIL,
+      IMG_NAWAB_BACK,
       IMG_DRV_SPEC_DIMENSIONS,
+    ],
+    galleryLabels: [
+      'Front 3/4 View',
+      'Reclined Side View',
+      'Side Lever & Seam',
+      'Rear 3/4 View',
+      'Dimensions Guide',
     ],
     tag: 'Manual Side Lever',
     dimensions: '93 cm W × 96 cm D × 104 cm H',
@@ -236,8 +298,8 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['Custom Fabric or Leatherette', 'Rocker Swivel Option', '2-Seater Love Seat Custom'],
     variants: [
       { label: '1-Seater Fixed Base', dimensions: '93 cm W × 96 cm D × 104 cm H', priceDelta: 0, image: IMG_DRV_BLACK_MANUAL },
-      { label: '1-Seater 360° Rocker Swivel', dimensions: '93 cm W × 96 cm D × 104 cm H', priceDelta: 3500, image: IMG_DRV_WHITE_SWIVEL },
-      { label: '2-Seater Manual Love Seat', dimensions: '158 cm W × 96 cm D × 104 cm H', priceDelta: 17000, image: IMG_DRV_LOVESEAT_CHARCOAL },
+      { label: '1-Seater 360° Rocker Swivel', dimensions: '93 cm W × 96 cm D × 104 cm H', priceDelta: 3500 },
+      { label: '2-Seater Manual Love Seat', dimensions: '158 cm W × 96 cm D × 104 cm H', priceDelta: 17000 },
     ],
     finishes: [
       { name: 'Jet Matte Black', swatchHex: '#252629', upholstery: 'Breathable Pro Leatherette', image: IMG_DRV_BLACK_MANUAL },
@@ -259,10 +321,15 @@ export const PRODUCTS: Product[] = [
     image: IMG_DRV_NAVY_TRAY,
     gallery: [
       IMG_DRV_NAVY_TRAY,
-      IMG_DRV_SAND_TRAY,
-      IMG_DRV_ROYAL_USB,
-      IMG_DRV_CARAMEL_TRAY,
-      IMG_DRV_CREAM_TRAY,
+      IMG_IMPERIAL_RECLINED,
+      IMG_IMPERIAL_DETAIL,
+      IMG_IMPERIAL_BACK,
+    ],
+    galleryLabels: [
+      'Front Cinema View',
+      'Reclined with Tray',
+      'Tray, Cupholder & USB',
+      'Rear 3/4 View',
     ],
     tag: 'Tray + Cup Holders',
     dimensions: '94 cm W × 96 cm D × 105 cm H',
@@ -275,8 +342,8 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['Wood or Matte Black Tray', 'Diamond Quilted Arms', 'Single or Multi-Seat Row'],
     variants: [
       { label: '1-Seater Cinema + Tray', dimensions: '94 cm W × 96 cm D × 105 cm H', priceDelta: 0, image: IMG_DRV_NAVY_TRAY },
-      { label: 'Pair of 2 Individual Seats', dimensions: '2 × (94 cm W × 96 cm D)', priceDelta: 31000, image: IMG_DRV_CINEMA2_CHARCOAL_UP },
-      { label: '3-Seater Connected Row', dimensions: '248 cm W × 96 cm D × 105 cm H', priceDelta: 58000, image: IMG_DRV_CINEMA3_BLACK },
+      { label: 'Pair of 2 Individual Seats', dimensions: '2 × (94 cm W × 96 cm D)', priceDelta: 31000 },
+      { label: '3-Seater Connected Row', dimensions: '248 cm W × 96 cm D × 105 cm H', priceDelta: 58000 },
     ],
     finishes: [
       { name: 'Midnight Navy', swatchHex: '#233146', upholstery: 'Pro Grain Leatherette', image: IMG_DRV_NAVY_TRAY },
@@ -299,9 +366,15 @@ export const PRODUCTS: Product[] = [
     image: IMG_DRV_LSHAPE_BROWN,
     gallery: [
       IMG_DRV_LSHAPE_BROWN,
-      IMG_DRV_LSHAPE_TAUPE,
-      IMG_SOFA_MODULAR,
-      IMG_DRV_LOVESEAT_TAUPE,
+      IMG_NOOR_RECLINED,
+      IMG_NOOR_DETAIL,
+      IMG_NOOR_OPPOSITE,
+    ],
+    galleryLabels: [
+      'Front Room View',
+      'Recliner Extended',
+      'Suede & Seam Detail',
+      'Rear & Corner Angle',
     ],
     tag: 'Custom L-Shape',
     dimensions: '275 cm W × 210 cm D × 98 cm H (Custom Wall Sizes)',
@@ -314,8 +387,8 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['Left / Right Corner', '1 or 2 Built-In Recliners', '20+ Factory Fabrics'],
     variants: [
       { label: '5-Seater L-Shape + 1 Manual Recliner', dimensions: '275 cm × 210 cm × 98 cm H', priceDelta: 0, image: IMG_DRV_LSHAPE_BROWN },
-      { label: '6-Seater L-Shape + 2 Manual Recliners', dimensions: '295 cm × 230 cm × 98 cm H', priceDelta: 12000, image: IMG_DRV_LSHAPE_TAUPE },
-      { label: '6-Seater L-Shape + Dual Motorized Seats', dimensions: '295 cm × 230 cm × 98 cm H', priceDelta: 22000, image: IMG_SOFA_MODULAR },
+      { label: '6-Seater L-Shape + 2 Manual Recliners', dimensions: '295 cm × 230 cm × 98 cm H', priceDelta: 12000 },
+      { label: '6-Seater L-Shape + Dual Motorized Seats', dimensions: '295 cm × 230 cm × 98 cm H', priceDelta: 22000 },
     ],
     finishes: [
       { name: 'Warm Walnut Suede', swatchHex: '#7A5B47', upholstery: 'Spill-Guard Matte Suede', image: IMG_DRV_LSHAPE_BROWN },
@@ -337,10 +410,17 @@ export const PRODUCTS: Product[] = [
     image: IMG_SOFA_CUM_BED,
     gallery: [
       IMG_SOFA_CUM_BED,
-      IMG_VAR_SOFABED_CHARCOAL,
-      IMG_VAR_SOFABED_CARAMEL,
       IMG_SOFABED_125,
       IMG_SOFABED_156,
+      IMG_SOFABED_STEP1,
+      IMG_SOFABED_STEP2,
+    ],
+    galleryLabels: [
+      'Upright 3-Seater Sofa',
+      '125 cm Lounger Mode',
+      '156 cm Sleeper Bed',
+      'Electric Switch Detail',
+      'Steel Rail Mechanism',
     ],
     tag: 'Electric Forward-Extend',
     dimensions: '198 cm W × 92 cm D (Extends Forward to 156 cm Sleeper)',
@@ -353,7 +433,7 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['Electric Push-Button Glide', 'Custom Length 6ft / 6.5ft', 'Removable Fabric Cover'],
     variants: [
       { label: '2-Seater Compact (5.5 ft)', dimensions: '168 cm W × 92–156 cm D', priceDelta: -3500 },
-      { label: '3-Seater Standard (6.5 ft)', dimensions: '198 cm W × 92–156 cm D', priceDelta: 0 },
+      { label: '3-Seater Standard (6.5 ft)', dimensions: '198 cm W × 92–156 cm D', priceDelta: 0, image: IMG_SOFA_CUM_BED },
       { label: 'King Sleeper (7 ft + USB)', dimensions: '214 cm W × 96–164 cm D', priceDelta: 6500, image: IMG_SOFABED_156 },
     ],
     finishes: [
@@ -377,9 +457,14 @@ export const PRODUCTS: Product[] = [
     gallery: [
       IMG_DRV_CINEMA2_CHARCOAL_UP,
       IMG_DRV_CINEMA2_CHARCOAL_REC,
-      IMG_DRV_CINEMA2_COGNAC,
-      IMG_DRV_CINEMA2_OLIVE,
-      IMG_DRV_CINEMA2_BLACK,
+      IMG_MAJLIS_DETAIL,
+      IMG_MAJLIS_SIDE,
+    ],
+    galleryLabels: [
+      'Front Upright View',
+      'Dual Reclined View',
+      'Tray & Control Detail',
+      'Rear & Quilted Side',
     ],
     tag: 'Dual Cinema Seats',
     dimensions: '176 cm W × 96 cm D × 104 cm H (162 cm Reclined)',
@@ -393,7 +478,7 @@ export const PRODUCTS: Product[] = [
     variants: [
       { label: '2-Seater Twin Manual + Trays', dimensions: '176 cm W × 96 cm D × 104 cm H', priceDelta: 0, image: IMG_DRV_CINEMA2_CHARCOAL_UP },
       { label: '2-Seater Dual Motorized + Trays', dimensions: '176 cm W × 96 cm D × 104 cm H', priceDelta: 9000, image: IMG_DRV_CINEMA2_CHARCOAL_REC },
-      { label: '2-Seater Motorized + Storage Console', dimensions: '192 cm W × 96 cm D × 104 cm H', priceDelta: 14500, image: IMG_DRV_CINEMA2_BLACK },
+      { label: '2-Seater Motorized + Storage Console', dimensions: '192 cm W × 96 cm D × 104 cm H', priceDelta: 14500 },
     ],
     finishes: [
       { name: 'Charcoal Slate Suede', swatchHex: '#3B3E44', upholstery: 'Diamond-Quilted Molfino Suede', image: IMG_DRV_CINEMA2_CHARCOAL_UP },
@@ -416,9 +501,15 @@ export const PRODUCTS: Product[] = [
     image: IMG_DRV_IVORY_MANUAL,
     gallery: [
       IMG_DRV_IVORY_MANUAL,
-      IMG_DRV_GREY_FABRIC_EXT,
-      IMG_DRV_TEAL_UPRIGHT,
-      IMG_DRV_TEAL_RECLINED,
+      IMG_AURA_RECLINED,
+      IMG_AURA_DETAIL,
+      IMG_AURA_BACK,
+    ],
+    galleryLabels: [
+      'Front 3/4 View',
+      'Reclined Side View',
+      'Fabric Weave & Lever',
+      'Rear 3/4 View',
     ],
     tag: 'Cool Breathable Fabric',
     dimensions: '90 cm W × 94 cm D × 102 cm H',
@@ -431,8 +522,8 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['Summer-Cool Linen Weave', '360° Swivel Rocker Base', '15+ Pastel & Jewel Shades'],
     variants: [
       { label: '1-Seater Manual Lever', dimensions: '90 cm W × 94 cm D × 102 cm H', priceDelta: 0, image: IMG_DRV_IVORY_MANUAL },
-      { label: '1-Seater Rocker + Swivel', dimensions: '90 cm W × 95 cm D × 103 cm H', priceDelta: 3500, image: IMG_DRV_GREY_FABRIC_EXT },
-      { label: '1-Seater Push-Button Electric', dimensions: '90 cm W × 94 cm D × 102 cm H', priceDelta: 8500, image: IMG_DRV_CREAM_EXT },
+      { label: '1-Seater Rocker + Swivel', dimensions: '90 cm W × 95 cm D × 103 cm H', priceDelta: 3500 },
+      { label: '1-Seater Push-Button Electric', dimensions: '90 cm W × 94 cm D × 102 cm H', priceDelta: 8500 },
     ],
     finishes: [
       { name: 'Ivory Oat Fabric', swatchHex: '#E5DFD5', upholstery: 'Breathable Textured Weave', image: IMG_DRV_IVORY_MANUAL },
@@ -454,9 +545,15 @@ export const PRODUCTS: Product[] = [
     image: IMG_DRV_SOFASET_321,
     gallery: [
       IMG_DRV_SOFASET_321,
-      IMG_DRV_SOFA3_GREY,
-      IMG_VAR_SOFASET_COGNAC,
+      IMG_MIRZA_RECLINED,
       IMG_DRV_SOFA3_ESPRESSO,
+      IMG_MIRZA_DETAIL,
+    ],
+    galleryLabels: [
+      '3+2+1 Full Suite',
+      'Reclined Action View',
+      '3-Seater Front View',
+      'Leatherette & Seam Detail',
     ],
     tag: '3+2+1 Full Suite',
     dimensions: '3-Seat (215 cm) + 2-Seat (158 cm) + 1-Seat Recliner (93 cm)',
@@ -469,7 +566,7 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['Buy 3-Seater Alone or 3+2+1', 'Custom Width & Depth', '20+ Factory Colors'],
     variants: [
       { label: '3-Seater Recliner Sofa Only', dimensions: '215 cm W × 96 cm D × 102 cm H', priceDelta: -36000, image: IMG_DRV_SOFA3_ESPRESSO },
-      { label: '3+2 Living Set (5-Seater)', dimensions: '215 cm + 158 cm W × 96 cm D', priceDelta: -14000, image: IMG_DRV_SOFA3_GREY },
+      { label: '3+2 Living Set (5-Seater)', dimensions: '215 cm + 158 cm W × 96 cm D', priceDelta: -14000 },
       { label: '3+2+1 Complete 6-Seater Suite', dimensions: '215 cm + 158 cm + 93 cm W', priceDelta: 0, image: IMG_DRV_SOFASET_321 },
     ],
     finishes: [
@@ -492,9 +589,15 @@ export const PRODUCTS: Product[] = [
     image: IMG_DRV_CHAIR_ESPRESSO,
     gallery: [
       IMG_DRV_CHAIR_ESPRESSO,
-      IMG_DRV_CHAIR_SAND,
-      IMG_VAR_CHAIR_SAGE,
-      IMG_WING_LOUNGE,
+      IMG_ARANYA_RECLINED,
+      IMG_ARANYA_DETAIL,
+      IMG_ARANYA_BACK,
+    ],
+    galleryLabels: [
+      'Front 3/4 View',
+      'Push-Back Reclined',
+      'Armrest & Leg Detail',
+      'Rear 3/4 View',
     ],
     tag: 'Modernist Profile',
     dimensions: '74 cm W × 84 cm D × 100 cm H',
@@ -507,8 +610,8 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['Fixed or Push-Back Action', 'Leatherette or Textured Fabric', 'Pair Discount Available'],
     variants: [
       { label: 'Single Push-Back Chair', dimensions: '74 cm W × 84 cm D × 100 cm H', priceDelta: 0, image: IMG_DRV_CHAIR_ESPRESSO },
-      { label: 'Single Chair + Swivel Base', dimensions: '74 cm W × 84 cm D × 100 cm H', priceDelta: 3000, image: IMG_DRV_CHAIR_SAND },
-      { label: 'Pair of 2 Chairs', dimensions: '2 × (74 cm W × 84 cm D)', priceDelta: 14500, image: IMG_VAR_CHAIR_SAGE },
+      { label: 'Single Chair + Swivel Base', dimensions: '74 cm W × 84 cm D × 100 cm H', priceDelta: 3000 },
+      { label: 'Pair of 2 Chairs', dimensions: '2 × (74 cm W × 84 cm D)', priceDelta: 14500 },
     ],
     finishes: [
       { name: 'Espresso Leatherette', swatchHex: '#3B2B28', upholstery: 'Matte Grain Leatherette', image: IMG_DRV_CHAIR_ESPRESSO },
@@ -530,10 +633,17 @@ export const PRODUCTS: Product[] = [
     image: IMG_DRV_LOVESEAT_CHARCOAL,
     gallery: [
       IMG_DRV_LOVESEAT_CHARCOAL,
-      IMG_DRV_LOVESEAT_TAUPE,
-      IMG_VAR_LOVESEAT_NAVY,
-      IMG_DRV_SOFA3_GREY,
+      IMG_HARMONY_RECLINED,
+      IMG_HARMONY_DETAIL,
+      IMG_HARMONY_BACK,
       IMG_DRV_SPEC_DIMENSIONS,
+    ],
+    galleryLabels: [
+      'Front Upright View',
+      'Dual Recline Action',
+      'Suede & Lever Detail',
+      'Rear 3/4 View',
+      'Dimensions Guide',
     ],
     tag: '2-Seater Loveseat',
     dimensions: '158 cm W × 94 cm D × 102 cm H',
@@ -546,8 +656,8 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['Upgrade to Electric Buttons', 'Matching 1-Seater Available', '20+ Suede & Fabric Colors'],
     variants: [
       { label: '2-Seater Twin Manual Lever', dimensions: '158 cm W × 94 cm D × 102 cm H', priceDelta: 0, image: IMG_DRV_LOVESEAT_CHARCOAL },
-      { label: '2-Seater Twin Motorized Button', dimensions: '158 cm W × 94 cm D × 102 cm H', priceDelta: 9500, image: IMG_DRV_LOVESEAT_TAUPE },
-      { label: '3-Seater Matching Recliner Sofa', dimensions: '212 cm W × 94 cm D × 102 cm H', priceDelta: 12000, image: IMG_DRV_SOFA3_GREY },
+      { label: '2-Seater Twin Motorized Button', dimensions: '158 cm W × 94 cm D × 102 cm H', priceDelta: 9500 },
+      { label: '3-Seater Matching Recliner Sofa', dimensions: '212 cm W × 94 cm D × 102 cm H', priceDelta: 12000 },
     ],
     finishes: [
       { name: 'Charcoal Mist Suede', swatchHex: '#51565E', upholstery: 'Soft Brushed Suede', image: IMG_DRV_LOVESEAT_CHARCOAL },
@@ -569,10 +679,15 @@ export const PRODUCTS: Product[] = [
     image: IMG_DRV_CINEMA3_GREY,
     gallery: [
       IMG_DRV_CINEMA3_GREY,
-      IMG_DRV_CINEMA3_BLACK,
-      IMG_DRV_CINEMA4_COGNAC,
-      IMG_DRV_CINEMA4_CRIMSON,
-      IMG_DRV_FACTORY_FLOOR,
+      IMG_ROYALE_RECLINED,
+      IMG_ROYALE_DETAIL,
+      IMG_ROYALE_SIDE,
+    ],
+    galleryLabels: [
+      'Front Row View',
+      'Reclined Theatre View',
+      'Cupholder & USB Panel',
+      'Rear & Side Angle',
     ],
     tag: 'Home Theatre Row',
     dimensions: '248 cm W × 96 cm D × 104 cm H (Custom 3 to 6 Seats)',
@@ -585,8 +700,8 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['Straight or Curved Row', '3, 4, or 5-Seat Custom', 'LED Cup Holders & Trays'],
     variants: [
       { label: '3-Seater Straight Motorized Row', dimensions: '248 cm W × 96 cm D × 104 cm H', priceDelta: 0, image: IMG_DRV_CINEMA3_GREY },
-      { label: '4-Seater Curved Cinema Row', dimensions: '332 cm W × 98 cm D × 104 cm H', priceDelta: 24000, image: IMG_DRV_CINEMA4_COGNAC },
-      { label: '3-Seater Manual Lever Row', dimensions: '248 cm W × 96 cm D × 104 cm H', priceDelta: -15000, image: IMG_DRV_CINEMA3_BLACK },
+      { label: '4-Seater Curved Cinema Row', dimensions: '332 cm W × 98 cm D × 104 cm H', priceDelta: 24000 },
+      { label: '3-Seater Manual Lever Row', dimensions: '248 cm W × 96 cm D × 104 cm H', priceDelta: -15000 },
     ],
     finishes: [
       { name: 'Dove Cinema Grey', swatchHex: '#8C8E92', upholstery: 'Pro Grain Leatherette', image: IMG_DRV_CINEMA3_GREY },
@@ -609,9 +724,15 @@ export const PRODUCTS: Product[] = [
     image: IMG_DRV_CHAIR_SAND,
     gallery: [
       IMG_DRV_CHAIR_SAND,
-      IMG_DRV_NAVY_CLOUD,
-      IMG_DRV_WHITE_SWIVEL,
-      IMG_DRV_CHAIR_ESPRESSO,
+      IMG_VERVE_RECLINED,
+      IMG_VERVE_DETAIL,
+      IMG_VERVE_BACK,
+    ],
+    galleryLabels: [
+      'Front 3/4 View',
+      'Reclined Side Profile',
+      'Linen & 360° Base Detail',
+      'Rear 3/4 View',
     ],
     tag: '360° Swivel Base',
     dimensions: '76 cm W × 86 cm D × 101 cm H',
@@ -624,7 +745,7 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['360° Swivel + Rocker', 'Fabric or Leatherette', 'Custom Neutral or Bold Shades'],
     variants: [
       { label: '360° Swivel Manual Chair', dimensions: '76 cm W × 86 cm D × 101 cm H', priceDelta: 0, image: IMG_DRV_CHAIR_SAND },
-      { label: 'Cloud-Plush Deep Rocker Edition', dimensions: '88 cm W × 94 cm D × 104 cm H', priceDelta: 4500, image: IMG_DRV_NAVY_CLOUD },
+      { label: 'Cloud-Plush Deep Rocker Edition', dimensions: '88 cm W × 94 cm D × 104 cm H', priceDelta: 4500 },
     ],
     finishes: [
       { name: 'Warm Sand Weave', swatchHex: '#C2AA93', upholstery: 'Textured Cotton Linen', image: IMG_DRV_CHAIR_SAND },

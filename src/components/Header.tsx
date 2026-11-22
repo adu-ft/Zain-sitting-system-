@@ -4,6 +4,7 @@ import {
   Menu,
   MessageCircle,
   Palette,
+  Phone,
   Search,
   ShoppingCart,
   X,
@@ -12,6 +13,9 @@ import {
 import type { CategoryKey, Product } from '../types';
 import {
   BRAND_LOGO_HORIZONTAL,
+  FACTORY_ADDRESS,
+  FACTORY_MOBILE_DISPLAY,
+  FACTORY_MOBILE_RAW,
   POPULAR_SEARCHES,
   WHATSAPP_DISPLAY,
   getWhatsAppUrl,
@@ -517,6 +521,13 @@ export const Header: React.FC<HeaderProps> = ({
                 <MessageCircle className="w-4 h-4" />
                 Chat on WhatsApp ({WHATSAPP_DISPLAY})
               </a>
+              <a
+                href={`tel:${FACTORY_MOBILE_RAW}`}
+                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-[#FAF4ED] border border-[#E5D7C6] text-[#131F2D] hover:border-[#E27A34] text-sm font-semibold transition-colors tabular-nums"
+              >
+                <Phone className="w-4 h-4 text-[#E27A34]" />
+                Call {FACTORY_MOBILE_DISPLAY}
+              </a>
               <button
                 type="button"
                 onClick={() => {
@@ -527,6 +538,9 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 Track Order
               </button>
+              <p className="text-[11px] text-[#78716A] text-center pt-1 leading-snug">
+                {FACTORY_ADDRESS}
+              </p>
             </div>
           </div>
           <div

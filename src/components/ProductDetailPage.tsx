@@ -13,9 +13,12 @@ import {
   ShoppingBag,
   Star,
   X,
+  ZoomIn,
 } from 'lucide-react';
 import {
   CUSTOMER_STORIES,
+  FACTORY_ADDRESS,
+  FACTORY_MOBILE_DISPLAY,
   IMG_HERO_LIVING,
   IMG_RECLINER_SOFA,
   IMG_SOFA_CUM_BED,
@@ -47,7 +50,6 @@ interface ProductDetailPageProps {
 export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
   product,
   initialFinishName,
-  initialVariantIdx,
   allProducts,
   isWishlisted,
   onToggleWishlist,
@@ -55,7 +57,6 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
   onSelectProduct,
   onBack,
 }) => {
-  const [selectedVariantIdx, setSelectedVariantIdx] = useState(initialVariantIdx ?? 0);
   const [selectedFinishName, setSelectedFinishName] = useState(
     initialFinishName ?? product.finishes[0]?.name ?? 'Standard'
   );
@@ -66,6 +67,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
     message: string;
   } | null>(null);
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
+  const [isProductZoomOpen, setIsProductZoomOpen] = useState(false);
   const [stories, setStories] = useState<CustomerStory[]>(CUSTOMER_STORIES);
   const [expandedQuotes, setExpandedQuotes] = useState<Record<string, boolean>>({});
   const [isReviewFormOpen, setIsReviewFormOpen] = useState(false);
@@ -80,87 +82,81 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
   } | null>(null);
   const reviewsScrollRef = useRef<HTMLDivElement>(null);
 
-  const galleryImages = useMemo(() => {
-    const finishImgs = product.finishes.map((f) => f.image);
-    const variantImgs = product.variants.map((v) => v.image);
-    const explicitGallery = product.gallery ?? [];
-    const combined = [
-      product.image,
-      ...finishImgs,
-      ...explicitGallery,
-      ...variantImgs,
-    ].filter((img): img is string => Boolean(img));
-    if (combined.length > 0) {
-      return Array.from(new Set(combined)).slice(0, 6);
+  const galleryItems = useMemo(() => {
+    const explicitGallery = product.gallery && product.gallery.length > 0
+      ? product.gallery
+      : [product.image];
+    const labels = product.galleryLabels ?? [];
+    const seen = new Set<string>();
+    const items: Array<{ url: string; label: string }> = [];
+
+    explicitGallery.forEach((url, idx) => {
+      if (!url || seen.has(url)) return;
+      seen.add(url);
+      items.push({
+        url,
+        label: labels[idx] ?? `Angle ${idx + 1}`,
+      });
+    });
+
+    if (items.length === 0) {
+      const matchedReviewPhoto = CUSTOMER_STORIES.find(
+        (s) => s.productId === product.id
+      )?.image;
+      const fallbackPool = [
+        product.image,
+        matchedReviewPhoto,
+        product.room === 'Recliners'
+          ? IMG_RECLINER_SOFA
+          : product.room === 'Electric Sofa Beds'
+          ? IMG_SOFA_CUM_BED
+          : product.room === 'Sofa Sets'
+          ? IMG_SOFA_MODULAR
+          : IMG_HERO_LIVING,
+      ].filter((img): img is string => Boolean(img));
+      return Array.from(new Set(fallbackPool)).map((url, idx) => ({
+        url,
+        label: `View ${idx + 1}`,
+      }));
     }
-    const matchedReviewPhoto = CUSTOMER_STORIES.find(
-      (s) => s.productId === product.id
-    )?.image;
-    const pool = [
-      product.image,
-      matchedReviewPhoto,
-      product.room === 'Recliners'
-        ? IMG_RECLINER_SOFA
-        : product.room === 'Electric Sofa Beds'
-        ? IMG_SOFA_CUM_BED
-        : product.room === 'Sofa Sets'
-        ? IMG_SOFA_MODULAR
-        : IMG_HERO_LIVING,
-      IMG_HERO_LIVING,
-    ].filter((img): img is string => Boolean(img));
-    return Array.from(new Set(pool)).slice(0, 4);
+    return items;
   }, [product]);
 
+  const galleryImages = useMemo(
+    () => galleryItems.map((item) => item.url),
+    [galleryItems]
+  );
+
   useEffect(() => {
-    const nextVariant = initialVariantIdx ?? 0;
-    const nextFinish = initialFinishName ?? product.finishes[0]?.name ?? 'Standard';
-    setSelectedVariantIdx(nextVariant);
+    const nextFinish = product.finishes[0]?.name ?? 'Standard';
     setSelectedFinishName(nextFinish);
     setCustomNote('');
     setPincode('');
     setPincodeStatus(null);
-    const matchedFinishImg = product.finishes.find((f) => f.name === nextFinish)?.image;
-    const matchedVariantImg = product.variants[nextVariant]?.image;
-    const targetImg = matchedFinishImg || matchedVariantImg || product.image;
-    const targetIdx = galleryImages.indexOf(targetImg);
-    setActivePhotoIdx(targetIdx >= 0 ? targetIdx : 0);
+    setIsProductZoomOpen(false);
+    setActivePhotoIdx(0);
     setIsReviewFormOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [product, initialFinishName, initialVariantIdx, galleryImages]);
+  }, [product, initialFinishName]);
 
-  const jumpToImage = (imgUrl?: string) => {
-    if (!imgUrl) return;
-    const foundIdx = galleryImages.indexOf(imgUrl);
-    if (foundIdx >= 0) {
-      setActivePhotoIdx(foundIdx);
-    }
+  const handleStepPhoto = (delta: number) => {
+    if (galleryItems.length <= 1) return;
+    setActivePhotoIdx((prev) => (prev + delta + galleryItems.length) % galleryItems.length);
   };
 
-  const activeVariant =
-    product.variants[selectedVariantIdx] ?? product.variants[0];
   const activeFinishObj =
     product.finishes.find((f) => f.name === selectedFinishName) ??
     product.finishes[0];
 
-  const finalPrice = Math.max(
-    9999,
-    product.price + (activeVariant?.priceDelta ?? 0)
-  );
-  const finalMrp = Math.max(
-    finalPrice + 6000,
-    product.mrp + (activeVariant?.priceDelta ?? 0)
-  );
+  const finalPrice = product.price;
+  const finalMrp = product.mrp;
   const discountPct = calcDiscountPercent(finalPrice, finalMrp);
   const savings = Math.max(0, finalMrp - finalPrice);
-  const displayDimensions = activeVariant?.dimensions ?? product.dimensions;
+  const displayDimensions = product.dimensions;
 
-  const fullVariantFinishLabel = activeVariant
-    ? `${selectedFinishName} · ${activeVariant.label}`
-    : selectedFinishName;
+  const fullVariantFinishLabel = selectedFinishName;
 
-  const whatsappBuyMsg = `Hello Zain Seating System, I want to order directly:\nProduct: ${product.name}\nVariant: ${
-    activeVariant?.label ?? 'Standard'
-  }\nUpholstery Color: ${selectedFinishName} (${activeFinishObj?.upholstery ?? ''})\nDimensions: ${displayDimensions}\nFactory Price: ${formatINR(
+  const whatsappBuyMsg = `Hello Zain Seating System, I want to order directly:\nProduct: ${product.name}\nUpholstery Color: ${selectedFinishName} (${activeFinishObj?.upholstery ?? ''})\nDimensions: ${displayDimensions}\nFactory Price: ${formatINR(
     finalPrice
   )}${customNote.trim() ? `\nCustom Specs: ${customNote.trim()}` : ''}`;
 
@@ -288,47 +284,63 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             <div className="lg:sticky lg:top-24 space-y-4">
               {/* Thumbnail + Main Image Row on Desktop / Stacked on Mobile */}
               <div className="flex flex-col-reverse sm:flex-row gap-3 min-w-0">
-                {/* Thumbnails */}
+                {/* Thumbnails (Flipkart / Amazon Multi-Angle Strip) */}
                 <div className="flex sm:flex-col gap-2 overflow-x-auto overscroll-x-contain max-w-full sm:overflow-visible scrollbar-hide shrink-0">
-                  {galleryImages.map((imgUrl, idx) => {
+                  {galleryItems.map((item, idx) => {
                     const active = activePhotoIdx === idx;
+                    const isSpecThumb = item.url.includes('dimensions_spec');
                     return (
                       <button
-                        key={`${imgUrl}-${idx}`}
+                        key={`${item.url}-${idx}`}
                         type="button"
                         onClick={() => setActivePhotoIdx(idx)}
-                        aria-label={`View angle ${idx + 1}`}
-                        className={`w-16 h-16 sm:w-[68px] sm:h-[68px] rounded-lg overflow-hidden border-2 transition-all shrink-0 cursor-pointer bg-[#FAF4ED] ${
+                        onMouseEnter={() => setActivePhotoIdx(idx)}
+                        title={item.label}
+                        aria-label={`${item.label} (${idx + 1} of ${galleryItems.length})`}
+                        aria-pressed={active}
+                        className={`relative w-[68px] h-[68px] sm:w-[74px] sm:h-[74px] rounded-lg overflow-hidden border-2 transition-all shrink-0 cursor-pointer bg-[#FAF4ED] group ${
                           active
-                            ? 'border-[#E27A34] ring-1 ring-[#E27A34]/30'
+                            ? 'border-[#E27A34] ring-2 ring-[#E27A34]/25 shadow-xs'
                             : 'border-[#ECE6DF] hover:border-[#C8B9A6]'
                         }`}
                       >
                         <img
-                          src={imgUrl}
-                          alt={`${product.name} view ${idx + 1}`}
+                          src={item.url}
+                          alt={`${product.name} — ${item.label}`}
                           referrerPolicy="no-referrer"
                           decoding="async"
-                          className="w-full h-full object-cover"
+                          className={`w-full h-full ${
+                            isSpecThumb ? 'object-contain bg-white p-1' : 'object-cover'
+                          }`}
                         />
+                        <span
+                          className={`absolute inset-x-0 bottom-0 px-1 py-0.5 text-[8.5px] leading-tight font-semibold truncate text-center transition-colors ${
+                            active
+                              ? 'bg-[#131F2D]/90 text-white'
+                              : 'bg-black/55 text-white/95 group-hover:bg-[#131F2D]/80'
+                          }`}
+                        >
+                          {item.label}
+                        </span>
                       </button>
                     );
                   })}
                 </div>
 
-                {/* Main Showcase Frame (Smooth Blended Image Switching) */}
-                <div className="relative flex-1 aspect-[4/3] sm:aspect-[1/1] rounded-xl overflow-hidden bg-[#FAF4ED] border border-[#ECE3D6]">
-                  {galleryImages.map((imgUrl, idx) => {
+                {/* Main Showcase Frame (Smooth Blended Multi-Angle Viewer) */}
+                <div className="relative flex-1 aspect-[4/3] sm:aspect-[1/1] rounded-xl overflow-hidden bg-[#FAF4ED] border border-[#ECE3D6] group">
+                  {galleryItems.map((item, idx) => {
                     const isActive = activePhotoIdx === idx;
-                    const isSpecSheet = imgUrl.includes('dimensions_spec');
+                    const isSpecSheet = item.url.includes('dimensions_spec');
                     return (
                       <img
-                        key={`${imgUrl}-main-${idx}`}
-                        src={imgUrl}
-                        alt={`${product.name} view ${idx + 1}`}
+                        key={`${item.url}-main-${idx}`}
+                        src={item.url}
+                        alt={`${product.name} — ${item.label}`}
                         referrerPolicy="no-referrer"
                         decoding="async"
-                        className={`absolute inset-0 w-full h-full ${
+                        onClick={() => setIsProductZoomOpen(true)}
+                        className={`absolute inset-0 w-full h-full cursor-zoom-in ${
                           isSpecSheet ? 'object-contain bg-white p-2' : 'object-cover'
                         } transition-opacity duration-350 ease-out ${
                           isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
@@ -338,25 +350,68 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   })}
 
                   {discountPct > 0 && (
-                    <span className="absolute top-3 left-3 z-20 px-2.5 py-1 rounded bg-[#131F2D] text-white text-[11px] font-bold tracking-wide uppercase tabular-nums">
+                    <span className="absolute top-3 left-3 z-20 px-2.5 py-1 rounded bg-[#131F2D] text-white text-[11px] font-bold tracking-wide uppercase tabular-nums pointer-events-none">
                       {discountPct}% Factory Off
                     </span>
                   )}
 
-                  <button
-                    type="button"
-                    onClick={() => onToggleWishlist(product.id)}
-                    aria-label={isWishlisted ? 'Remove from wishlist' : 'Save to wishlist'}
-                    className="absolute top-3 right-3 z-20 w-10 h-10 rounded-full bg-white/95 hover:bg-white shadow-sm flex items-center justify-center transition-colors cursor-pointer"
-                  >
-                    <Heart
-                      className={`w-5 h-5 ${
-                        isWishlisted
-                          ? 'fill-[#E27A34] text-[#E27A34]'
-                          : 'text-[#333333]'
-                      }`}
-                    />
-                  </button>
+                  <div className="absolute top-3 right-3 z-20 flex flex-col gap-2">
+                    <button
+                      type="button"
+                      onClick={() => onToggleWishlist(product.id)}
+                      aria-label={isWishlisted ? 'Remove from wishlist' : 'Save to wishlist'}
+                      className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 hover:bg-white shadow-sm flex items-center justify-center transition-colors cursor-pointer"
+                    >
+                      <Heart
+                        className={`w-4 h-4 sm:w-5 sm:h-5 ${
+                          isWishlisted
+                            ? 'fill-[#E27A34] text-[#E27A34]'
+                            : 'text-[#333333]'
+                        }`}
+                      />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setIsProductZoomOpen(true)}
+                      aria-label="Zoom product photo"
+                      className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 hover:bg-white shadow-sm flex items-center justify-center text-[#333333] hover:text-[#E27A34] transition-colors cursor-pointer"
+                    >
+                      <ZoomIn className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+                    </button>
+                  </div>
+
+                  {/* Prev / Next Angle Arrows */}
+                  {galleryItems.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => handleStepPhoto(-1)}
+                        aria-label="Previous product angle"
+                        className="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/90 hover:bg-white text-[#131F2D] shadow-sm flex items-center justify-center transition-all sm:opacity-0 sm:group-hover:opacity-100 cursor-pointer"
+                      >
+                        <ChevronLeft className="w-4 h-4" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleStepPhoto(1)}
+                        aria-label="Next product angle"
+                        className="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/90 hover:bg-white text-[#131F2D] shadow-sm flex items-center justify-center transition-all sm:opacity-0 sm:group-hover:opacity-100 cursor-pointer"
+                      >
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </>
+                  )}
+
+                  {/* Active Angle Caption & Counter */}
+                  {galleryItems[activePhotoIdx] && (
+                    <div className="absolute bottom-3 left-3 z-20 px-2.5 py-1 rounded bg-[#131F2D]/82 backdrop-blur-[2px] text-white text-[11px] font-medium flex items-center gap-1.5 pointer-events-none">
+                      <span className="text-[#F5B076] font-bold tabular-nums">
+                        {activePhotoIdx + 1}/{galleryItems.length}
+                      </span>
+                      <span>·</span>
+                      <span>{galleryItems[activePhotoIdx].label}</span>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -462,87 +517,20 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               </ul>
             </div>
 
-            {/* Variant Selector */}
-            {product.variants.length > 0 && (
-              <div>
-                <p className="text-xs sm:text-sm font-semibold text-[#131F2D] mb-2">
-                  Select Size / Seating Variant:{' '}
-                  <span className="font-normal text-[#E27A34]">
-                    {activeVariant?.label}
-                  </span>
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                  {product.variants.map((variant, idx) => {
-                    const selected = selectedVariantIdx === idx;
-                    const variantPrice = Math.max(
-                      9999,
-                      product.price + variant.priceDelta
-                    );
-                    return (
-                      <button
-                        key={variant.label}
-                        type="button"
-                        onClick={() => {
-                          setSelectedVariantIdx(idx);
-                          jumpToImage(variant.image);
-                        }}
-                        className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
-                          selected
-                            ? 'border-[#E27A34] bg-[#FAF4ED] ring-1 ring-[#E27A34]/30'
-                            : 'border-[#E2DAD1] bg-white hover:border-[#333333]'
-                        }`}
-                      >
-                        <span className="block text-xs font-semibold text-[#131F2D]">
-                          {variant.label}
-                        </span>
-                        <span className="block text-[11px] font-bold text-[#E27A34] tabular-nums mt-0.5">
-                          {formatINR(variantPrice)}
-                        </span>
-                        <span className="block text-[10px] text-[#78716A] mt-0.5 line-clamp-1">
-                          {variant.dimensions}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
+
+            {/* Standard Upholstery Note (No Color Swatch Variants) */}
+            {activeFinishObj && (
+              <div className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-[#FAF4ED]/70 border border-[#ECE2D5] text-xs text-[#333333]">
+                <span
+                  className="w-4 h-4 rounded-full border border-black/15 shrink-0"
+                  style={{ backgroundColor: activeFinishObj.swatchHex }}
+                />
+                <span>
+                  <strong className="text-[#131F2D]">Shown Finish:</strong>{' '}
+                  {activeFinishObj.name} ({activeFinishObj.upholstery}) · Custom colors available on request below
+                </span>
               </div>
             )}
-
-            {/* Upholstery Finish Swatches */}
-            <div>
-              <p className="text-xs sm:text-sm font-semibold text-[#131F2D] mb-2">
-                Upholstery Shade &amp; Material:{' '}
-                <span className="font-normal text-[#515151]">
-                  {activeFinishObj?.name} ({activeFinishObj?.upholstery})
-                </span>
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {product.finishes.map((fin) => {
-                  const selected = selectedFinishName === fin.name;
-                  return (
-                    <button
-                      key={fin.name}
-                      type="button"
-                      onClick={() => {
-                        setSelectedFinishName(fin.name);
-                        jumpToImage(fin.image);
-                      }}
-                      className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg border text-xs font-medium transition-all cursor-pointer ${
-                        selected
-                          ? 'border-[#E27A34] bg-[#FAF4ED] text-[#131F2D] font-semibold'
-                          : 'border-[#E2DAD1] bg-white text-[#515151] hover:border-[#333333]'
-                      }`}
-                    >
-                      <span
-                        className="w-4 h-4 rounded-full border border-black/15 shrink-0"
-                        style={{ backgroundColor: fin.swatchHex }}
-                      />
-                      {fin.name}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
 
             {/* Custom Sizing / Color Request Input */}
             <div>
@@ -679,10 +667,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 </div>
                 <div className="grid grid-cols-12 px-4 py-2.5 bg-[#FAFAFA]">
                   <dt className="col-span-5 sm:col-span-4 text-[#78716A] font-medium">
-                    Direct Support
+                    Factory &amp; Support
                   </dt>
                   <dd className="col-span-7 sm:col-span-8 text-[#131F2D] font-medium tabular-nums">
-                    WhatsApp {WHATSAPP_DISPLAY} (Custom swatches &amp; video demo)
+                    {FACTORY_ADDRESS} · Mob: {FACTORY_MOBILE_DISPLAY} · WhatsApp: {WHATSAPP_DISPLAY}
                   </dd>
                 </div>
               </dl>
@@ -1130,6 +1118,94 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               <p className="text-xs text-[#515151] leading-relaxed">
                 &ldquo;{lightboxData.story.quote}&rdquo;
               </p>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Full-Screen Multi-Angle Product Photo Lightbox */}
+      {isProductZoomOpen && galleryItems[activePhotoIdx] && (
+        <div
+          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-xs flex flex-col items-center justify-center p-3 sm:p-6"
+          onClick={() => setIsProductZoomOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${product.name} full-screen photo viewer`}
+        >
+          <div
+            className="relative w-full max-w-3xl bg-white rounded-2xl overflow-hidden shadow-2xl border border-[#ECE2D5]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between gap-3 px-4 py-3 border-b border-[#ECE6DF] bg-[#FAF4ED]">
+              <div className="min-w-0">
+                <p className="text-xs sm:text-sm font-semibold text-[#131F2D] truncate">
+                  {product.name}
+                </p>
+                <p className="text-[11px] text-[#E27A34] font-medium">
+                  {activePhotoIdx + 1} / {galleryItems.length} · {galleryItems[activePhotoIdx].label}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsProductZoomOpen(false)}
+                aria-label="Close zoom view"
+                className="w-8 h-8 rounded-full bg-white hover:bg-[#131F2D] text-[#131F2D] hover:text-white flex items-center justify-center border border-[#E2DAD1] transition-colors cursor-pointer shrink-0"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="relative aspect-square sm:aspect-[4/3] bg-[#FAF4ED] flex items-center justify-center">
+              <img
+                src={galleryItems[activePhotoIdx].url}
+                alt={`${product.name} — ${galleryItems[activePhotoIdx].label}`}
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-contain bg-white"
+              />
+              {galleryItems.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => handleStepPhoto(-1)}
+                    aria-label="Previous angle"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/95 hover:bg-[#131F2D] text-[#131F2D] hover:text-white shadow-md flex items-center justify-center transition-colors cursor-pointer"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleStepPhoto(1)}
+                    aria-label="Next angle"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/95 hover:bg-[#131F2D] text-[#131F2D] hover:text-white shadow-md flex items-center justify-center transition-colors cursor-pointer"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </>
+              )}
+            </div>
+
+            <div className="p-3 bg-white border-t border-[#ECE6DF] flex items-center justify-center gap-2 overflow-x-auto scrollbar-hide">
+              {galleryItems.map((item, idx) => {
+                const active = idx === activePhotoIdx;
+                return (
+                  <button
+                    key={`zoom-thumb-${item.url}-${idx}`}
+                    type="button"
+                    onClick={() => setActivePhotoIdx(idx)}
+                    className={`w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden border-2 shrink-0 cursor-pointer transition-all ${
+                      active
+                        ? 'border-[#E27A34] ring-2 ring-[#E27A34]/25'
+                        : 'border-[#ECE6DF] opacity-75 hover:opacity-100'
+                    }`}
+                  >
+                    <img
+                      src={item.url}
+                      alt={item.label}
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
