@@ -489,7 +489,7 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
             <div className="lg:col-span-7 min-w-0 order-1 lg:order-2">
               <div className="aspect-video w-full rounded-2xl overflow-hidden bg-[#131F2D] shadow-sm relative border border-[#ECE2D5]">
                 <video
-                  src="/assets/videos/sofa-cum-bed-demo.mp4"
+                  src="/assets/videos/sofa-cum-bed-demo.mp4?v=15s"
                   poster="/assets/videos/sofa-cum-bed-poster.webp"
                   autoPlay
                   muted
@@ -497,6 +497,11 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
                   playsInline
                   controls
                   preload="metadata"
+                  onTimeUpdate={(e) => {
+                    if (e.currentTarget.currentTime >= 15) {
+                      e.currentTarget.currentTime = 0;
+                    }
+                  }}
                   aria-label="Zain Seating System electric sofa-cum-bed mechanism demonstration video"
                   className="w-full h-full object-cover"
                 />
