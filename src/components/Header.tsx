@@ -46,6 +46,7 @@ const CATEGORY_BAR_ITEMS: Array<{ label: string; category: CategoryKey; sectionI
   { label: 'Electric Sofa Cum Beds', category: 'Electric Sofa Beds' },
   { label: 'Modern Home Chairs', category: 'Home Chairs' },
   { label: 'How It Works', category: 'All', sectionId: 'mechanisms' },
+  { label: 'About Us', category: 'All', sectionId: 'about-us' },
 ];
 
 export const Header: React.FC<HeaderProps> = ({
@@ -120,6 +121,7 @@ export const Header: React.FC<HeaderProps> = ({
     { label: 'Sofa Sets', category: 'Sofa Sets' },
     { label: 'Sofa Beds', category: 'Electric Sofa Beds' },
     { label: 'Chairs', category: 'Home Chairs' },
+    { label: 'About Us', category: 'All', sectionId: 'about-us' },
   ];
 
   return (

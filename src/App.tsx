@@ -11,6 +11,7 @@ import { CategoryExplorer } from './components/CategoryExplorer';
 import { ShowroomBanner } from './components/ShowroomBanner';
 import { TrendingProducts } from './components/TrendingProducts';
 import { EditorialAndReviews } from './components/EditorialAndReviews';
+import { AboutUsSection, WORKSHOP_SLIDES } from './components/AboutUsSection';
 import { BuyingGuideAndFooter } from './components/BuyingGuideAndFooter';
 import { ProductDetailPage } from './components/ProductDetailPage';
 import { BrowseCatalogPage } from './components/BrowseCatalogPage';
@@ -25,6 +26,7 @@ import {
   BRAND_LOGO_HORIZONTAL,
   CATEGORY_TILES,
   CUSTOMER_STORIES,
+  IMG_DRV_FACTORY_FLOOR,
   IMG_HERO_LIVING,
   IMG_RECLINE_95,
   IMG_RECLINE_130,
@@ -187,6 +189,7 @@ export default function App() {
       IMG_HERO_LIVING,
       IMG_SOFA_CUM_BED,
       IMG_SHOWROOM_NIGHT,
+      IMG_DRV_FACTORY_FLOOR,
       IMG_RECLINE_95,
       IMG_RECLINE_130,
       IMG_RECLINE_160,
@@ -195,6 +198,7 @@ export default function App() {
       IMG_SOFABED_STEP1,
       IMG_SOFABED_STEP2,
       IMG_SOFABED_STEP3,
+      ...WORKSHOP_SLIDES.map((s) => s.image),
       ...CATEGORY_TILES.map((t) => t.image),
       ...PRODUCTS.flatMap((p) => [
         p.image,
@@ -220,6 +224,21 @@ export default function App() {
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  };
+
+  const scrollToAboutUs = () => {
+    const target = document.getElementById('about-us');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+    setActiveProductView(null);
+    setIsBrowseAllOpen(false);
+    window.setTimeout(() => {
+      document
+        .getElementById('about-us')
+        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
   };
 
   const openProductDetail = (
@@ -378,6 +397,7 @@ export default function App() {
               <BuyingGuideAndFooter
                 onSelectCategory={handleSelectCategory}
                 onOpenUtilityModal={(modal) => setUtilityModal(modal)}
+                onOpenAboutUs={scrollToAboutUs}
               />
             </>
           ) : isBrowseAllOpen ? (
@@ -395,6 +415,7 @@ export default function App() {
               <BuyingGuideAndFooter
                 onSelectCategory={handleSelectCategory}
                 onOpenUtilityModal={(modal) => setUtilityModal(modal)}
+                onOpenAboutUs={scrollToAboutUs}
               />
             </>
           ) : (
@@ -422,9 +443,14 @@ export default function App() {
                 onOpenQuickView={(product) => openProductDetail(product)}
               />
 
+              <AboutUsSection
+                onOpenCustomModal={() => setUtilityModal('custom')}
+              />
+
               <BuyingGuideAndFooter
                 onSelectCategory={handleSelectCategory}
                 onOpenUtilityModal={(modal) => setUtilityModal(modal)}
+                onOpenAboutUs={scrollToAboutUs}
               />
             </>
           )}

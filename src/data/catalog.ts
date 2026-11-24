@@ -7,8 +7,8 @@ import type {
 
 export const WHATSAPP_RAW = '918178942327';
 export const WHATSAPP_DISPLAY = '+91 81789 42327';
-export const FACTORY_MOBILE_RAW = '+919811381895';
-export const FACTORY_MOBILE_DISPLAY = '+91 98113 81895';
+export const FACTORY_MOBILE_RAW = '+918178942327';
+export const FACTORY_MOBILE_DISPLAY = '+91 81789 42327';
 export const FACTORY_ADDRESS = 'E-94, Jasola Village, Ground Floor, New Delhi - 110025';
 export const FACTORY_GSTIN = '07ACMPH7962E1ZD';
 export const FACTORY_PAN = 'ACMPH7962E';

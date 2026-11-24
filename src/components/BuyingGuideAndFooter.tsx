@@ -31,6 +31,7 @@ import type { UtilityModalType } from './Header';
 interface BuyingGuideAndFooterProps {
   onSelectCategory: (cat: CategoryKey) => void;
   onOpenUtilityModal: (modal: UtilityModalType) => void;
+  onOpenAboutUs?: () => void;
 }
 
 type MaterialLayerKey = 'upholstery' | 'foam' | 'hardware' | 'frame';
@@ -84,6 +85,7 @@ const UPHOLSTERY_SWATCHES = [
 export const BuyingGuideAndFooter: React.FC<BuyingGuideAndFooterProps> = ({
   onSelectCategory,
   onOpenUtilityModal,
+  onOpenAboutUs,
 }) => {
   const [openAccordion, setOpenAccordion] = useState<'why' | 'about' | 'searches' | null>(
     'why'
@@ -781,6 +783,23 @@ export const BuyingGuideAndFooter: React.FC<BuyingGuideAndFooterProps> = ({
                     className="hover:text-[#E27A34] cursor-pointer"
                   >
                     Factory Concierge &amp; Videos
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (onOpenAboutUs) {
+                        onOpenAboutUs();
+                      } else {
+                        document
+                          .getElementById('about-us')
+                          ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
+                    }}
+                    className="hover:text-[#E27A34] cursor-pointer"
+                  >
+                    About Zain Seating System
                   </button>
                 </li>
                 {/* Hidden while #materials section is hidden */}
