@@ -34,6 +34,7 @@ const CATEGORIES: Array<{ key: CategoryKey; label: string }> = [
   { key: 'All', label: 'All Factory Lines' },
   { key: 'Manual Recliners', label: 'Manual Recliners' },
   { key: 'Motorized Recliners', label: 'Motorized Recliners' },
+  { key: 'Revolving Recliners', label: 'Revolving Recliners' },
   { key: 'Sofa Sets', label: 'Custom Sofa Sets' },
   { key: 'Electric Sofa Beds', label: 'Electric Sofa Cum Beds' },
   { key: 'Home Chairs', label: 'Modern Home Chairs' },

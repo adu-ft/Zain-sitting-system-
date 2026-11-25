@@ -29,7 +29,7 @@ export const CategoryExplorer: React.FC<CategoryExplorerProps> = ({
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5">
           {CATEGORY_TILES.map((tile, idx) => (
             <motion.button
               key={tile.id}

@@ -137,7 +137,29 @@ export const IMG_REVIEW_CHAIR_HOME = '/src/assets/images/review_chair_home_17949
 export const IMG_REVIEW_AVATAR_MAN = '/src/assets/images/review_customer_avatar_1794978625502.jpg';
 export const IMG_REVIEW_AVATAR_WOMAN = '/src/assets/images/review_woman_avatar_1794978642354.jpg';
 
-/* Exactly 5 distinct core manufactured categories */
+/* 360° Revolving & Swivel Rocker Recliner Studio Photography */
+export const IMG_REVOLVING_IVORY_LOUNGE = '/assets/aistudio/WhatsApp_Image_2026-11-24_at_5.48.02_PM_2ca80368.jpeg';
+export const IMG_REVOLVING_IVORY_RECLINED = '/assets/aistudio/WhatsApp_Image_2026-11-24_at_5.47.49_PM_6b12b949.jpeg';
+export const IMG_REVOLVING_DIMENSIONS_SPEC = '/assets/aistudio/image_6647440f.png';
+export const IMG_REVOLVING_COGNAC = '/src/assets/images/revolving_cognac_tan_1795584283993.jpg';
+export const IMG_REVOLVING_CHARCOAL = '/src/assets/images/revolving_charcoal_suede_1795584284777.jpg';
+export const IMG_REVOLVING_ESPRESSO = '/src/assets/images/revolving_espresso_brown_1795584290825.jpg';
+export const IMG_REVOLVING_NAVY_MOTOR = '/src/assets/images/revolving_navy_motor_1795584288005.jpg';
+export const IMG_REVOLVING_TAUPE_UPRIGHT = '/src/assets/images/revolving_taupe_upright_1795584290347.jpg';
+
+/* Multi-Angle Revolving Recliner Shots (Same Product · Front, Reclined, Detail & Rear 3/4 Views) */
+export const IMG_ORBIT_DETAIL = '/src/assets/images/orbit_detail_lever_1795584852794.jpg';
+export const IMG_ORBIT_BACK = '/src/assets/images/orbit_back_angle_1795584853038.jpg';
+
+export const IMG_AXIS_UPRIGHT = '/src/assets/images/axis_upright_front_1795584854505.jpg';
+export const IMG_AXIS_DETAIL = '/src/assets/images/axis_detail_suede_1795584855931.jpg';
+export const IMG_AXIS_BACK = '/src/assets/images/axis_back_angle_1795584857078.jpg';
+
+export const IMG_ZENITH_RECLINED = '/src/assets/images/zenith_reclined_side_1795584859661.jpg';
+export const IMG_ZENITH_DETAIL = '/src/assets/images/zenith_detail_usb_1795584859983.jpg';
+export const IMG_ZENITH_BACK = '/src/assets/images/zenith_back_angle_1795584862891.jpg';
+
+/* 6 distinct core manufactured categories */
 export const CATEGORY_TILES: CategoryTile[] = [
   {
     id: 'cat-manual-recliners',
@@ -156,6 +178,15 @@ export const CATEGORY_TILES: CategoryTile[] = [
     targetCategory: 'Motorized Recliners',
     image: IMG_DRV_BEIGE_MOTOR,
     startingPrice: 28999,
+  },
+  {
+    id: 'cat-revolving-recliners',
+    label: 'REVOLVING RECLINERS',
+    sublabel: '360° Swivel & Rocker',
+    room: 'Recliners',
+    targetCategory: 'Revolving Recliners',
+    image: IMG_REVOLVING_IVORY_LOUNGE,
+    startingPrice: 22499,
   },
   {
     id: 'cat-custom-sofas',
@@ -753,6 +784,143 @@ export const PRODUCTS: Product[] = [
       { name: 'Pure Ivory White', swatchHex: '#F3F1EC', upholstery: 'Easy-Wipe Leatherette', image: IMG_DRV_WHITE_SWIVEL },
     ],
   },
+  {
+    id: 'zss-orbit-revolving-recliner',
+    name: 'Zain Orbit 360° Revolving Rocker Recliner',
+    subtitle: 'Revolving Recliner · 360° Swivel Base + Rocking Motion',
+    category: 'Revolving Recliners',
+    room: 'Recliners',
+    mechanism: 'Manual Lever',
+    price: 22499,
+    mrp: 34999,
+    rating: 4.9,
+    reviewCount: 186,
+    image: IMG_REVOLVING_IVORY_LOUNGE,
+    gallery: [
+      IMG_REVOLVING_IVORY_LOUNGE,
+      IMG_REVOLVING_IVORY_RECLINED,
+      IMG_ORBIT_DETAIL,
+      IMG_ORBIT_BACK,
+      IMG_REVOLVING_DIMENSIONS_SPEC,
+    ],
+    galleryLabels: [
+      'Front 3/4 Lounge View',
+      'Full Recline & 360° Base',
+      'Side Lever & Seam Detail',
+      'Rear 3/4 View',
+      'Dimensions Guide',
+    ],
+    tag: '360° Revolving',
+    dimensions: '92 cm W × 101.6 cm D × 109.2 cm H (Seat Height: 49 cm)',
+    frameMaterial: 'Heavy-Duty 360° Circular Steel Swivel Ring + Dual Rocker Springs + Hardwood Frame',
+    foamAndSpring: '3-Tier Pillow-Back 40-Density HR Foam + Pocket Spring Seat',
+    warranty: '5-Year Frame & 360° Swivel Ring Warranty',
+    deliveryEstimate: 'Ready to Dispatch in 4–6 Days',
+    description:
+      'Engineered on a heavy-gauge circular 360-degree steel swivel base with smooth rocking springs and a recessed side pull-lever. Plush 3-tier tufted pillow backrest and overstuffed armrests deliver cloud-like full-body support in any direction you turn.',
+    customizableOptions: ['Custom Leatherette or Suede', 'Manual Lever or Motorized Swivel', '30+ Factory Shade Swatches'],
+    variants: [
+      { label: '360° Revolving + Rocker (Manual Lever)', dimensions: '92 cm W × 101.6 cm D × 109.2 cm H', priceDelta: 0, image: IMG_REVOLVING_IVORY_LOUNGE },
+      { label: '360° Revolving Full Recline + Rock Lock', dimensions: '92 cm W × 101.6 cm D × 109.2 cm H', priceDelta: 2500, image: IMG_REVOLVING_IVORY_RECLINED },
+    ],
+    finishes: [
+      { name: 'Pure Ivory Cream', swatchHex: '#F3F0E8', upholstery: 'Breathable Pro Leatherette', image: IMG_REVOLVING_IVORY_LOUNGE },
+      { name: 'Saddle Cognac Tan', swatchHex: '#AE6336', upholstery: 'Breathable Pro Leatherette', image: IMG_REVOLVING_COGNAC },
+      { name: 'Espresso Chocolate', swatchHex: '#422B23', upholstery: 'Breathable Pro Leatherette', image: IMG_REVOLVING_ESPRESSO },
+      { name: 'Charcoal Slate Suede', swatchHex: '#4C4F54', upholstery: 'Soft Matte Molfino Suede', image: IMG_REVOLVING_CHARCOAL },
+    ],
+  },
+  {
+    id: 'zss-axis-suede-revolving-recliner',
+    name: 'Zain Axis 360° Revolving Suede Rocker Recliner',
+    subtitle: 'Revolving Recliner · Plush Molfino Suede + 360° Glide',
+    category: 'Revolving Recliners',
+    room: 'Recliners',
+    mechanism: 'Manual Lever',
+    price: 23999,
+    mrp: 36999,
+    rating: 4.9,
+    reviewCount: 142,
+    image: IMG_AXIS_UPRIGHT,
+    gallery: [
+      IMG_AXIS_UPRIGHT,
+      IMG_REVOLVING_CHARCOAL,
+      IMG_AXIS_DETAIL,
+      IMG_AXIS_BACK,
+      IMG_REVOLVING_DIMENSIONS_SPEC,
+    ],
+    galleryLabels: [
+      'Front 3/4 View',
+      'Reclined & 360° Spring Base',
+      'Suede & Lever Detail',
+      'Rear 3/4 View',
+      'Dimensions Guide',
+    ],
+    tag: 'Swivel + Rocker',
+    dimensions: '92 cm W × 101.6 cm D × 109.2 cm H (Seat Height: 49 cm)',
+    frameMaterial: 'Powder-Coated 360° Circular Steel Ring + Coil Rocker Chassis + Pinewood Core',
+    foamAndSpring: 'Triple-Channel Cloud Backrest + 40-Density HR Cushioning',
+    warranty: '5-Year Structural & Swivel Mechanism Warranty',
+    deliveryEstimate: 'Factory Dispatch in 5–7 Days',
+    description:
+      'Wrapped in breathable velvet-touch Molfino suede over our signature 360-degree revolving coil-rocker chassis. Effortlessly pivot toward the TV, window, or conversation while enjoying gentle rocking and deep leg-rest elevation.',
+    customizableOptions: ['Molfino Suede or Linen Fabric', 'Stain-Guard Upholstery', 'Optional USB Charging Pocket'],
+    variants: [
+      { label: '1-Seater 360° Swivel Rocker', dimensions: '92 cm W × 101.6 cm D × 109.2 cm H', priceDelta: 0, image: IMG_AXIS_UPRIGHT },
+      { label: 'Pair of 2 Revolving Recliners', dimensions: '2 × (92 cm W × 101.6 cm D)', priceDelta: 22500 },
+    ],
+    finishes: [
+      { name: 'Charcoal Slate Suede', swatchHex: '#4C4F54', upholstery: 'Soft Matte Molfino Suede', image: IMG_AXIS_UPRIGHT },
+      { name: 'Champagne Taupe Suede', swatchHex: '#B6A28E', upholstery: 'Textured Soft Suede', image: IMG_REVOLVING_TAUPE_UPRIGHT },
+      { name: 'Pure Ivory Cream', swatchHex: '#F3F0E8', upholstery: 'Breathable Pro Leatherette', image: IMG_REVOLVING_IVORY_LOUNGE },
+    ],
+  },
+  {
+    id: 'zss-zenith-motor-revolving-recliner',
+    name: 'Zain Zenith Motorized 360° Revolving Recliner',
+    subtitle: 'Revolving Recliner · Push-Button Electric + USB + 360° Swivel',
+    category: 'Revolving Recliners',
+    room: 'Recliners',
+    mechanism: 'Motorized Push-Button',
+    price: 31499,
+    mrp: 45999,
+    rating: 4.9,
+    reviewCount: 118,
+    image: IMG_REVOLVING_NAVY_MOTOR,
+    gallery: [
+      IMG_REVOLVING_NAVY_MOTOR,
+      IMG_ZENITH_RECLINED,
+      IMG_ZENITH_DETAIL,
+      IMG_ZENITH_BACK,
+      IMG_REVOLVING_DIMENSIONS_SPEC,
+    ],
+    galleryLabels: [
+      'Front 3/4 View',
+      'Full Recline Side View',
+      'USB & Push-Button Detail',
+      'Rear 3/4 View',
+      'Dimensions Guide',
+    ],
+    tag: 'Motorized 360°',
+    dimensions: '92 cm W × 101.6 cm D × 109.2 cm H (Seat Height: 49 cm)',
+    frameMaterial: 'Heavy-Gauge 360° Swivel Ring + Silent 24V Okin Actuator + Brushed USB Switch',
+    foamAndSpring: '40-Density Super-Soft HR Foam + 3-Tier Pillow-Back Lumbar Support',
+    warranty: '5-Year Frame & 3-Year Electric Motor Warranty',
+    deliveryEstimate: 'Factory Dispatch in 5–7 Days',
+    description:
+      'Combines full 360-degree revolving convenience with whisper-quiet motorized push-button reclining and a built-in USB charging port. Designed with snag-free internal cabling so the chair pivots smoothly in modern living rooms and nurseries.',
+    customizableOptions: ['Custom Leatherette or Suede', 'Optional Detachable Swivel Tray', 'Custom Stitching Contrast'],
+    variants: [
+      { label: 'Motorized 360° Swivel + USB', dimensions: '92 cm W × 101.6 cm D × 109.2 cm H', priceDelta: 0, image: IMG_REVOLVING_NAVY_MOTOR },
+      { label: 'Manual Side-Lever 360° Edition', dimensions: '92 cm W × 101.6 cm D × 109.2 cm H', priceDelta: -8500, image: IMG_REVOLVING_ESPRESSO },
+    ],
+    finishes: [
+      { name: 'Midnight Navy', swatchHex: '#253852', upholstery: 'Breathable Pro Leatherette', image: IMG_REVOLVING_NAVY_MOTOR },
+      { name: 'Espresso Chocolate', swatchHex: '#422B23', upholstery: 'Breathable Pro Leatherette', image: IMG_REVOLVING_ESPRESSO },
+      { name: 'Saddle Cognac Tan', swatchHex: '#AE6336', upholstery: 'Breathable Pro Leatherette', image: IMG_REVOLVING_COGNAC },
+      { name: 'Pure Ivory Cream', swatchHex: '#F3F0E8', upholstery: 'Breathable Pro Leatherette', image: IMG_REVOLVING_IVORY_LOUNGE },
+    ],
+  },
 ];
 
 export const CUSTOMER_STORIES: CustomerStory[] = [
@@ -850,6 +1018,7 @@ export const CUSTOMER_STORIES: CustomerStory[] = [
 export const POPULAR_SEARCHES: Array<{ label: string; category: CategoryTile['targetCategory'] }> = [
   { label: 'Manual Lever Recliners', category: 'Manual Recliners' },
   { label: 'Motorized Cinema Recliners', category: 'Motorized Recliners' },
+  { label: '360° Revolving Recliners', category: 'Revolving Recliners' },
   { label: 'Home Theatre Recliner Rows', category: 'Motorized Recliners' },
   { label: 'L-Shape Recliner Sofas', category: 'Sofa Sets' },
   { label: 'Electric Forward-Extend Sofa Bed', category: 'Electric Sofa Beds' },
