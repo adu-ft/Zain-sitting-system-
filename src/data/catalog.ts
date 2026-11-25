@@ -154,10 +154,12 @@ export const IMG_ORBIT_BACK = '/src/assets/images/orbit_back_angle_1795584853038
 export const IMG_AXIS_UPRIGHT = '/src/assets/images/axis_upright_front_1795584854505.jpg';
 export const IMG_AXIS_DETAIL = '/src/assets/images/axis_detail_suede_1795584855931.jpg';
 export const IMG_AXIS_BACK = '/src/assets/images/axis_back_angle_1795584857078.jpg';
+export const IMG_AXIS_DIMENSIONS_SPEC = '/src/assets/images/axis_dimensions_spec_1795586016924.jpg';
 
 export const IMG_ZENITH_RECLINED = '/src/assets/images/zenith_reclined_side_1795584859661.jpg';
 export const IMG_ZENITH_DETAIL = '/src/assets/images/zenith_detail_usb_1795584859983.jpg';
 export const IMG_ZENITH_BACK = '/src/assets/images/zenith_back_angle_1795584862891.jpg';
+export const IMG_ZENITH_DIMENSIONS_SPEC = '/src/assets/images/zenith_dimensions_spec_1795586024698.jpg';
 
 /* 6 distinct core manufactured categories */
 export const CATEGORY_TILES: CategoryTile[] = [
@@ -847,7 +849,7 @@ export const PRODUCTS: Product[] = [
       IMG_REVOLVING_CHARCOAL,
       IMG_AXIS_DETAIL,
       IMG_AXIS_BACK,
-      IMG_REVOLVING_DIMENSIONS_SPEC,
+      IMG_AXIS_DIMENSIONS_SPEC,
     ],
     galleryLabels: [
       'Front 3/4 View',
@@ -872,7 +874,7 @@ export const PRODUCTS: Product[] = [
     finishes: [
       { name: 'Charcoal Slate Suede', swatchHex: '#4C4F54', upholstery: 'Soft Matte Molfino Suede', image: IMG_AXIS_UPRIGHT },
       { name: 'Champagne Taupe Suede', swatchHex: '#B6A28E', upholstery: 'Textured Soft Suede', image: IMG_REVOLVING_TAUPE_UPRIGHT },
-      { name: 'Pure Ivory Cream', swatchHex: '#F3F0E8', upholstery: 'Breathable Pro Leatherette', image: IMG_REVOLVING_IVORY_LOUNGE },
+      { name: 'Espresso Chocolate', swatchHex: '#422B23', upholstery: 'Breathable Pro Leatherette', image: IMG_REVOLVING_ESPRESSO },
     ],
   },
   {
@@ -892,7 +894,7 @@ export const PRODUCTS: Product[] = [
       IMG_ZENITH_RECLINED,
       IMG_ZENITH_DETAIL,
       IMG_ZENITH_BACK,
-      IMG_REVOLVING_DIMENSIONS_SPEC,
+      IMG_ZENITH_DIMENSIONS_SPEC,
     ],
     galleryLabels: [
       'Front 3/4 View',
@@ -918,7 +920,6 @@ export const PRODUCTS: Product[] = [
       { name: 'Midnight Navy', swatchHex: '#253852', upholstery: 'Breathable Pro Leatherette', image: IMG_REVOLVING_NAVY_MOTOR },
       { name: 'Espresso Chocolate', swatchHex: '#422B23', upholstery: 'Breathable Pro Leatherette', image: IMG_REVOLVING_ESPRESSO },
       { name: 'Saddle Cognac Tan', swatchHex: '#AE6336', upholstery: 'Breathable Pro Leatherette', image: IMG_REVOLVING_COGNAC },
-      { name: 'Pure Ivory Cream', swatchHex: '#F3F0E8', upholstery: 'Breathable Pro Leatherette', image: IMG_REVOLVING_IVORY_LOUNGE },
     ],
   },
 ];

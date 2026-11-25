@@ -288,7 +288,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 <div className="flex sm:flex-col gap-2 overflow-x-auto overscroll-x-contain max-w-full sm:overflow-visible scrollbar-hide shrink-0">
                   {galleryItems.map((item, idx) => {
                     const active = activePhotoIdx === idx;
-                    const isSpecThumb = item.url.includes('dimensions_spec');
+                    const isSpecThumb =
+                      item.url.includes('dimensions_spec') ||
+                      item.label.toLowerCase().includes('dimensions');
                     return (
                       <button
                         key={`${item.url}-${idx}`}
@@ -331,7 +333,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 <div className="relative flex-1 aspect-[4/3] sm:aspect-[1/1] rounded-xl overflow-hidden bg-[#FAF4ED] border border-[#ECE3D6] group">
                   {galleryItems.map((item, idx) => {
                     const isActive = activePhotoIdx === idx;
-                    const isSpecSheet = item.url.includes('dimensions_spec');
+                    const isSpecSheet =
+                      item.url.includes('dimensions_spec') ||
+                      item.label.toLowerCase().includes('dimensions');
                     return (
                       <img
                         key={`${item.url}-main-${idx}`}
