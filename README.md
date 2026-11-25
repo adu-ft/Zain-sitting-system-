@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/media/og-preview.jpg" alt="Zain Seating System — Factory-Direct Recliners, Custom Sofas & Electric Sofa Beds" width="100%" />
+<img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/readme/hero-banner.webp" alt="Zain Seating System — Factory-Direct Recliners, Custom Sofas & Electric Sofa Beds" width="960" height="504" />
 
 # Zain Seating System
 
@@ -22,69 +22,15 @@
 
 ### 6 Manufactured Factory Lines
 
-<table>
-  <tr>
-    <td align="center" width="33%">
-      <img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/drive/recliner_black_manual.jpg" alt="Manual Recliners" width="100%" /><br />
-      <strong>Manual Recliners</strong><br />
-      <sub>Side Lever Operated · From ₹18,999</sub>
-    </td>
-    <td align="center" width="33%">
-      <img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/drive/recliner_beige_motorized.jpg" alt="Motorized Recliners" width="100%" /><br />
-      <strong>Motorized Recliners</strong><br />
-      <sub>Electric Push-Button + USB · From ₹28,999</sub>
-    </td>
-    <td align="center" width="33%">
-      <img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/uploads/WhatsApp_Image_2026-11-24_at_5.48.02_PM_2ca80368.jpeg" alt="360° Revolving Recliners" width="100%" /><br />
-      <strong>Revolving Recliners</strong><br />
-      <sub>360° Swivel & Rocker · From ₹22,499</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="33%">
-      <img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/drive/sofa_lshape_brown.jpg" alt="Custom Sofa Sets" width="100%" /><br />
-      <strong>Custom Sofa Sets</strong><br />
-      <sub>Any Color, Fabric & Size · From ₹34,999</sub>
-    </td>
-    <td align="center" width="33%">
-      <img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/catalog/zain_sofa_cum_bed_1794901397072.jpg" alt="Electric Sofa Cum Beds" width="100%" /><br />
-      <strong>Electric Sofa Cum Beds</strong><br />
-      <sub>Motor Forward-Extend · From ₹38,499</sub>
-    </td>
-    <td align="center" width="33%">
-      <img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/drive/chair_espresso_modern.jpg" alt="Modern Home Chairs" width="100%" /><br />
-      <strong>Modern Home Chairs</strong><br />
-      <sub>Modernist Accent Seating · From ₹14,499</sub>
-    </td>
-  </tr>
-</table>
+<img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/readme/factory-lines-grid.webp" alt="6 Manufactured Factory Lines — Manual Recliners, Motorized Recliners, Revolving Recliners, Custom Sofa Sets, Electric Sofa Cum Beds, Modern Home Chairs" width="1080" height="670" />
 
 ---
 
 ### Interactive Product Detail Page & Multi-Angle Galleries
 
-Every product features an Amazon/Flipkart-style sticky gallery with color-matched front, reclined, mechanism/stitching close-up, rear 3/4, and exact dimension guide views, live swatch switching, PIN code delivery checks, and direct WhatsApp factory ordering.
+Every product features a sticky multi-angle gallery with color-matched front, reclined, mechanism/stitching close-up, rear 3/4, and exact dimension guide views, live swatch switching, PIN code delivery checks, and direct WhatsApp factory ordering.
 
-<table>
-  <tr>
-    <td align="center" width="25%">
-      <img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/uploads/WhatsApp_Image_2026-11-24_at_5.48.02_PM_2ca80368.jpeg" alt="Front Lounge 3/4 View" width="100%" /><br />
-      <sub><strong>1.</strong> Front 3/4 Lounge</sub>
-    </td>
-    <td align="center" width="25%">
-      <img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/uploads/WhatsApp_Image_2026-11-24_at_5.47.49_PM_6b12b949.jpeg" alt="Full Recline & 360° Base" width="100%" /><br />
-      <sub><strong>2.</strong> Full Recline & 360° Base</sub>
-    </td>
-    <td align="center" width="25%">
-      <img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/catalog/orbit_detail_lever_1795584852794.jpg" alt="Side Lever & Seam Detail" width="100%" /><br />
-      <sub><strong>3.</strong> Lever & Seam Detail</sub>
-    </td>
-    <td align="center" width="25%">
-      <img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/uploads/image_6647440f.png" alt="Dimensions Guide" width="100%" /><br />
-      <sub><strong>4.</strong> Dimensions Spec</sub>
-    </td>
-  </tr>
-</table>
+<img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/readme/pdp-gallery-strip.webp" alt="Multi-Angle Product Detail Gallery — Front 3/4 Lounge, Full Recline & 360° Base, Lever & Seam Detail, Dimensions Spec" width="1080" height="308" />
 
 ---
 
@@ -92,48 +38,13 @@ Every product features an Amazon/Flipkart-style sticky gallery with color-matche
 
 Customers can preview exact recline postures and watch the electric forward-extending sofa-cum-bed mechanism before requesting a custom build.
 
-<table>
-  <tr>
-    <td align="center" width="33%">
-      <img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/catalog/recline_95_upright_1794980022627.jpg" alt="95° Upright Posture" width="100%" /><br />
-      <strong>95° Upright</strong><br />
-      <sub>Reading & Conversation</sub>
-    </td>
-    <td align="center" width="33%">
-      <img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/catalog/recline_130_lounge_1794980025041.jpg" alt="130° TV Lounge Posture" width="100%" /><br />
-      <strong>130° TV Lounge</strong><br />
-      <sub>Elevated Footrest Support</sub>
-    </td>
-    <td align="center" width="33%">
-      <img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/catalog/recline_160_full_1794980025450.jpg" alt="160° Full Recline" width="100%" /><br />
-      <strong>160° Deep Recline</strong><br />
-      <sub>Zero-Gravity Relaxation</sub>
-    </td>
-  </tr>
-</table>
+<img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/readme/recline-postures.webp" alt="Recline Mechanism Postures — 95° Upright, 130° TV Lounge, 160° Deep Recline" width="1080" height="306" />
 
 ---
 
 ### Inside Our Manufacturing Unit (About Us Carousel)
 
-<img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/uploads/WhatsApp_Image_2026-11-24_at_5.51.10_PM_b99fe8f3.jpeg" alt="Inside Zain Seating System Manufacturing Facility" width="100%" />
-
-<table>
-  <tr>
-    <td align="center" width="33%">
-      <img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/uploads/WhatsApp_Image_2026-11-24_at_5.56.42_PM_62674bca.jpeg" alt="Tailoring Workshop" width="100%" /><br />
-      <strong>Tailoring</strong>
-    </td>
-    <td align="center" width="33%">
-      <img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/uploads/WhatsApp_Image_2026-11-24_at_5.56.13_PM_57c21926.jpeg" alt="Finishing & Dispatch" width="100%" /><br />
-      <strong>Finishing</strong>
-    </td>
-    <td align="center" width="33%">
-      <img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/drive/factory_floor_recliners.jpg" alt="Ready Factory Lineup" width="100%" /><br />
-      <strong>Lineup</strong>
-    </td>
-  </tr>
-</table>
+<img src="https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/readme/workshop-collage.webp" alt="Inside Zain Seating System Manufacturing Facility — Jasola Village Workshop, Tailoring, Finishing & Lineup" width="1080" height="857" />
 
 ---
 
