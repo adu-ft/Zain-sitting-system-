@@ -1,0 +1,21 @@
+name: Sync to Client Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    if: github.repository == 'adu-ft/Zain-sitting-system-'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout personal repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Push to client repo
+        run: |
+          git push --force "https://x-access-token:${{ secrets.CLIENT_REPO_TOKEN }}@github.com/zainseatings-netizen/Zain-Seating-Systems.git" HEAD:main
