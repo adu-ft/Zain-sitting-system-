@@ -16,6 +16,7 @@ import {
   IMG_DRV_CINEMA4_COGNAC,
   IMG_DRV_FACTORY_FLOOR,
   getWhatsAppUrl,
+  storageImg,
 } from '../data/catalog';
 
 interface AboutUsSectionProps {
@@ -35,20 +36,20 @@ export const WORKSHOP_SLIDES: WorkshopSlide[] = [
     id: 'facility-overview',
     shortLabel: 'Facility Overview',
     headline: 'Facility',
-    image: '/assets/aistudio/WhatsApp_Image_2026-11-24_at_5.51.10_PM_b99fe8f3.jpeg',
+    image: storageImg('uploads/WhatsApp_Image_2026-11-24_at_5.51.10_PM_b99fe8f3.jpeg'),
     hasEmbeddedArtwork: true,
   },
   {
     id: 'cutting-upholstery',
     shortLabel: 'Cutting & Tailoring',
     headline: 'Tailoring',
-    image: '/assets/aistudio/WhatsApp_Image_2026-11-24_at_5.56.42_PM_62674bca.jpeg',
+    image: storageImg('uploads/WhatsApp_Image_2026-11-24_at_5.56.42_PM_62674bca.jpeg'),
   },
   {
     id: 'frame-dispatch',
     shortLabel: 'Frame & Dispatch',
     headline: 'Finishing',
-    image: '/assets/aistudio/WhatsApp_Image_2026-11-24_at_5.56.13_PM_57c21926.jpeg',
+    image: storageImg('uploads/WhatsApp_Image_2026-11-24_at_5.56.13_PM_57c21926.jpeg'),
   },
   {
     id: 'quilting-cinema',

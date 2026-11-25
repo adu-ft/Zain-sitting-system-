@@ -21,7 +21,6 @@ import {
   getWhatsAppUrl,
 } from '../data/catalog';
 import { formatINR } from '../utils/format';
-import { PWAInstallButton } from './PWAInstallButton';
 
 export type UtilityModalType = 'track' | 'help' | 'custom' | null;
 
@@ -266,7 +265,6 @@ export const Header: React.FC<HeaderProps> = ({
 
             {/* Right Action Icons */}
             <div className="flex items-center gap-1 lg:gap-6 shrink-0">
-              <PWAInstallButton variant="header-icon" />
               <button
                 type="button"
                 onClick={() => onOpenUtilityModal('custom')}
@@ -513,7 +511,6 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
 
             <div className="pt-4 border-t border-[#ECE6DF] space-y-2">
-              <PWAInstallButton variant="menu-button" />
               <a
                 href={getWhatsAppUrl(
                   'Hello Zain Seating System, I would like a quote for custom seating.'

@@ -20,7 +20,6 @@ import {
   UtilityModal,
   WishlistDrawer,
 } from './components/ModalsAndDrawers';
-import { OfflineIndicator } from './components/PWAInstallButton';
 import {
   BRAND_LOGO_COMPACT,
   BRAND_LOGO_HORIZONTAL,
@@ -567,8 +566,6 @@ export default function App() {
             </motion.div>
           )}
         </AnimatePresence>
-
-        <OfflineIndicator />
       </div>
     </MotionConfig>
   );

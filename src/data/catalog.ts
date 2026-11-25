@@ -5,6 +5,13 @@ import type {
   Product,
 } from '../types';
 
+export const SUPABASE_IMAGES_BASE =
+  'https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images';
+
+export function storageImg(objectPath: string): string {
+  return `${SUPABASE_IMAGES_BASE}/${objectPath.replace(/^\/+/, '')}`;
+}
+
 export const WHATSAPP_RAW = '918178942327';
 export const WHATSAPP_DISPLAY = '+91 81789 42327';
 export const FACTORY_MOBILE_RAW = '+918178942327';
@@ -12,8 +19,8 @@ export const FACTORY_MOBILE_DISPLAY = '+91 81789 42327';
 export const FACTORY_ADDRESS = 'E-94, Jasola Village, Ground Floor, New Delhi - 110025';
 export const FACTORY_GSTIN = '07ACMPH7962E1ZD';
 export const FACTORY_PAN = 'ACMPH7962E';
-export const BRAND_LOGO_HORIZONTAL = '/src/assets/images/zain_logo_horizontal_1794908716681.jpg';
-export const BRAND_LOGO_COMPACT = '/src/assets/images/zain_logo_compact_1794908719414.jpg';
+export const BRAND_LOGO_HORIZONTAL = storageImg('catalog/zain_logo_horizontal_1794908716681.jpg');
+export const BRAND_LOGO_COMPACT = storageImg('catalog/zain_logo_compact_1794908719414.jpg');
 export const BRAND_LOGO_PATH = BRAND_LOGO_HORIZONTAL;
 
 export function getWhatsAppUrl(message: string): string {
@@ -21,145 +28,145 @@ export function getWhatsAppUrl(message: string): string {
 }
 
 /* Campaign Banners & Interactive Mechanism Explainer Assets */
-export const IMG_HERO_LIVING = '/src/assets/images/zain_hero_living_1794901393144.jpg';
-export const IMG_SHOWROOM_NIGHT = '/src/assets/images/zain_showroom_night_1794901393520.jpg';
-export const IMG_SOFA_MODULAR = '/src/assets/images/zain_sofa_modular_1794901395208.jpg';
-export const IMG_WING_LOUNGE = '/src/assets/images/zain_wing_lounge_1794901394246.jpg';
-export const IMG_ERGONOMIC_OFFICE = '/src/assets/images/zain_ergonomic_office_1794901395371.jpg';
-export const IMG_RECLINER_SOFA = '/src/assets/images/hero_recliner_suite.webp';
-export const IMG_RECLINE_95 = '/src/assets/images/recline_95_upright_1794980022627.jpg';
-export const IMG_RECLINE_130 = '/src/assets/images/recline_130_lounge_1794980025041.jpg';
-export const IMG_RECLINE_160 = '/src/assets/images/recline_160_full_1794980025450.jpg';
-export const IMG_SOFA_CUM_BED = '/src/assets/images/zain_sofa_cum_bed_1794901397072.jpg';
-export const IMG_SOFABED_125 = '/src/assets/images/sofabed_125cm_half_1794980271716.jpg';
-export const IMG_SOFABED_156 = '/src/assets/images/sofabed_156cm_sleeper_1794980251485.jpg';
-export const IMG_SOFABED_STEP1 = '/src/assets/images/sofabed_step1_switch_1794980549527.jpg';
-export const IMG_SOFABED_STEP2 = '/src/assets/images/sofabed_step2_rails_1794980545090.jpg';
-export const IMG_SOFABED_STEP3 = '/src/assets/images/sofabed_step3_support_1794980548263.jpg';
+export const IMG_HERO_LIVING = storageImg('catalog/zain_hero_living_1794901393144.jpg');
+export const IMG_SHOWROOM_NIGHT = storageImg('catalog/zain_showroom_night_1794901393520.jpg');
+export const IMG_SOFA_MODULAR = storageImg('catalog/zain_sofa_modular_1794901395208.jpg');
+export const IMG_WING_LOUNGE = storageImg('catalog/zain_wing_lounge_1794901394246.jpg');
+export const IMG_ERGONOMIC_OFFICE = storageImg('catalog/zain_ergonomic_office_1794901395371.jpg');
+export const IMG_RECLINER_SOFA = storageImg('catalog/hero_recliner_suite.webp');
+export const IMG_RECLINE_95 = storageImg('catalog/recline_95_upright_1794980022627.jpg');
+export const IMG_RECLINE_130 = storageImg('catalog/recline_130_lounge_1794980025041.jpg');
+export const IMG_RECLINE_160 = storageImg('catalog/recline_160_full_1794980025450.jpg');
+export const IMG_SOFA_CUM_BED = storageImg('catalog/zain_sofa_cum_bed_1794901397072.jpg');
+export const IMG_SOFABED_125 = storageImg('catalog/sofabed_125cm_half_1794980271716.jpg');
+export const IMG_SOFABED_156 = storageImg('catalog/sofabed_156cm_sleeper_1794980251485.jpg');
+export const IMG_SOFABED_STEP1 = storageImg('catalog/sofabed_step1_switch_1794980549527.jpg');
+export const IMG_SOFABED_STEP2 = storageImg('catalog/sofabed_step2_rails_1794980545090.jpg');
+export const IMG_SOFABED_STEP3 = storageImg('catalog/sofabed_step3_support_1794980548263.jpg');
+export const IMG_SOFABED_VIDEO_POSTER = storageImg('media/sofa-cum-bed-poster.webp');
 
 /* Studio Color-Variant Renders (Matched to Exact Product Silhouettes) */
-export const IMG_VAR_SOFABED_CHARCOAL = '/src/assets/images/sofabed_charcoal_ash_1795082505413.jpg';
-export const IMG_VAR_SOFABED_CARAMEL = '/src/assets/images/sofabed_caramel_suede_1795082504249.jpg';
-export const IMG_VAR_SOFASET_COGNAC = '/src/assets/images/sofa_set_cognac_tan_1795082506064.jpg';
-export const IMG_VAR_CHAIR_SAGE = '/src/assets/images/chair_sage_velvet_1795082506018.jpg';
-export const IMG_VAR_LOVESEAT_NAVY = '/src/assets/images/loveseat_navy_plush_1795082506432.jpg';
+export const IMG_VAR_SOFABED_CHARCOAL = storageImg('catalog/sofabed_charcoal_ash_1795082505413.jpg');
+export const IMG_VAR_SOFABED_CARAMEL = storageImg('catalog/sofabed_caramel_suede_1795082504249.jpg');
+export const IMG_VAR_SOFASET_COGNAC = storageImg('catalog/sofa_set_cognac_tan_1795082506064.jpg');
+export const IMG_VAR_CHAIR_SAGE = storageImg('catalog/chair_sage_velvet_1795082506018.jpg');
+export const IMG_VAR_LOVESEAT_NAVY = storageImg('catalog/loveseat_navy_plush_1795082506432.jpg');
 
 /* Multi-Angle E-Commerce Product Shots (Same Product · Front, Reclined, Detail & Rear 3/4 Views) */
-export const IMG_SULTAN_RECLINED = '/src/assets/images/sultan_reclined_side_1795344547187.jpg';
-export const IMG_SULTAN_DETAIL = '/src/assets/images/sultan_detail_usb_1795347005932.jpg';
-export const IMG_SULTAN_BACK = '/src/assets/images/sultan_back_angle_1795344547503.jpg';
+export const IMG_SULTAN_RECLINED = storageImg('catalog/sultan_reclined_side_1795344547187.jpg');
+export const IMG_SULTAN_DETAIL = storageImg('catalog/sultan_detail_usb_1795347005932.jpg');
+export const IMG_SULTAN_BACK = storageImg('catalog/sultan_back_angle_1795344547503.jpg');
 
-export const IMG_NAWAB_RECLINED = '/src/assets/images/nawab_reclined_side_1795344546174.jpg';
-export const IMG_NAWAB_DETAIL = '/src/assets/images/nawab_detail_lever_1795344546865.jpg';
-export const IMG_NAWAB_BACK = '/src/assets/images/nawab_back_angle_1795344546216.jpg';
+export const IMG_NAWAB_RECLINED = storageImg('catalog/nawab_reclined_side_1795344546174.jpg');
+export const IMG_NAWAB_DETAIL = storageImg('catalog/nawab_detail_lever_1795344546865.jpg');
+export const IMG_NAWAB_BACK = storageImg('catalog/nawab_back_angle_1795344546216.jpg');
 
-export const IMG_IMPERIAL_RECLINED = '/src/assets/images/imperial_reclined_side_1795347009117.jpg';
-export const IMG_IMPERIAL_DETAIL = '/src/assets/images/imperial_detail_tray_1795344546793.jpg';
-export const IMG_IMPERIAL_BACK = '/src/assets/images/imperial_back_angle_1795344548862.jpg';
+export const IMG_IMPERIAL_RECLINED = storageImg('catalog/imperial_reclined_side_1795347009117.jpg');
+export const IMG_IMPERIAL_DETAIL = storageImg('catalog/imperial_detail_tray_1795344546793.jpg');
+export const IMG_IMPERIAL_BACK = storageImg('catalog/imperial_back_angle_1795344548862.jpg');
 
-export const IMG_NOOR_RECLINED = '/src/assets/images/noor_recliner_open_1795344547429.jpg';
-export const IMG_NOOR_DETAIL = '/src/assets/images/noor_detail_suede_1795344546867.jpg';
-export const IMG_NOOR_OPPOSITE = '/src/assets/images/noor_opposite_angle_1795344547120.jpg';
+export const IMG_NOOR_RECLINED = storageImg('catalog/noor_recliner_open_1795344547429.jpg');
+export const IMG_NOOR_DETAIL = storageImg('catalog/noor_detail_suede_1795344546867.jpg');
+export const IMG_NOOR_OPPOSITE = storageImg('catalog/noor_opposite_angle_1795344547120.jpg');
 
-export const IMG_MAJLIS_DETAIL = '/src/assets/images/majlis_detail_console_1795347009268.jpg';
-export const IMG_MAJLIS_SIDE = '/src/assets/images/majlis_side_angle_1795344547115.jpg';
+export const IMG_MAJLIS_DETAIL = storageImg('catalog/majlis_detail_console_1795347009268.jpg');
+export const IMG_MAJLIS_SIDE = storageImg('catalog/majlis_side_angle_1795344547115.jpg');
 
-export const IMG_AURA_RECLINED = '/src/assets/images/aura_reclined_side_1795347007411.jpg';
-export const IMG_AURA_DETAIL = '/src/assets/images/aura_detail_fabric_1795344547121.jpg';
-export const IMG_AURA_BACK = '/src/assets/images/aura_back_angle_1795344547230.jpg';
+export const IMG_AURA_RECLINED = storageImg('catalog/aura_reclined_side_1795347007411.jpg');
+export const IMG_AURA_DETAIL = storageImg('catalog/aura_detail_fabric_1795344547121.jpg');
+export const IMG_AURA_BACK = storageImg('catalog/aura_back_angle_1795344547230.jpg');
 
-export const IMG_MIRZA_RECLINED = '/src/assets/images/mirza_reclined_view_1795347008860.jpg';
-export const IMG_MIRZA_DETAIL = '/src/assets/images/mirza_detail_stitch_1795344546586.jpg';
+export const IMG_MIRZA_RECLINED = storageImg('catalog/mirza_reclined_view_1795347008860.jpg');
+export const IMG_MIRZA_DETAIL = storageImg('catalog/mirza_detail_stitch_1795344546586.jpg');
 
-export const IMG_ARANYA_RECLINED = '/src/assets/images/aranya_reclined_side_1795344547115.jpg';
-export const IMG_ARANYA_DETAIL = '/src/assets/images/aranya_detail_stitch_1795344547266.jpg';
-export const IMG_ARANYA_BACK = '/src/assets/images/aranya_back_angle_1795344548092.jpg';
+export const IMG_ARANYA_RECLINED = storageImg('catalog/aranya_reclined_side_1795344547115.jpg');
+export const IMG_ARANYA_DETAIL = storageImg('catalog/aranya_detail_stitch_1795344547266.jpg');
+export const IMG_ARANYA_BACK = storageImg('catalog/aranya_back_angle_1795344548092.jpg');
 
-export const IMG_HARMONY_RECLINED = '/src/assets/images/harmony_reclined_view_1795347007446.jpg';
-export const IMG_HARMONY_DETAIL = '/src/assets/images/harmony_detail_suede_1795344547117.jpg';
-export const IMG_HARMONY_BACK = '/src/assets/images/harmony_back_angle_1795344546092.jpg';
+export const IMG_HARMONY_RECLINED = storageImg('catalog/harmony_reclined_view_1795347007446.jpg');
+export const IMG_HARMONY_DETAIL = storageImg('catalog/harmony_detail_suede_1795344547117.jpg');
+export const IMG_HARMONY_BACK = storageImg('catalog/harmony_back_angle_1795344546092.jpg');
 
-export const IMG_ROYALE_RECLINED = '/src/assets/images/royale_reclined_row_1795344547192.jpg';
-export const IMG_ROYALE_DETAIL = '/src/assets/images/royale_detail_cupholder_1795344549024.jpg';
-export const IMG_ROYALE_SIDE = '/src/assets/images/royale_side_angle_1795344548455.jpg';
+export const IMG_ROYALE_RECLINED = storageImg('catalog/royale_reclined_row_1795344547192.jpg');
+export const IMG_ROYALE_DETAIL = storageImg('catalog/royale_detail_cupholder_1795344549024.jpg');
+export const IMG_ROYALE_SIDE = storageImg('catalog/royale_side_angle_1795344548455.jpg');
 
-export const IMG_VERVE_RECLINED = '/src/assets/images/verve_reclined_side_1795344548783.jpg';
-export const IMG_VERVE_DETAIL = '/src/assets/images/verve_detail_swivel_1795344547396.jpg';
-export const IMG_VERVE_BACK = '/src/assets/images/verve_back_angle_1795344547193.jpg';
+export const IMG_VERVE_RECLINED = storageImg('catalog/verve_reclined_side_1795344548783.jpg');
+export const IMG_VERVE_DETAIL = storageImg('catalog/verve_detail_swivel_1795344547396.jpg');
+export const IMG_VERVE_BACK = storageImg('catalog/verve_back_angle_1795344547193.jpg');
 
-
-/* Real Zain Seating System Product Photography (Optimized local test copies — swap with DB URLs when ready) */
-export const IMG_DRV_BEIGE_MOTOR = '/src/assets/images/drive/recliner_beige_motorized.jpg';
-export const IMG_DRV_CREAM_TRAY = '/src/assets/images/drive/cinema_1seater_cream_tray.jpg';
-export const IMG_DRV_CREAM_EXT = '/src/assets/images/drive/recliner_cream_extended.jpg';
-export const IMG_DRV_NAVY_TRAY = '/src/assets/images/drive/cinema_1seater_navy_tray.jpg';
-export const IMG_DRV_SAND_TRAY = '/src/assets/images/drive/cinema_1seater_sand_tray.jpg';
-export const IMG_DRV_CARAMEL_TRAY = '/src/assets/images/drive/cinema_1seater_caramel_tray.jpg';
-export const IMG_DRV_ROYAL_USB = '/src/assets/images/drive/cinema_1seater_royal_usb.jpg';
-export const IMG_DRV_COGNAC_USB = '/src/assets/images/drive/recliner_cognac_usb.jpg';
-export const IMG_DRV_CHARCOAL_SLATE = '/src/assets/images/drive/recliner_charcoal_slate.jpg';
-export const IMG_DRV_ESPRESSO_BROWN = '/src/assets/images/drive/recliner_espresso_brown.jpg';
-export const IMG_DRV_BLACK_MANUAL = '/src/assets/images/drive/recliner_black_manual.jpg';
-export const IMG_DRV_IVORY_MANUAL = '/src/assets/images/drive/recliner_ivory_manual.jpg';
-export const IMG_DRV_TERRACOTTA_MANUAL = '/src/assets/images/drive/recliner_terracotta_manual.jpg';
-export const IMG_DRV_NAVY_CLOUD = '/src/assets/images/drive/recliner_navy_cloud.jpg';
-export const IMG_DRV_MUSTARD_MANUAL = '/src/assets/images/drive/recliner_mustard_manual.jpg';
-export const IMG_DRV_WHITE_SWIVEL = '/src/assets/images/drive/recliner_white_swivel.jpg';
-export const IMG_DRV_GREY_FABRIC_EXT = '/src/assets/images/drive/recliner_grey_fabric_extended.jpg';
-export const IMG_DRV_TEAL_UPRIGHT = '/src/assets/images/drive/recliner_teal_upright.jpg';
-export const IMG_DRV_TEAL_RECLINED = '/src/assets/images/drive/recliner_teal_reclined.jpg';
-export const IMG_DRV_LOVESEAT_CHARCOAL = '/src/assets/images/drive/loveseat_charcoal_manual.jpg';
-export const IMG_DRV_LOVESEAT_TAUPE = '/src/assets/images/drive/loveseat_taupe_upright.jpg';
-export const IMG_DRV_CINEMA2_CHARCOAL_UP = '/src/assets/images/drive/cinema_2seater_charcoal_upright.jpg';
-export const IMG_DRV_CINEMA2_CHARCOAL_REC = '/src/assets/images/drive/cinema_2seater_charcoal_reclined.jpg';
-export const IMG_DRV_CINEMA2_COGNAC = '/src/assets/images/drive/cinema_2seater_cognac.jpg';
-export const IMG_DRV_CINEMA2_BLACK = '/src/assets/images/drive/cinema_2seater_black_console.jpg';
-export const IMG_DRV_CINEMA2_OLIVE = '/src/assets/images/drive/cinema_2seater_olive_tray.jpg';
-export const IMG_DRV_CINEMA3_GREY = '/src/assets/images/drive/cinema_3seater_grey.jpg';
-export const IMG_DRV_CINEMA3_BLACK = '/src/assets/images/drive/cinema_3seater_black.jpg';
-export const IMG_DRV_CINEMA4_COGNAC = '/src/assets/images/drive/cinema_4seater_cognac_factory.jpg';
-export const IMG_DRV_CINEMA4_CRIMSON = '/src/assets/images/drive/cinema_4seater_crimson.jpg';
-export const IMG_DRV_LSHAPE_BROWN = '/src/assets/images/drive/sofa_lshape_brown.jpg';
-export const IMG_DRV_LSHAPE_TAUPE = '/src/assets/images/drive/sofa_lshape_taupe_extended.jpg';
-export const IMG_DRV_SOFASET_321 = '/src/assets/images/drive/sofa_set_321_espresso.jpg';
-export const IMG_DRV_SOFA3_GREY = '/src/assets/images/drive/sofa_3seater_grey_recliner.jpg';
-export const IMG_DRV_SOFA3_ESPRESSO = '/src/assets/images/drive/sofa_3seater_espresso_recliner.jpg';
-export const IMG_DRV_CHAIR_ESPRESSO = '/src/assets/images/drive/chair_espresso_modern.jpg';
-export const IMG_DRV_CHAIR_SAND = '/src/assets/images/drive/chair_sand_swivel.jpg';
-export const IMG_DRV_SPEC_DIMENSIONS = '/src/assets/images/drive/recliner_dimensions_spec.jpg';
-export const IMG_DRV_FACTORY_FLOOR = '/src/assets/images/drive/factory_floor_recliners.jpg';
+/* Real Zain Seating System Product Photography (Hosted in Supabase Storage `images` bucket) */
+export const IMG_DRV_BEIGE_MOTOR = storageImg('drive/recliner_beige_motorized.jpg');
+export const IMG_DRV_CREAM_TRAY = storageImg('drive/cinema_1seater_cream_tray.jpg');
+export const IMG_DRV_CREAM_EXT = storageImg('drive/recliner_cream_extended.jpg');
+export const IMG_DRV_NAVY_TRAY = storageImg('drive/cinema_1seater_navy_tray.jpg');
+export const IMG_DRV_SAND_TRAY = storageImg('drive/cinema_1seater_sand_tray.jpg');
+export const IMG_DRV_CARAMEL_TRAY = storageImg('drive/cinema_1seater_caramel_tray.jpg');
+export const IMG_DRV_ROYAL_USB = storageImg('drive/cinema_1seater_royal_usb.jpg');
+export const IMG_DRV_COGNAC_USB = storageImg('drive/recliner_cognac_usb.jpg');
+export const IMG_DRV_CHARCOAL_SLATE = storageImg('drive/recliner_charcoal_slate.jpg');
+export const IMG_DRV_ESPRESSO_BROWN = storageImg('drive/recliner_espresso_brown.jpg');
+export const IMG_DRV_BLACK_MANUAL = storageImg('drive/recliner_black_manual.jpg');
+export const IMG_DRV_IVORY_MANUAL = storageImg('drive/recliner_ivory_manual.jpg');
+export const IMG_DRV_TERRACOTTA_MANUAL = storageImg('drive/recliner_terracotta_manual.jpg');
+export const IMG_DRV_NAVY_CLOUD = storageImg('drive/recliner_navy_cloud.jpg');
+export const IMG_DRV_MUSTARD_MANUAL = storageImg('drive/recliner_mustard_manual.jpg');
+export const IMG_DRV_WHITE_SWIVEL = storageImg('drive/recliner_white_swivel.jpg');
+export const IMG_DRV_GREY_FABRIC_EXT = storageImg('drive/recliner_grey_fabric_extended.jpg');
+export const IMG_DRV_TEAL_UPRIGHT = storageImg('drive/recliner_teal_upright.jpg');
+export const IMG_DRV_TEAL_RECLINED = storageImg('drive/recliner_teal_reclined.jpg');
+export const IMG_DRV_LOVESEAT_CHARCOAL = storageImg('drive/loveseat_charcoal_manual.jpg');
+export const IMG_DRV_LOVESEAT_TAUPE = storageImg('drive/loveseat_taupe_upright.jpg');
+export const IMG_DRV_CINEMA2_CHARCOAL_UP = storageImg('drive/cinema_2seater_charcoal_upright.jpg');
+export const IMG_DRV_CINEMA2_CHARCOAL_REC = storageImg('drive/cinema_2seater_charcoal_reclined.jpg');
+export const IMG_DRV_CINEMA2_COGNAC = storageImg('drive/cinema_2seater_cognac.jpg');
+export const IMG_DRV_CINEMA2_BLACK = storageImg('drive/cinema_2seater_black_console.jpg');
+export const IMG_DRV_CINEMA2_OLIVE = storageImg('drive/cinema_2seater_olive_tray.jpg');
+export const IMG_DRV_CINEMA3_GREY = storageImg('drive/cinema_3seater_grey.jpg');
+export const IMG_DRV_CINEMA3_BLACK = storageImg('drive/cinema_3seater_black.jpg');
+export const IMG_DRV_CINEMA4_COGNAC = storageImg('drive/cinema_4seater_cognac_factory.jpg');
+export const IMG_DRV_CINEMA4_CRIMSON = storageImg('drive/cinema_4seater_crimson.jpg');
+export const IMG_DRV_LSHAPE_BROWN = storageImg('drive/sofa_lshape_brown.jpg');
+export const IMG_DRV_LSHAPE_TAUPE = storageImg('drive/sofa_lshape_taupe_extended.jpg');
+export const IMG_DRV_SOFASET_321 = storageImg('drive/sofa_set_321_espresso.jpg');
+export const IMG_DRV_SOFA3_GREY = storageImg('drive/sofa_3seater_grey_recliner.jpg');
+export const IMG_DRV_SOFA3_ESPRESSO = storageImg('drive/sofa_3seater_espresso_recliner.jpg');
+export const IMG_DRV_CHAIR_ESPRESSO = storageImg('drive/chair_espresso_modern.jpg');
+export const IMG_DRV_CHAIR_SAND = storageImg('drive/chair_sand_swivel.jpg');
+export const IMG_DRV_SPEC_DIMENSIONS = storageImg('drive/recliner_dimensions_spec.jpg');
+export const IMG_DRV_FACTORY_FLOOR = storageImg('drive/factory_floor_recliners.jpg');
 
 /* Authentic Customer Delivery & Portrait Review Assets */
-export const IMG_REVIEW_RECLINER_HOME = '/src/assets/images/review_recliner_home_1794978621438.jpg';
-export const IMG_REVIEW_SOFA_HOME = '/src/assets/images/review_sofa_delivered_1794978624596.jpg';
-export const IMG_REVIEW_SOFABED_HOME = '/src/assets/images/review_sofabed_home_1794978624350.jpg';
-export const IMG_REVIEW_CHAIR_HOME = '/src/assets/images/review_chair_home_1794978641595.jpg';
-export const IMG_REVIEW_AVATAR_MAN = '/src/assets/images/review_customer_avatar_1794978625502.jpg';
-export const IMG_REVIEW_AVATAR_WOMAN = '/src/assets/images/review_woman_avatar_1794978642354.jpg';
+export const IMG_REVIEW_RECLINER_HOME = storageImg('catalog/review_recliner_home_1794978621438.jpg');
+export const IMG_REVIEW_SOFA_HOME = storageImg('catalog/review_sofa_delivered_1794978624596.jpg');
+export const IMG_REVIEW_SOFABED_HOME = storageImg('catalog/review_sofabed_home_1794978624350.jpg');
+export const IMG_REVIEW_CHAIR_HOME = storageImg('catalog/review_chair_home_1794978641595.jpg');
+export const IMG_REVIEW_AVATAR_MAN = storageImg('catalog/review_customer_avatar_1794978625502.jpg');
+export const IMG_REVIEW_AVATAR_WOMAN = storageImg('catalog/review_woman_avatar_1794978642354.jpg');
 
 /* 360° Revolving & Swivel Rocker Recliner Studio Photography */
-export const IMG_REVOLVING_IVORY_LOUNGE = '/assets/aistudio/WhatsApp_Image_2026-11-24_at_5.48.02_PM_2ca80368.jpeg';
-export const IMG_REVOLVING_IVORY_RECLINED = '/assets/aistudio/WhatsApp_Image_2026-11-24_at_5.47.49_PM_6b12b949.jpeg';
-export const IMG_REVOLVING_DIMENSIONS_SPEC = '/assets/aistudio/image_6647440f.png';
-export const IMG_REVOLVING_COGNAC = '/src/assets/images/revolving_cognac_tan_1795584283993.jpg';
-export const IMG_REVOLVING_CHARCOAL = '/src/assets/images/revolving_charcoal_suede_1795584284777.jpg';
-export const IMG_REVOLVING_ESPRESSO = '/src/assets/images/revolving_espresso_brown_1795584290825.jpg';
-export const IMG_REVOLVING_NAVY_MOTOR = '/src/assets/images/revolving_navy_motor_1795584288005.jpg';
-export const IMG_REVOLVING_TAUPE_UPRIGHT = '/src/assets/images/revolving_taupe_upright_1795584290347.jpg';
+export const IMG_REVOLVING_IVORY_LOUNGE = storageImg('uploads/WhatsApp_Image_2026-11-24_at_5.48.02_PM_2ca80368.jpeg');
+export const IMG_REVOLVING_IVORY_RECLINED = storageImg('uploads/WhatsApp_Image_2026-11-24_at_5.47.49_PM_6b12b949.jpeg');
+export const IMG_REVOLVING_DIMENSIONS_SPEC = storageImg('uploads/image_6647440f.png');
+export const IMG_REVOLVING_COGNAC = storageImg('catalog/revolving_cognac_tan_1795584283993.jpg');
+export const IMG_REVOLVING_CHARCOAL = storageImg('catalog/revolving_charcoal_suede_1795584284777.jpg');
+export const IMG_REVOLVING_ESPRESSO = storageImg('catalog/revolving_espresso_brown_1795584290825.jpg');
+export const IMG_REVOLVING_NAVY_MOTOR = storageImg('catalog/revolving_navy_motor_1795584288005.jpg');
+export const IMG_REVOLVING_TAUPE_UPRIGHT = storageImg('catalog/revolving_taupe_upright_1795584290347.jpg');
 
 /* Multi-Angle Revolving Recliner Shots (Same Product · Front, Reclined, Detail & Rear 3/4 Views) */
-export const IMG_ORBIT_DETAIL = '/src/assets/images/orbit_detail_lever_1795584852794.jpg';
-export const IMG_ORBIT_BACK = '/src/assets/images/orbit_back_angle_1795584853038.jpg';
+export const IMG_ORBIT_DETAIL = storageImg('catalog/orbit_detail_lever_1795584852794.jpg');
+export const IMG_ORBIT_BACK = storageImg('catalog/orbit_back_angle_1795584853038.jpg');
 
-export const IMG_AXIS_UPRIGHT = '/src/assets/images/axis_upright_front_1795584854505.jpg';
-export const IMG_AXIS_DETAIL = '/src/assets/images/axis_detail_suede_1795584855931.jpg';
-export const IMG_AXIS_BACK = '/src/assets/images/axis_back_angle_1795584857078.jpg';
-export const IMG_AXIS_DIMENSIONS_SPEC = '/src/assets/images/axis_dimensions_spec_1795586016924.jpg';
+export const IMG_AXIS_UPRIGHT = storageImg('catalog/axis_upright_front_1795584854505.jpg');
+export const IMG_AXIS_DETAIL = storageImg('catalog/axis_detail_suede_1795584855931.jpg');
+export const IMG_AXIS_BACK = storageImg('catalog/axis_back_angle_1795584857078.jpg');
+export const IMG_AXIS_DIMENSIONS_SPEC = storageImg('catalog/axis_dimensions_spec_1795586016924.jpg');
 
-export const IMG_ZENITH_RECLINED = '/src/assets/images/zenith_reclined_side_1795584859661.jpg';
-export const IMG_ZENITH_DETAIL = '/src/assets/images/zenith_detail_usb_1795584859983.jpg';
-export const IMG_ZENITH_BACK = '/src/assets/images/zenith_back_angle_1795584862891.jpg';
-export const IMG_ZENITH_DIMENSIONS_SPEC = '/src/assets/images/zenith_dimensions_spec_1795586024698.jpg';
+export const IMG_ZENITH_RECLINED = storageImg('catalog/zenith_reclined_side_1795584859661.jpg');
+export const IMG_ZENITH_DETAIL = storageImg('catalog/zenith_detail_usb_1795584859983.jpg');
+export const IMG_ZENITH_BACK = storageImg('catalog/zenith_back_angle_1795584862891.jpg');
+export const IMG_ZENITH_DIMENSIONS_SPEC = storageImg('catalog/zenith_dimensions_spec_1795586024698.jpg');
 
 /* 6 distinct core manufactured categories */
 export const CATEGORY_TILES: CategoryTile[] = [

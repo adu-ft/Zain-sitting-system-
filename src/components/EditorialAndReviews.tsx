@@ -19,6 +19,7 @@ import {
   IMG_RECLINE_95,
   IMG_RECLINE_130,
   IMG_RECLINE_160,
+  IMG_SOFABED_VIDEO_POSTER,
 } from '../data/catalog';
 import type { CategoryKey, CustomerStory, Product } from '../types';
 
@@ -490,7 +491,7 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
               <div className="aspect-video w-full rounded-2xl overflow-hidden bg-[#131F2D] shadow-sm relative border border-[#ECE2D5]">
                 <video
                   src="/assets/videos/sofa-cum-bed-demo.mp4?v=15s"
-                  poster="/assets/videos/sofa-cum-bed-poster.webp"
+                  poster={IMG_SOFABED_VIDEO_POSTER}
                   autoPlay
                   muted
                   loop
