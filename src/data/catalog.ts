@@ -45,7 +45,7 @@ export const IMG_SOFABED_STEP2 = storageImg('catalog/sofabed_step2_rails_1794980
 export const IMG_SOFABED_STEP3 = storageImg('catalog/sofabed_step3_support_1794980548263.jpg');
 export const IMG_SOFABED_VIDEO_POSTER = storageImg('media/sofa-cum-bed-poster.webp');
 export const VIDEO_MOTORIZED_RECLINER =
-  'https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/media/WhatsApp%20Video%202026-11-26%20at%203.45.32%20PM.mp4';
+  'https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/media/WhatsApp%20Video%202026-11-26%20at%203.45.32%20PM_gwr_video_mvp.mp4';
 
 /* Studio Color-Variant Renders (Matched to Exact Product Silhouettes) */
 export const IMG_VAR_SOFABED_CHARCOAL = storageImg('catalog/sofabed_charcoal_ash_1795082505413.jpg');
