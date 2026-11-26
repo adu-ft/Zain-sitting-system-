@@ -1020,6 +1020,8 @@ export const UtilityModal: React.FC<UtilityModalProps> = ({ type, onClose }) => 
                     <option value="Custom Sofa Set">Custom Sofa Set / L-Shape</option>
                     <option value="Motorized Recliner">Motorized Push-Button Recliner</option>
                     <option value="Manual Recliner">Manual Lever Recliner</option>
+                    <option value="Manual Revolving Recliner">360° Revolving Manual Lever Recliner</option>
+                    <option value="Motorized Revolving Recliner">360° Revolving Motorized Recliner</option>
                     <option value="Electric Sofa Cum Bed">Electric Extendable Sofa Cum Bed</option>
                     <option value="Modern Home Chair">Modernist Home Chair</option>
                   </select>

@@ -20,6 +20,7 @@ import {
   IMG_RECLINE_130,
   IMG_RECLINE_160,
   IMG_SOFABED_VIDEO_POSTER,
+  VIDEO_MOTORIZED_RECLINER,
 } from '../data/catalog';
 import type { CategoryKey, CustomerStory, Product } from '../types';
 
@@ -36,6 +37,7 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
 }) => {
   const [mechanismTab, setMechanismTab] = useState<'manual' | 'motorized'>('motorized');
   const [reclineAngle, setReclineAngle] = useState<0 | 1 | 2>(0);
+  const [isReclinePaused, setIsReclinePaused] = useState(false);
   const [stories, setStories] = useState<CustomerStory[]>(CUSTOMER_STORIES);
   const [isReviewFormOpen, setIsReviewFormOpen] = useState(false);
   const [revName, setRevName] = useState('');
@@ -147,8 +149,13 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
     });
   };
 
-  const reclineLabels = ['90° Upright', '130° Lounge', '160° Full Recline'];
-  const reclineShortLabels = ['90° Upright', '130° Lounge', '160° Full'];
+  const SLIDE_DURATION_MS = 3200;
+  const reclineLabels = [
+    'Step 1 · Closed Position (90°)',
+    'Step 2 · Partial Recline (130°)',
+    'Step 3 · Full Recline (160°)',
+  ];
+  const reclineStepNames = ['Closed', 'Partial', 'Full Recline'];
   const reclineImages = [IMG_RECLINE_95, IMG_RECLINE_130, IMG_RECLINE_160];
   const backTiltDegrees = [-6, -24, -44];
   const footrestAngles = [82, 32, 6];
@@ -159,6 +166,14 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
       img.src = src;
     });
   }, []);
+
+  useEffect(() => {
+    if (isReclinePaused || mechanismTab !== 'manual') return;
+    const timer = window.setInterval(() => {
+      setReclineAngle((prev) => (((prev + 1) % 3) as 0 | 1 | 2));
+    }, SLIDE_DURATION_MS);
+    return () => window.clearInterval(timer);
+  }, [isReclinePaused, mechanismTab]);
 
   return (
     <>
@@ -194,118 +209,185 @@ export const EditorialAndReviews: React.FC<EditorialAndReviewsProps> = ({
               </h2>
             </div>
 
-            <div className="lg:col-span-6 min-w-0 rounded-2xl overflow-hidden bg-white border border-[#E2D8CD] shadow-sm">
-              {/* Stacked Crossfade-Blended Recliner Degree Photos */}
-              <div className="aspect-[16/10] bg-[#FAF4ED] relative overflow-hidden">
-                {reclineImages.map((src, idx) => {
-                  const isActive = reclineAngle === idx;
-                  return (
-                    <img
-                      key={src}
-                      src={src}
-                      alt={`Zain Recliner shown at ${reclineLabels[idx]} position`}
-                      referrerPolicy="no-referrer"
-                      decoding="async"
-                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-out ${
-                        isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-                      }`}
+            <div
+              className="lg:col-span-6 min-w-0 rounded-2xl overflow-hidden bg-white border border-[#E2D8CD] shadow-sm"
+              onMouseEnter={() => setIsReclinePaused(true)}
+              onMouseLeave={() => setIsReclinePaused(false)}
+            >
+              {mechanismTab === 'motorized' ? (
+                <>
+                  {/* Real Factory Video Demonstration for Motorized Push-Button Recliner */}
+                  <div className="aspect-video bg-[#131F2D] relative overflow-hidden">
+                    <video
+                      src={VIDEO_MOTORIZED_RECLINER}
+                      poster={IMG_RECLINE_95}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      controls
+                      preload="metadata"
+                      aria-label="Zain Seating System motorized push-button recliner mechanism demonstration video"
+                      className="w-full h-full object-cover"
                     />
-                  );
-                })}
-              </div>
-
-              {/* Flush Attached Recliner Control Dock */}
-              <div className="p-3.5 sm:p-4 bg-[#FAF4ED]/65 border-t border-[#EAE0D4]">
-                {/* Live Motion SVG + Degree Buttons */}
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-                  <div className="flex items-center gap-3 w-full sm:w-auto">
-                    {/* Minimal Animated Side-Profile Chair SVG */}
-                    <div className="w-20 h-16 rounded-lg bg-white border border-[#EAE0D4] flex items-center justify-center relative overflow-hidden shrink-0">
-                      <svg viewBox="0 0 120 90" className="w-18 h-14" fill="none">
-                        <line
-                          x1="28"
-                          y1="74"
-                          x2="86"
-                          y2="74"
-                          stroke="#131F2D"
-                          strokeWidth="3"
-                          strokeLinecap="round"
-                        />
-                        <rect
-                          x="38"
-                          y="52"
-                          width="38"
-                          height="12"
-                          rx="4"
-                          fill="#E27A34"
-                        />
-                        <motion.g
-                          animate={{ rotate: backTiltDegrees[reclineAngle] }}
-                          transition={{ type: 'spring', stiffness: 180, damping: 22 }}
-                          style={{ originX: '40px', originY: '58px' }}
-                        >
-                          <rect
-                            x="30"
-                            y="18"
-                            width="12"
-                            height="40"
-                            rx="5"
-                            fill="#131F2D"
-                          />
-                        </motion.g>
-                        <motion.g
-                          animate={{ rotate: footrestAngles[reclineAngle] }}
-                          transition={{ type: 'spring', stiffness: 180, damping: 22 }}
-                          style={{ originX: '76px', originY: '58px' }}
-                        >
-                          <rect
-                            x="76"
-                            y="52"
-                            width="26"
-                            height="9"
-                            rx="3"
-                            fill="#9C582B"
-                          />
-                        </motion.g>
-                      </svg>
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-[10.5px] font-semibold uppercase tracking-wider text-[#E27A34]">
-                        {mechanismTab === 'motorized'
-                          ? 'Push-Button Electric Glide'
-                          : 'Side-Lever Mechanical Action'}
-                      </p>
-                      <p className="text-xs sm:text-sm font-semibold text-[#131F2D] tabular-nums">
-                        {reclineLabels[reclineAngle]}
-                      </p>
-                      <p className="text-[11px] text-[#515151]">
-                        Tap a recline angle to preview posture
-                      </p>
-                    </div>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-1.5 w-full sm:w-auto justify-center sm:justify-end">
-                    {([0, 1, 2] as const).map((step) => {
-                      const isActive = reclineAngle === step;
+                  {/* Flush Attached Status Strip for Motorized Demo */}
+                  <div className="p-3.5 sm:p-4 bg-[#FAF4ED]/70 border-t border-[#EAE0D4] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div className="min-w-0">
+                      <p className="text-[10.5px] font-semibold uppercase tracking-wider text-[#E27A34] truncate">
+                        Push-Button Electric Glide · Live Demo
+                      </p>
+                      <p className="text-xs sm:text-sm font-semibold text-[#131F2D] truncate">
+                        Smooth 90° to 160° Motorized Recline
+                      </p>
+                    </div>
+                    <span className="text-[11px] font-medium text-[#515151] shrink-0">
+                      Silent 24V Actuator · One-Touch Control
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {/* Auto-Looping 3-Step Editorial Recliner Slideshow (Manual Lever) */}
+                  <div className="aspect-[3/2] bg-[#FAF4ED] relative overflow-hidden">
+                    {reclineImages.map((src, idx) => {
+                      const isActive = reclineAngle === idx;
                       return (
-                        <button
-                          key={step}
-                          type="button"
-                          onClick={() => setReclineAngle(step)}
-                          aria-pressed={isActive}
-                          className={`px-2.5 py-1.5 rounded-md text-[11px] font-semibold transition-all cursor-pointer tabular-nums ${
-                            isActive
-                              ? 'bg-[#E27A34] text-white shadow-xs'
-                              : 'bg-white text-[#515151] hover:bg-[#F2E6D8] hover:text-[#131F2D] border border-[#E2D8CD]'
+                        <img
+                          key={src}
+                          src={src}
+                          alt={`Zain Recliner shown at ${reclineLabels[idx]}`}
+                          referrerPolicy="no-referrer"
+                          decoding="async"
+                          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${
+                            isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
                           }`}
-                        >
-                          {reclineShortLabels[step]}
-                        </button>
+                        />
                       );
                     })}
                   </div>
-                </div>
-              </div>
+
+                  {/* Flush Attached Auto-Loop Status & Progress Strip (No Clicking Required) */}
+                  <div className="p-3.5 sm:p-4 bg-[#FAF4ED]/70 border-t border-[#EAE0D4]">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div className="flex items-center gap-3 min-w-0">
+                        {/* Synced Live Side-Profile Chair SVG */}
+                        <div className="w-16 h-12 rounded-lg bg-white border border-[#EAE0D4] flex items-center justify-center relative overflow-hidden shrink-0">
+                          <svg viewBox="0 0 120 90" className="w-14 h-11" fill="none">
+                            <line
+                              x1="28"
+                              y1="74"
+                              x2="86"
+                              y2="74"
+                              stroke="#131F2D"
+                              strokeWidth="3"
+                              strokeLinecap="round"
+                            />
+                            <rect
+                              x="38"
+                              y="52"
+                              width="38"
+                              height="12"
+                              rx="4"
+                              fill="#E27A34"
+                            />
+                            <motion.g
+                              animate={{ rotate: backTiltDegrees[reclineAngle] }}
+                              transition={{ type: 'spring', stiffness: 180, damping: 22 }}
+                              style={{ originX: '40px', originY: '58px' }}
+                            >
+                              <rect
+                                x="30"
+                                y="18"
+                                width="12"
+                                height="40"
+                                rx="5"
+                                fill="#131F2D"
+                              />
+                            </motion.g>
+                            <motion.g
+                              animate={{ rotate: footrestAngles[reclineAngle] }}
+                              transition={{ type: 'spring', stiffness: 180, damping: 22 }}
+                              style={{ originX: '76px', originY: '58px' }}
+                            >
+                              <rect
+                                x="76"
+                                y="52"
+                                width="26"
+                                height="9"
+                                rx="3"
+                                fill="#9C582B"
+                              />
+                            </motion.g>
+                          </svg>
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-[10.5px] font-semibold uppercase tracking-wider text-[#E27A34] truncate">
+                            Side-Lever Mechanical Action
+                          </p>
+                          <p className="text-xs sm:text-sm font-semibold text-[#131F2D] tabular-nums truncate">
+                            {reclineLabels[reclineAngle]}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Subtle Auto-Advancing 3-Step Progress Indicator */}
+                      <div
+                        className="grid grid-cols-3 sm:flex items-center gap-2 w-full sm:w-auto shrink-0"
+                        role="tablist"
+                        aria-label="Recline posture slideshow progress"
+                      >
+                        {([0, 1, 2] as const).map((step) => {
+                          const isActive = reclineAngle === step;
+                          const isCompleted = reclineAngle > step;
+                          return (
+                            <button
+                              key={step}
+                              type="button"
+                              role="tab"
+                              aria-selected={isActive}
+                              aria-label={reclineLabels[step]}
+                              onClick={() => setReclineAngle(step)}
+                              className="group flex flex-col items-start gap-1 cursor-pointer focus:outline-none w-full sm:w-auto"
+                            >
+                              <span
+                                className={`text-[10px] font-semibold transition-colors whitespace-nowrap ${
+                                  isActive
+                                    ? 'text-[#131F2D]'
+                                    : 'text-[#8C8278] group-hover:text-[#515151]'
+                                }`}
+                              >
+                                {reclineStepNames[step]}
+                              </span>
+                              <span className="block w-full sm:w-14 h-1.5 rounded-full bg-[#E5DBD0] overflow-hidden relative">
+                                {isActive ? (
+                                  <motion.span
+                                    key={`progress-${step}-${isReclinePaused ? 'paused' : 'run'}`}
+                                    initial={{ width: '0%' }}
+                                    animate={{ width: isReclinePaused ? '45%' : '100%' }}
+                                    transition={{
+                                      duration: isReclinePaused ? 0.2 : SLIDE_DURATION_MS / 1000,
+                                      ease: 'linear',
+                                    }}
+                                    className="absolute inset-y-0 left-0 bg-[#E27A34] rounded-full"
+                                  />
+                                ) : (
+                                  <span
+                                    className={`absolute inset-y-0 left-0 rounded-full transition-all duration-300 ${
+                                      isCompleted ? 'w-full bg-[#E27A34]/45' : 'w-0'
+                                    }`}
+                                  />
+                                )}
+                              </span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="lg:col-span-6 min-w-0 flex flex-col justify-center">

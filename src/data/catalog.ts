@@ -34,9 +34,9 @@ export const IMG_SOFA_MODULAR = storageImg('catalog/zain_sofa_modular_1794901395
 export const IMG_WING_LOUNGE = storageImg('catalog/zain_wing_lounge_1794901394246.jpg');
 export const IMG_ERGONOMIC_OFFICE = storageImg('catalog/zain_ergonomic_office_1794901395371.jpg');
 export const IMG_RECLINER_SOFA = storageImg('catalog/hero_recliner_suite.webp');
-export const IMG_RECLINE_95 = storageImg('catalog/recline_95_upright_1794980022627.jpg');
-export const IMG_RECLINE_130 = storageImg('catalog/recline_130_lounge_1794980025041.jpg');
-export const IMG_RECLINE_160 = storageImg('catalog/recline_160_full_1794980025450.jpg');
+export const IMG_RECLINE_95 = storageImg('catalog/recline_step1_closed.webp');
+export const IMG_RECLINE_130 = storageImg('catalog/recline_step2_partial.webp');
+export const IMG_RECLINE_160 = storageImg('catalog/recline_step3_full.webp');
 export const IMG_SOFA_CUM_BED = storageImg('catalog/zain_sofa_cum_bed_1794901397072.jpg');
 export const IMG_SOFABED_125 = storageImg('catalog/sofabed_125cm_half_1794980271716.jpg');
 export const IMG_SOFABED_156 = storageImg('catalog/sofabed_156cm_sleeper_1794980251485.jpg');
@@ -44,6 +44,8 @@ export const IMG_SOFABED_STEP1 = storageImg('catalog/sofabed_step1_switch_179498
 export const IMG_SOFABED_STEP2 = storageImg('catalog/sofabed_step2_rails_1794980545090.jpg');
 export const IMG_SOFABED_STEP3 = storageImg('catalog/sofabed_step3_support_1794980548263.jpg');
 export const IMG_SOFABED_VIDEO_POSTER = storageImg('media/sofa-cum-bed-poster.webp');
+export const VIDEO_MOTORIZED_RECLINER =
+  'https://vrjvxpzutmingaqrsvnn.supabase.co/storage/v1/object/public/images/media/WhatsApp%20Video%202026-11-26%20at%203.45.32%20PM.mp4';
 
 /* Studio Color-Variant Renders (Matched to Exact Product Silhouettes) */
 export const IMG_VAR_SOFABED_CHARCOAL = storageImg('catalog/sofabed_charcoal_ash_1795082505413.jpg');
@@ -168,7 +170,7 @@ export const IMG_ZENITH_DETAIL = storageImg('catalog/zenith_detail_usb_179558485
 export const IMG_ZENITH_BACK = storageImg('catalog/zenith_back_angle_1795584862891.jpg');
 export const IMG_ZENITH_DIMENSIONS_SPEC = storageImg('catalog/zenith_dimensions_spec_1795586024698.jpg');
 
-/* 6 distinct core manufactured categories */
+/* 7 distinct core manufactured categories */
 export const CATEGORY_TILES: CategoryTile[] = [
   {
     id: 'cat-manual-recliners',
@@ -177,7 +179,7 @@ export const CATEGORY_TILES: CategoryTile[] = [
     room: 'Recliners',
     targetCategory: 'Manual Recliners',
     image: IMG_DRV_BLACK_MANUAL,
-    startingPrice: 18999,
+    startingPrice: 12999,
   },
   {
     id: 'cat-motorized-recliners',
@@ -186,16 +188,25 @@ export const CATEGORY_TILES: CategoryTile[] = [
     room: 'Recliners',
     targetCategory: 'Motorized Recliners',
     image: IMG_DRV_BEIGE_MOTOR,
-    startingPrice: 28999,
+    startingPrice: 19999,
   },
   {
-    id: 'cat-revolving-recliners',
-    label: 'REVOLVING RECLINERS',
-    sublabel: '360° Swivel & Rocker',
+    id: 'cat-revolving-manual',
+    label: 'REVOLVING MANUAL',
+    sublabel: '360° Swivel · Manual Lever',
     room: 'Recliners',
-    targetCategory: 'Revolving Recliners',
+    targetCategory: 'Manual Revolving Recliners',
     image: IMG_REVOLVING_IVORY_LOUNGE,
-    startingPrice: 22499,
+    startingPrice: 17500,
+  },
+  {
+    id: 'cat-revolving-motorized',
+    label: 'REVOLVING MOTORIZED',
+    sublabel: '360° Swivel · Push-Button',
+    room: 'Recliners',
+    targetCategory: 'Motorized Revolving Recliners',
+    image: IMG_REVOLVING_NAVY_MOTOR,
+    startingPrice: 24500,
   },
   {
     id: 'cat-custom-sofas',
@@ -204,7 +215,7 @@ export const CATEGORY_TILES: CategoryTile[] = [
     room: 'Sofa Sets',
     targetCategory: 'Sofa Sets',
     image: IMG_DRV_LSHAPE_BROWN,
-    startingPrice: 34999,
+    startingPrice: 30000,
   },
   {
     id: 'cat-electric-sofabed',
@@ -213,7 +224,7 @@ export const CATEGORY_TILES: CategoryTile[] = [
     room: 'Electric Sofa Beds',
     targetCategory: 'Electric Sofa Beds',
     image: IMG_SOFA_CUM_BED,
-    startingPrice: 38499,
+    startingPrice: 49500,
   },
   {
     id: 'cat-home-lounge',
@@ -222,7 +233,7 @@ export const CATEGORY_TILES: CategoryTile[] = [
     room: 'Home Chairs',
     targetCategory: 'Home Chairs',
     image: IMG_DRV_CHAIR_ESPRESSO,
-    startingPrice: 14499,
+    startingPrice: 9500,
   },
 ];
 
@@ -230,7 +241,7 @@ export const EXCLUSIVE_DEALS: DealCard[] = [
   {
     id: 'deal-recline',
     title: 'Manual & Motorized Cinema Recliners',
-    highlight: 'Side Lever from ₹18,999 · Push-Button from ₹28,999',
+    highlight: 'Side Lever from ₹12,999 · Push-Button from ₹19,999',
     caption: 'Heavy-gauge steel glide linkages with optional swivel tray tables, cup holders & USB charging.',
     targetCategory: 'Motorized Recliners',
     image: IMG_DRV_CINEMA2_CHARCOAL_UP,
@@ -238,7 +249,7 @@ export const EXCLUSIVE_DEALS: DealCard[] = [
   {
     id: 'deal-sofas',
     title: '100% Custom Recliner & L-Shape Sofa Sets',
-    highlight: 'Made in Your Exact Color, Fabric & Size',
+    highlight: 'Starting ₹30,000 · Made in Your Color & Size',
     caption: 'Built directly in our manufacturing unit with 40-density HR foam & pocket springs.',
     targetCategory: 'Sofa Sets',
     image: IMG_DRV_SOFASET_321,
@@ -246,7 +257,7 @@ export const EXCLUSIVE_DEALS: DealCard[] = [
   {
     id: 'deal-electric-bed',
     title: 'Electric Forward-Extend Sofa Bed',
-    highlight: 'One-Touch Motor Conversion from ₹38,499',
+    highlight: 'One-Touch Motor Conversion from ₹49,500',
     caption: 'Glides forward effortlessly via push-button control into a full sleeper bed.',
     targetCategory: 'Electric Sofa Beds',
     image: IMG_SOFA_CUM_BED,
@@ -261,8 +272,8 @@ export const PRODUCTS: Product[] = [
     category: 'Motorized Recliners',
     room: 'Recliners',
     mechanism: 'Motorized Push-Button',
-    price: 28999,
-    mrp: 42999,
+    price: 19999,
+    mrp: 29999,
     rating: 4.9,
     reviewCount: 312,
     image: IMG_DRV_BEIGE_MOTOR,
@@ -291,8 +302,8 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['Custom Color Swatch', 'Leatherette or Suede', 'USB + Cup Holder Trim'],
     variants: [
       { label: '1-Seater Push-Button', dimensions: '93 cm W × 96 cm D × 104 cm H', priceDelta: 0, image: IMG_DRV_BEIGE_MOTOR },
-      { label: '1-Seater + Swivel Tray & Cup Holders', dimensions: '95 cm W × 96 cm D × 104 cm H', priceDelta: 4500, image: IMG_DRV_CREAM_TRAY },
-      { label: '2-Seater Cinema Console', dimensions: '176 cm W × 96 cm D × 104 cm H', priceDelta: 24000 },
+      { label: '1-Seater + Swivel Tray & Cup Holders', dimensions: '95 cm W × 96 cm D × 104 cm H', priceDelta: 3500, image: IMG_DRV_CREAM_TRAY },
+      { label: '2-Seater Cinema Console', dimensions: '176 cm W × 96 cm D × 104 cm H', priceDelta: 19000 },
     ],
     finishes: [
       { name: 'Champagne Cream', swatchHex: '#DFD2BD', upholstery: 'Breathable Pro Leatherette', image: IMG_DRV_BEIGE_MOTOR },
@@ -308,8 +319,8 @@ export const PRODUCTS: Product[] = [
     category: 'Manual Recliners',
     room: 'Recliners',
     mechanism: 'Manual Lever',
-    price: 18999,
-    mrp: 28999,
+    price: 12999,
+    mrp: 19999,
     rating: 4.8,
     reviewCount: 248,
     image: IMG_DRV_BLACK_MANUAL,
@@ -338,8 +349,8 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['Custom Fabric or Leatherette', 'Rocker Swivel Option', '2-Seater Love Seat Custom'],
     variants: [
       { label: '1-Seater Fixed Base', dimensions: '93 cm W × 96 cm D × 104 cm H', priceDelta: 0, image: IMG_DRV_BLACK_MANUAL },
-      { label: '1-Seater 360° Rocker Swivel', dimensions: '93 cm W × 96 cm D × 104 cm H', priceDelta: 3500 },
-      { label: '2-Seater Manual Love Seat', dimensions: '158 cm W × 96 cm D × 104 cm H', priceDelta: 17000 },
+      { label: '1-Seater 360° Rocker Swivel', dimensions: '93 cm W × 96 cm D × 104 cm H', priceDelta: 4501 },
+      { label: '2-Seater Manual Love Seat', dimensions: '158 cm W × 96 cm D × 104 cm H', priceDelta: 12000 },
     ],
     finishes: [
       { name: 'Jet Matte Black', swatchHex: '#252629', upholstery: 'Breathable Pro Leatherette', image: IMG_DRV_BLACK_MANUAL },
@@ -354,8 +365,8 @@ export const PRODUCTS: Product[] = [
     category: 'Motorized Recliners',
     room: 'Recliners',
     mechanism: 'Motorized Push-Button',
-    price: 33499,
-    mrp: 48999,
+    price: 19999,
+    mrp: 30999,
     rating: 4.9,
     reviewCount: 204,
     image: IMG_DRV_NAVY_TRAY,
@@ -382,8 +393,8 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['Wood or Matte Black Tray', 'Diamond Quilted Arms', 'Single or Multi-Seat Row'],
     variants: [
       { label: '1-Seater Cinema + Tray', dimensions: '94 cm W × 96 cm D × 105 cm H', priceDelta: 0, image: IMG_DRV_NAVY_TRAY },
-      { label: 'Pair of 2 Individual Seats', dimensions: '2 × (94 cm W × 96 cm D)', priceDelta: 31000 },
-      { label: '3-Seater Connected Row', dimensions: '248 cm W × 96 cm D × 105 cm H', priceDelta: 58000 },
+      { label: 'Pair of 2 Individual Seats', dimensions: '2 × (94 cm W × 96 cm D)', priceDelta: 19000 },
+      { label: '3-Seater Connected Row', dimensions: '248 cm W × 96 cm D × 105 cm H', priceDelta: 38000 },
     ],
     finishes: [
       { name: 'Midnight Navy', swatchHex: '#233146', upholstery: 'Pro Grain Leatherette', image: IMG_DRV_NAVY_TRAY },
@@ -399,8 +410,8 @@ export const PRODUCTS: Product[] = [
     category: 'Sofa Sets',
     room: 'Sofa Sets',
     mechanism: 'Both Options',
-    price: 54999,
-    mrp: 79999,
+    price: 30000,
+    mrp: 45000,
     rating: 4.9,
     reviewCount: 289,
     image: IMG_DRV_LSHAPE_BROWN,
@@ -427,8 +438,8 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['Left / Right Corner', '1 or 2 Built-In Recliners', '20+ Factory Fabrics'],
     variants: [
       { label: '5-Seater L-Shape + 1 Manual Recliner', dimensions: '275 cm × 210 cm × 98 cm H', priceDelta: 0, image: IMG_DRV_LSHAPE_BROWN },
-      { label: '6-Seater L-Shape + 2 Manual Recliners', dimensions: '295 cm × 230 cm × 98 cm H', priceDelta: 12000 },
-      { label: '6-Seater L-Shape + Dual Motorized Seats', dimensions: '295 cm × 230 cm × 98 cm H', priceDelta: 22000 },
+      { label: '6-Seater L-Shape + 2 Manual Recliners', dimensions: '295 cm × 230 cm × 98 cm H', priceDelta: 9000 },
+      { label: '6-Seater L-Shape + Dual Motorized Seats', dimensions: '295 cm × 230 cm × 98 cm H', priceDelta: 16000 },
     ],
     finishes: [
       { name: 'Warm Walnut Suede', swatchHex: '#7A5B47', upholstery: 'Spill-Guard Matte Suede', image: IMG_DRV_LSHAPE_BROWN },
@@ -443,8 +454,8 @@ export const PRODUCTS: Product[] = [
     category: 'Electric Sofa Beds',
     room: 'Electric Sofa Beds',
     mechanism: 'Motorized Push-Button',
-    price: 38499,
-    mrp: 56999,
+    price: 49500,
+    mrp: 72999,
     rating: 4.9,
     reviewCount: 221,
     image: IMG_SOFA_CUM_BED,
@@ -472,9 +483,9 @@ export const PRODUCTS: Product[] = [
       'Our flagship electrically operated sofa-cum-bed glides forward smoothly at the press of a recessed side button—converting an everyday 3-seater sofa into an extra-deep lounger or full sleeper bed with zero manual lifting.',
     customizableOptions: ['Electric Push-Button Glide', 'Custom Length 6ft / 6.5ft', 'Removable Fabric Cover'],
     variants: [
-      { label: '2-Seater Compact (5.5 ft)', dimensions: '168 cm W × 92–156 cm D', priceDelta: -3500 },
+      { label: '2-Seater Compact (5.5 ft)', dimensions: '168 cm W × 92–156 cm D', priceDelta: -4500 },
       { label: '3-Seater Standard (6.5 ft)', dimensions: '198 cm W × 92–156 cm D', priceDelta: 0, image: IMG_SOFA_CUM_BED },
-      { label: 'King Sleeper (7 ft + USB)', dimensions: '214 cm W × 96–164 cm D', priceDelta: 6500, image: IMG_SOFABED_156 },
+      { label: 'King Sleeper (7 ft + USB)', dimensions: '214 cm W × 96–164 cm D', priceDelta: 7500, image: IMG_SOFABED_156 },
     ],
     finishes: [
       { name: 'Oatmeal Melange', swatchHex: '#CFC6B8', upholstery: 'Heavy Textured Linen', image: IMG_SOFA_CUM_BED },
@@ -489,8 +500,8 @@ export const PRODUCTS: Product[] = [
     category: 'Motorized Recliners',
     room: 'Recliners',
     mechanism: 'Both Options',
-    price: 54999,
-    mrp: 78999,
+    price: 39999,
+    mrp: 58999,
     rating: 4.9,
     reviewCount: 176,
     image: IMG_DRV_CINEMA2_CHARCOAL_UP,
@@ -516,9 +527,9 @@ export const PRODUCTS: Product[] = [
       'Two plush independently reclining home-theatre seats with removable swivel wooden snack trays, concealed cup holders, and optional center storage console. Available in charcoal suede, cognac leatherette, olive green, or matte black.',
     customizableOptions: ['Manual or Electric Action', 'Center Storage Console', 'Swivel Wood Trays'],
     variants: [
-      { label: '2-Seater Twin Manual + Trays', dimensions: '176 cm W × 96 cm D × 104 cm H', priceDelta: 0, image: IMG_DRV_CINEMA2_CHARCOAL_UP },
-      { label: '2-Seater Dual Motorized + Trays', dimensions: '176 cm W × 96 cm D × 104 cm H', priceDelta: 9000, image: IMG_DRV_CINEMA2_CHARCOAL_REC },
-      { label: '2-Seater Motorized + Storage Console', dimensions: '192 cm W × 96 cm D × 104 cm H', priceDelta: 14500 },
+      { label: '2-Seater Dual Motorized + Trays', dimensions: '176 cm W × 96 cm D × 104 cm H', priceDelta: 0, image: IMG_DRV_CINEMA2_CHARCOAL_UP },
+      { label: '2-Seater Motorized + Storage Console', dimensions: '192 cm W × 96 cm D × 104 cm H', priceDelta: 6000, image: IMG_DRV_CINEMA2_CHARCOAL_REC },
+      { label: '2-Seater Twin Manual + Trays', dimensions: '176 cm W × 96 cm D × 104 cm H', priceDelta: -9000 },
     ],
     finishes: [
       { name: 'Charcoal Slate Suede', swatchHex: '#3B3E44', upholstery: 'Diamond-Quilted Molfino Suede', image: IMG_DRV_CINEMA2_CHARCOAL_UP },
@@ -534,8 +545,8 @@ export const PRODUCTS: Product[] = [
     category: 'Manual Recliners',
     room: 'Recliners',
     mechanism: 'Manual Lever',
-    price: 19999,
-    mrp: 30999,
+    price: 12999,
+    mrp: 19999,
     rating: 4.8,
     reviewCount: 164,
     image: IMG_DRV_IVORY_MANUAL,
@@ -562,8 +573,8 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['Summer-Cool Linen Weave', '360° Swivel Rocker Base', '15+ Pastel & Jewel Shades'],
     variants: [
       { label: '1-Seater Manual Lever', dimensions: '90 cm W × 94 cm D × 102 cm H', priceDelta: 0, image: IMG_DRV_IVORY_MANUAL },
-      { label: '1-Seater Rocker + Swivel', dimensions: '90 cm W × 95 cm D × 103 cm H', priceDelta: 3500 },
-      { label: '1-Seater Push-Button Electric', dimensions: '90 cm W × 94 cm D × 102 cm H', priceDelta: 8500 },
+      { label: '1-Seater Rocker + Swivel', dimensions: '90 cm W × 95 cm D × 103 cm H', priceDelta: 4501 },
+      { label: '1-Seater Push-Button Electric', dimensions: '90 cm W × 94 cm D × 102 cm H', priceDelta: 7000 },
     ],
     finishes: [
       { name: 'Ivory Oat Fabric', swatchHex: '#E5DFD5', upholstery: 'Breathable Textured Weave', image: IMG_DRV_IVORY_MANUAL },
@@ -574,12 +585,12 @@ export const PRODUCTS: Product[] = [
   {
     id: 'zss-mirza-custom-sofa',
     name: 'Zain Mirza 3+2+1 Full Living Room Recliner Set',
-    subtitle: 'Sofa Sets · Complete 6-Seater Factory Custom Suite',
+    subtitle: 'Sofa Sets · Complete Living Room Factory Custom Suite',
     category: 'Sofa Sets',
     room: 'Sofa Sets',
     mechanism: 'Both Options',
-    price: 78999,
-    mrp: 114999,
+    price: 30000,
+    mrp: 45999,
     rating: 4.9,
     reviewCount: 364,
     image: IMG_DRV_SOFASET_321,
@@ -605,9 +616,9 @@ export const PRODUCTS: Product[] = [
       'Complete living room seating suite manufactured to order in our own factory. Choose which seats recline (manual lever or electric push-button), select from 20+ leatherette or fabric shades, and adjust widths to fit your exact living hall.',
     customizableOptions: ['Buy 3-Seater Alone or 3+2+1', 'Custom Width & Depth', '20+ Factory Colors'],
     variants: [
-      { label: '3-Seater Recliner Sofa Only', dimensions: '215 cm W × 96 cm D × 102 cm H', priceDelta: -36000, image: IMG_DRV_SOFA3_ESPRESSO },
-      { label: '3+2 Living Set (5-Seater)', dimensions: '215 cm + 158 cm W × 96 cm D', priceDelta: -14000 },
-      { label: '3+2+1 Complete 6-Seater Suite', dimensions: '215 cm + 158 cm + 93 cm W', priceDelta: 0, image: IMG_DRV_SOFASET_321 },
+      { label: '3+2 Living Sofa Set (5-Seater)', dimensions: '215 cm + 158 cm W × 96 cm D', priceDelta: 0, image: IMG_DRV_SOFA3_ESPRESSO },
+      { label: '3+2+1 Complete 6-Seater Suite', dimensions: '215 cm + 158 cm + 93 cm W', priceDelta: 12000, image: IMG_DRV_SOFASET_321 },
+      { label: '3+2+1 Suite + Dual Motorized Seats', dimensions: '215 cm + 158 cm + 93 cm W', priceDelta: 22000 },
     ],
     finishes: [
       { name: 'Espresso Mocha', swatchHex: '#4A3731', upholstery: 'Pro Grain Leatherette', image: IMG_DRV_SOFASET_321 },
@@ -622,8 +633,8 @@ export const PRODUCTS: Product[] = [
     category: 'Home Chairs',
     room: 'Home Chairs',
     mechanism: 'Manual Lever',
-    price: 16499,
-    mrp: 24999,
+    price: 9500,
+    mrp: 14500,
     rating: 4.8,
     reviewCount: 192,
     image: IMG_DRV_CHAIR_ESPRESSO,
@@ -650,8 +661,8 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['Fixed or Push-Back Action', 'Leatherette or Textured Fabric', 'Pair Discount Available'],
     variants: [
       { label: 'Single Push-Back Chair', dimensions: '74 cm W × 84 cm D × 100 cm H', priceDelta: 0, image: IMG_DRV_CHAIR_ESPRESSO },
-      { label: 'Single Chair + Swivel Base', dimensions: '74 cm W × 84 cm D × 100 cm H', priceDelta: 3000 },
-      { label: 'Pair of 2 Chairs', dimensions: '2 × (74 cm W × 84 cm D)', priceDelta: 14500 },
+      { label: 'Single Chair + Swivel Base', dimensions: '74 cm W × 84 cm D × 100 cm H', priceDelta: 2500 },
+      { label: 'Pair of 2 Chairs', dimensions: '2 × (74 cm W × 84 cm D)', priceDelta: 8500 },
     ],
     finishes: [
       { name: 'Espresso Leatherette', swatchHex: '#3B2B28', upholstery: 'Matte Grain Leatherette', image: IMG_DRV_CHAIR_ESPRESSO },
@@ -666,8 +677,8 @@ export const PRODUCTS: Product[] = [
     category: 'Manual Recliners',
     room: 'Recliners',
     mechanism: 'Manual Lever',
-    price: 34999,
-    mrp: 49999,
+    price: 25999,
+    mrp: 38999,
     rating: 4.8,
     reviewCount: 138,
     image: IMG_DRV_LOVESEAT_CHARCOAL,
@@ -696,8 +707,8 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['Upgrade to Electric Buttons', 'Matching 1-Seater Available', '20+ Suede & Fabric Colors'],
     variants: [
       { label: '2-Seater Twin Manual Lever', dimensions: '158 cm W × 94 cm D × 102 cm H', priceDelta: 0, image: IMG_DRV_LOVESEAT_CHARCOAL },
-      { label: '2-Seater Twin Motorized Button', dimensions: '158 cm W × 94 cm D × 102 cm H', priceDelta: 9500 },
-      { label: '3-Seater Matching Recliner Sofa', dimensions: '212 cm W × 94 cm D × 102 cm H', priceDelta: 12000 },
+      { label: '2-Seater Twin Motorized Button', dimensions: '158 cm W × 94 cm D × 102 cm H', priceDelta: 12000 },
+      { label: '3-Seater Matching Recliner Sofa', dimensions: '212 cm W × 94 cm D × 102 cm H', priceDelta: 9000 },
     ],
     finishes: [
       { name: 'Charcoal Mist Suede', swatchHex: '#51565E', upholstery: 'Soft Brushed Suede', image: IMG_DRV_LOVESEAT_CHARCOAL },
@@ -712,8 +723,8 @@ export const PRODUCTS: Product[] = [
     category: 'Motorized Recliners',
     room: 'Recliners',
     mechanism: 'Motorized Push-Button',
-    price: 74999,
-    mrp: 108999,
+    price: 58999,
+    mrp: 84999,
     rating: 4.9,
     reviewCount: 152,
     image: IMG_DRV_CINEMA3_GREY,
@@ -740,7 +751,7 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['Straight or Curved Row', '3, 4, or 5-Seat Custom', 'LED Cup Holders & Trays'],
     variants: [
       { label: '3-Seater Straight Motorized Row', dimensions: '248 cm W × 96 cm D × 104 cm H', priceDelta: 0, image: IMG_DRV_CINEMA3_GREY },
-      { label: '4-Seater Curved Cinema Row', dimensions: '332 cm W × 98 cm D × 104 cm H', priceDelta: 24000 },
+      { label: '4-Seater Curved Cinema Row', dimensions: '332 cm W × 98 cm D × 104 cm H', priceDelta: 19000 },
       { label: '3-Seater Manual Lever Row', dimensions: '248 cm W × 96 cm D × 104 cm H', priceDelta: -15000 },
     ],
     finishes: [
@@ -757,8 +768,8 @@ export const PRODUCTS: Product[] = [
     category: 'Home Chairs',
     room: 'Home Chairs',
     mechanism: 'Manual Lever',
-    price: 17499,
-    mrp: 25999,
+    price: 9500,
+    mrp: 14999,
     rating: 4.8,
     reviewCount: 149,
     image: IMG_DRV_CHAIR_SAND,
@@ -785,7 +796,7 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['360° Swivel + Rocker', 'Fabric or Leatherette', 'Custom Neutral or Bold Shades'],
     variants: [
       { label: '360° Swivel Manual Chair', dimensions: '76 cm W × 86 cm D × 101 cm H', priceDelta: 0, image: IMG_DRV_CHAIR_SAND },
-      { label: 'Cloud-Plush Deep Rocker Edition', dimensions: '88 cm W × 94 cm D × 104 cm H', priceDelta: 4500 },
+      { label: 'Cloud-Plush Deep Rocker Edition', dimensions: '88 cm W × 94 cm D × 104 cm H', priceDelta: 3500 },
     ],
     finishes: [
       { name: 'Warm Sand Weave', swatchHex: '#C2AA93', upholstery: 'Textured Cotton Linen', image: IMG_DRV_CHAIR_SAND },
@@ -795,13 +806,13 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'zss-orbit-revolving-recliner',
-    name: 'Zain Orbit 360° Revolving Rocker Recliner',
-    subtitle: 'Revolving Recliner · 360° Swivel Base + Rocking Motion',
-    category: 'Revolving Recliners',
+    name: 'Zain Orbit 360° Manual Lever Revolving Recliner',
+    subtitle: 'Manual Revolving · 360° Swivel Base + Side Lever',
+    category: 'Manual Revolving Recliners',
     room: 'Recliners',
     mechanism: 'Manual Lever',
-    price: 22499,
-    mrp: 34999,
+    price: 17500,
+    mrp: 26500,
     rating: 4.9,
     reviewCount: 186,
     image: IMG_REVOLVING_IVORY_LOUNGE,
@@ -819,7 +830,7 @@ export const PRODUCTS: Product[] = [
       'Rear 3/4 View',
       'Dimensions Guide',
     ],
-    tag: '360° Revolving',
+    tag: 'Manual Lever · 360°',
     dimensions: '92 cm W × 101.6 cm D × 109.2 cm H (Seat Height: 49 cm)',
     frameMaterial: 'Heavy-Duty 360° Circular Steel Swivel Ring + Dual Rocker Springs + Hardwood Frame',
     foamAndSpring: '3-Tier Pillow-Back 40-Density HR Foam + Pocket Spring Seat',
@@ -827,10 +838,10 @@ export const PRODUCTS: Product[] = [
     deliveryEstimate: 'Ready to Dispatch in 4–6 Days',
     description:
       'Engineered on a heavy-gauge circular 360-degree steel swivel base with smooth rocking springs and a recessed side pull-lever. Plush 3-tier tufted pillow backrest and overstuffed armrests deliver cloud-like full-body support in any direction you turn.',
-    customizableOptions: ['Custom Leatherette or Suede', 'Manual Lever or Motorized Swivel', '30+ Factory Shade Swatches'],
+    customizableOptions: ['Custom Leatherette or Suede', 'Manual Lever Swivel + Rocker', '30+ Factory Shade Swatches'],
     variants: [
       { label: '360° Revolving + Rocker (Manual Lever)', dimensions: '92 cm W × 101.6 cm D × 109.2 cm H', priceDelta: 0, image: IMG_REVOLVING_IVORY_LOUNGE },
-      { label: '360° Revolving Full Recline + Rock Lock', dimensions: '92 cm W × 101.6 cm D × 109.2 cm H', priceDelta: 2500, image: IMG_REVOLVING_IVORY_RECLINED },
+      { label: '360° Revolving Full Recline + Rock Lock', dimensions: '92 cm W × 101.6 cm D × 109.2 cm H', priceDelta: 2000, image: IMG_REVOLVING_IVORY_RECLINED },
     ],
     finishes: [
       { name: 'Pure Ivory Cream', swatchHex: '#F3F0E8', upholstery: 'Breathable Pro Leatherette', image: IMG_REVOLVING_IVORY_LOUNGE },
@@ -841,13 +852,13 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'zss-axis-suede-revolving-recliner',
-    name: 'Zain Axis 360° Revolving Suede Rocker Recliner',
-    subtitle: 'Revolving Recliner · Plush Molfino Suede + 360° Glide',
-    category: 'Revolving Recliners',
+    name: 'Zain Axis 360° Manual Lever Suede Revolving Recliner',
+    subtitle: 'Manual Revolving · Plush Molfino Suede + Side Lever',
+    category: 'Manual Revolving Recliners',
     room: 'Recliners',
     mechanism: 'Manual Lever',
-    price: 23999,
-    mrp: 36999,
+    price: 17500,
+    mrp: 26999,
     rating: 4.9,
     reviewCount: 142,
     image: IMG_AXIS_UPRIGHT,
@@ -865,18 +876,18 @@ export const PRODUCTS: Product[] = [
       'Rear 3/4 View',
       'Dimensions Guide',
     ],
-    tag: 'Swivel + Rocker',
+    tag: 'Manual Lever · Swivel',
     dimensions: '92 cm W × 101.6 cm D × 109.2 cm H (Seat Height: 49 cm)',
     frameMaterial: 'Powder-Coated 360° Circular Steel Ring + Coil Rocker Chassis + Pinewood Core',
     foamAndSpring: 'Triple-Channel Cloud Backrest + 40-Density HR Cushioning',
     warranty: '5-Year Structural & Swivel Mechanism Warranty',
     deliveryEstimate: 'Factory Dispatch in 5–7 Days',
     description:
-      'Wrapped in breathable velvet-touch Molfino suede over our signature 360-degree revolving coil-rocker chassis. Effortlessly pivot toward the TV, window, or conversation while enjoying gentle rocking and deep leg-rest elevation.',
-    customizableOptions: ['Molfino Suede or Linen Fabric', 'Stain-Guard Upholstery', 'Optional USB Charging Pocket'],
+      'Wrapped in breathable velvet-touch Molfino suede over our signature 360-degree revolving coil-rocker chassis with a zero-electricity side pull-lever. Effortlessly pivot toward the TV, window, or conversation while enjoying gentle rocking and deep leg-rest elevation.',
+    customizableOptions: ['Molfino Suede or Linen Fabric', 'Stain-Guard Upholstery', 'Optional Side Storage Pocket'],
     variants: [
-      { label: '1-Seater 360° Swivel Rocker', dimensions: '92 cm W × 101.6 cm D × 109.2 cm H', priceDelta: 0, image: IMG_AXIS_UPRIGHT },
-      { label: 'Pair of 2 Revolving Recliners', dimensions: '2 × (92 cm W × 101.6 cm D)', priceDelta: 22500 },
+      { label: '1-Seater 360° Manual Lever Rocker', dimensions: '92 cm W × 101.6 cm D × 109.2 cm H', priceDelta: 0, image: IMG_AXIS_UPRIGHT },
+      { label: 'Pair of 2 Manual Revolving Recliners', dimensions: '2 × (92 cm W × 101.6 cm D)', priceDelta: 16500 },
     ],
     finishes: [
       { name: 'Charcoal Slate Suede', swatchHex: '#4C4F54', upholstery: 'Soft Matte Molfino Suede', image: IMG_AXIS_UPRIGHT },
@@ -887,12 +898,12 @@ export const PRODUCTS: Product[] = [
   {
     id: 'zss-zenith-motor-revolving-recliner',
     name: 'Zain Zenith Motorized 360° Revolving Recliner',
-    subtitle: 'Revolving Recliner · Push-Button Electric + USB + 360° Swivel',
-    category: 'Revolving Recliners',
+    subtitle: 'Motorized Revolving · Push-Button Electric + USB + 360° Swivel',
+    category: 'Motorized Revolving Recliners',
     room: 'Recliners',
     mechanism: 'Motorized Push-Button',
-    price: 31499,
-    mrp: 45999,
+    price: 24500,
+    mrp: 36500,
     rating: 4.9,
     reviewCount: 118,
     image: IMG_REVOLVING_NAVY_MOTOR,
@@ -910,7 +921,7 @@ export const PRODUCTS: Product[] = [
       'Rear 3/4 View',
       'Dimensions Guide',
     ],
-    tag: 'Motorized 360°',
+    tag: 'Motorized · 360°',
     dimensions: '92 cm W × 101.6 cm D × 109.2 cm H (Seat Height: 49 cm)',
     frameMaterial: 'Heavy-Gauge 360° Swivel Ring + Silent 24V Okin Actuator + Brushed USB Switch',
     foamAndSpring: '40-Density Super-Soft HR Foam + 3-Tier Pillow-Back Lumbar Support',
@@ -921,7 +932,7 @@ export const PRODUCTS: Product[] = [
     customizableOptions: ['Custom Leatherette or Suede', 'Optional Detachable Swivel Tray', 'Custom Stitching Contrast'],
     variants: [
       { label: 'Motorized 360° Swivel + USB', dimensions: '92 cm W × 101.6 cm D × 109.2 cm H', priceDelta: 0, image: IMG_REVOLVING_NAVY_MOTOR },
-      { label: 'Manual Side-Lever 360° Edition', dimensions: '92 cm W × 101.6 cm D × 109.2 cm H', priceDelta: -8500, image: IMG_REVOLVING_ESPRESSO },
+      { label: 'Motorized 360° Swivel + Removable Tray', dimensions: '94 cm W × 101.6 cm D × 109.2 cm H', priceDelta: 3500, image: IMG_ZENITH_RECLINED },
     ],
     finishes: [
       { name: 'Midnight Navy', swatchHex: '#253852', upholstery: 'Breathable Pro Leatherette', image: IMG_REVOLVING_NAVY_MOTOR },
@@ -1026,7 +1037,8 @@ export const CUSTOMER_STORIES: CustomerStory[] = [
 export const POPULAR_SEARCHES: Array<{ label: string; category: CategoryTile['targetCategory'] }> = [
   { label: 'Manual Lever Recliners', category: 'Manual Recliners' },
   { label: 'Motorized Cinema Recliners', category: 'Motorized Recliners' },
-  { label: '360° Revolving Recliners', category: 'Revolving Recliners' },
+  { label: 'Manual Lever Revolving Recliners', category: 'Manual Revolving Recliners' },
+  { label: 'Motorized Revolving Recliners', category: 'Motorized Revolving Recliners' },
   { label: 'Home Theatre Recliner Rows', category: 'Motorized Recliners' },
   { label: 'L-Shape Recliner Sofas', category: 'Sofa Sets' },
   { label: 'Electric Forward-Extend Sofa Bed', category: 'Electric Sofa Beds' },

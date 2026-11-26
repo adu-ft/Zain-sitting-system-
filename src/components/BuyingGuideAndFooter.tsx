@@ -725,10 +725,19 @@ export const BuyingGuideAndFooter: React.FC<BuyingGuideAndFooterProps> = ({
                 <li>
                   <button
                     type="button"
-                    onClick={() => onSelectCategory('Revolving Recliners')}
+                    onClick={() => onSelectCategory('Manual Revolving Recliners')}
                     className="hover:text-[#E27A34] cursor-pointer"
                   >
-                    360° Revolving Recliners
+                    360° Revolving Manual Lever
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => onSelectCategory('Motorized Revolving Recliners')}
+                    className="hover:text-[#E27A34] cursor-pointer"
+                  >
+                    360° Revolving Motorized
                   </button>
                 </li>
                 <li>

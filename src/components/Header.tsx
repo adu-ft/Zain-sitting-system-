@@ -41,7 +41,8 @@ const CATEGORY_BAR_ITEMS: Array<{ label: string; category: CategoryKey; sectionI
   { label: 'All Factory Lines', category: 'All' },
   { label: 'Manual Recliners', category: 'Manual Recliners' },
   { label: 'Motorized Recliners', category: 'Motorized Recliners' },
-  { label: 'Revolving Recliners', category: 'Revolving Recliners' },
+  { label: 'Revolving Manual', category: 'Manual Revolving Recliners' },
+  { label: 'Revolving Motorized', category: 'Motorized Revolving Recliners' },
   { label: 'Custom Sofa Sets', category: 'Sofa Sets' },
   { label: 'Electric Sofa Cum Beds', category: 'Electric Sofa Beds' },
   { label: 'Modern Home Chairs', category: 'Home Chairs' },
@@ -50,6 +51,7 @@ const CATEGORY_BAR_ITEMS: Array<{ label: string; category: CategoryKey; sectionI
 ];
 
 export const Header: React.FC<HeaderProps> = ({
+  activeCategory,
   onSelectCategory,
   onOpenWishlist,
   onOpenCart,
@@ -63,8 +65,12 @@ export const Header: React.FC<HeaderProps> = ({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [searchFocused, setSearchFocused] = useState(false);
-  const [activeNavLabel, setActiveNavLabel] = useState<string>('All Factory Lines');
+  const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
   const searchWrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setActiveSectionId(null);
+  }, [activeCategory]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -91,13 +97,12 @@ export const Header: React.FC<HeaderProps> = ({
     : products.slice(0, 4);
 
   const handleCategoryClick = (
-    label: string,
     category: CategoryKey,
     sectionId?: string
   ) => {
-    setActiveNavLabel(label);
     setIsMobileMenuOpen(false);
     if (sectionId) {
+      setActiveSectionId(sectionId);
       const target = document.getElementById(sectionId);
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -111,6 +116,7 @@ export const Header: React.FC<HeaderProps> = ({
       }, 80);
       return;
     }
+    setActiveSectionId(null);
     onSelectCategory(category);
   };
 
@@ -118,7 +124,8 @@ export const Header: React.FC<HeaderProps> = ({
     { label: 'All', category: 'All' },
     { label: 'Manual', category: 'Manual Recliners' },
     { label: 'Motorized', category: 'Motorized Recliners' },
-    { label: 'Revolving', category: 'Revolving Recliners' },
+    { label: 'Revolving Manual', category: 'Manual Revolving Recliners' },
+    { label: 'Revolving Motorized', category: 'Motorized Revolving Recliners' },
     { label: 'Sofa Sets', category: 'Sofa Sets' },
     { label: 'Sofa Beds', category: 'Electric Sofa Beds' },
     { label: 'Chairs', category: 'Home Chairs' },
@@ -401,13 +408,15 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center justify-between gap-2 mt-1.5 border-b border-[#F2ECE4] min-w-0 max-w-full">
             <div className="flex items-center gap-5 overflow-x-auto overscroll-x-contain scrollbar-hide flex-1 min-w-0">
               {mobileTabs.map((tab) => {
-                const isSelected = activeNavLabel === tab.label || (tab.label === 'All' && activeNavLabel === 'All Factory Lines');
+                const isSelected = tab.sectionId
+                  ? activeSectionId === tab.sectionId
+                  : activeSectionId === null && activeCategory === tab.category;
                 return (
                   <button
                     key={tab.label}
                     type="button"
                     onClick={() =>
-                      handleCategoryClick(tab.label, tab.category, tab.sectionId)
+                      handleCategoryClick(tab.category, tab.sectionId)
                     }
                     className={`whitespace-nowrap shrink-0 py-2.5 text-[13px] font-medium border-b-2 transition-colors cursor-pointer ${
                       isSelected
@@ -441,15 +450,17 @@ export const Header: React.FC<HeaderProps> = ({
           aria-label="Seating category navigation"
           className="hidden lg:block border-t border-[#F4EFE9] bg-white"
         >
-          <div className="max-w-[1440px] mx-auto px-6 lg:px-10 flex items-center justify-center gap-7 xl:gap-9 overflow-x-auto scrollbar-hide">
+          <div className="max-w-[1440px] mx-auto px-6 lg:px-10 flex items-center justify-center gap-5 xl:gap-7 overflow-x-auto scrollbar-hide">
             {CATEGORY_BAR_ITEMS.map((item) => {
-              const isSelected = activeNavLabel === item.label;
+              const isSelected = item.sectionId
+                ? activeSectionId === item.sectionId
+                : activeSectionId === null && activeCategory === item.category;
               return (
                 <button
                   key={item.label}
                   type="button"
                   onClick={() =>
-                    handleCategoryClick(item.label, item.category, item.sectionId)
+                    handleCategoryClick(item.category, item.sectionId)
                   }
                   className={`whitespace-nowrap shrink-0 py-3 text-[13px] font-medium border-b-2 transition-colors cursor-pointer ${
                     isSelected
@@ -491,22 +502,27 @@ export const Header: React.FC<HeaderProps> = ({
                 </button>
               </div>
               <div className="py-4 space-y-1">
-                {CATEGORY_BAR_ITEMS.map((item) => (
-                  <button
-                    key={item.label}
-                    type="button"
-                    onClick={() =>
-                      handleCategoryClick(item.label, item.category, item.sectionId)
-                    }
-                    className={`w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors cursor-pointer ${
-                      activeNavLabel === item.label
-                        ? 'bg-[#FAF4ED] text-[#E27A34]'
-                        : 'text-[#333333] hover:bg-[#FAF4ED]'
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                ))}
+                {CATEGORY_BAR_ITEMS.map((item) => {
+                  const isSelected = item.sectionId
+                    ? activeSectionId === item.sectionId
+                    : activeSectionId === null && activeCategory === item.category;
+                  return (
+                    <button
+                      key={item.label}
+                      type="button"
+                      onClick={() =>
+                        handleCategoryClick(item.category, item.sectionId)
+                      }
+                      className={`w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors cursor-pointer ${
+                        isSelected
+                          ? 'bg-[#FAF4ED] text-[#E27A34]'
+                          : 'text-[#333333] hover:bg-[#FAF4ED]'
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 

@@ -2,7 +2,8 @@ export type CategoryKey =
   | 'All'
   | 'Manual Recliners'
   | 'Motorized Recliners'
-  | 'Revolving Recliners'
+  | 'Manual Revolving Recliners'
+  | 'Motorized Revolving Recliners'
   | 'Sofa Sets'
   | 'Electric Sofa Beds'
   | 'Home Chairs';
